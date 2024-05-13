@@ -1,11 +1,10 @@
 import React from 'react'
 import { Container } from './styles'
 
-export default function Pokedex() {
+export default function Pokemon() {
   return (
     <Container>
-      Pokedex
+        Pokemon
     </Container>
   )
 }
-
