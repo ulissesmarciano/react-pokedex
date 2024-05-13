@@ -1,7 +1,10 @@
+import Pokedex from "./pages/pokedex";
+
+
 function App() {
   return (
       <>
-        teste
+        <Pokedex />
       </>
   );
 }
