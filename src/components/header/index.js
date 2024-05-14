@@ -1,11 +1,14 @@
 import React from 'react'
-import { Container } from './styles'
-import SearchButton from '../buttonsearch'
+import { Container, HomeIcon, MenuContainer } from './styles'
+
+import PokeballIcon from '../../assets/icons/pokeball-icon.svg'
 
 export default function Header() {
   return (
     <Container>
-        <SearchButton />
+      <MenuContainer>
+        <HomeIcon src={PokeballIcon} alt='Icone da Homepage'/>
+      </MenuContainer>
     </Container>
   )
 }
