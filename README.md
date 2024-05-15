@@ -1,4 +1,23 @@
-Pacotes utilizados
+# React Pokédex
 
--React Router Dom
--Styled Components
+Projeto de uma pokédex testando habilidades de front-end e habilidades de requisição de API's.
+
+## Tecnologias usadas
+- HTML
+- CSS
+- JS
+- React Router Dom
+- Styled Components
+
+## Como Utilizar
+
+1 - Clone o projeto
+
+```
+git clone <url>
+```
+2 Acesse a pasta do projeto
+
+```
+cd repositorio-exemplo
+```
