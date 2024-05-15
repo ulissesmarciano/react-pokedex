@@ -1,23 +1,17 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-        padding: 1rem 0;
+        padding: .2rem 1rem;
         background-color: #f1636b;
         
         display: flex;
         `
 export const MenuContainer = styled.div`
-        background-color: blue;
-        
-        /* width: ; */
-
-
+        width: 100%;
 `
 
 export const HomeIcon = styled.img`
-        height: 4rem;
-        margin: -.3rem -.3rem -.4rem;
-        
+        height: 3rem;
 `
 
 
