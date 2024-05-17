@@ -4,7 +4,7 @@ import { Container, PokemonCardContainer, TitleContainer } from './styles'
 
 import Header from '../../components/header'
 import PokemonCard from '../../components/pokemon-card'
-import SearchInput from '../../components/search-input'
+import SearchBar from '../../components/search-bar'
 
 export default function Pokedex() {
   return (
@@ -16,7 +16,7 @@ export default function Pokedex() {
             <p>Procure por seu pokémon pelo nome ou seu número</p>
           </TitleContainer>
           <div>
-            <SearchInput />
+            <SearchBar />
           </div>
         </div>
         {/* <PokemonCardContainer>
