@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
-export const Container = styled.div``
+export const Container = styled.div`
+`
 
 export const TitleContainer = styled.div`
     margin: .8rem 1.2rem;
@@ -23,7 +24,7 @@ export const TitleContainer = styled.div`
 export const PokemonCardContainer = styled.ul`
     margin: 1rem;
     padding: 1rem;
-    border: 2px solid #b44b50;
+    border: 2px solid #b44b5090;
     border-radius: 10px;
 
     display: grid;

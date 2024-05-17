@@ -19,7 +19,7 @@ export default function Pokedex() {
             <SearchBar />
           </div>
         </div>
-        {/* <PokemonCardContainer>
+        <PokemonCardContainer>
           <PokemonCard />
           <PokemonCard />
           <PokemonCard />
@@ -40,7 +40,7 @@ export default function Pokedex() {
           <PokemonCard />
           <PokemonCard />
           <PokemonCard />
-        </PokemonCardContainer> */}
+        </PokemonCardContainer>
     </Container>
   )
 }
