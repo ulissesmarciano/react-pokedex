@@ -7,5 +7,6 @@ export const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
         font-family: Roboto;
         list-style: none;
+        text-decoration: none;
     }
 `
