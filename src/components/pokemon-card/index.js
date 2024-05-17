@@ -15,11 +15,11 @@ export default function PokemonCard() {
           <PokemonCardBottomContainer>
             <CardTitleContainer>
               <p># 003</p>
-              <h4>Bulbasauro</h4>
+              <h4>bulbasauro</h4>
             </CardTitleContainer>
             <TypeContainer>
-              <li>Planta</li>
-              <li>Veneno</li>
+              <li>planta</li>
+              <li>veneno</li>
             </TypeContainer>
           </PokemonCardBottomContainer>
       </Container>

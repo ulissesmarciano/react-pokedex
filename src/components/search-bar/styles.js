@@ -5,6 +5,10 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
 
+    @media (min-width: 650px){
+        margin-bottom: 1.2rem;
+    }
+
 `
 
 export const SearchLabel = styled.div`
@@ -22,6 +26,14 @@ export const SearchLabel = styled.div`
 
         opacity: 0.3;
         
+    }
+
+    @media (min-width: 650px){
+        width: 70%;
+    }
+
+    @media (min-width: 1024px){
+        max-width: 650px;
     }
 
     input {

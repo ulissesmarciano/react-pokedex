@@ -19,6 +19,10 @@ export const TitleContainer = styled.div`
         color: #b44b5095;
         font-weight: 500;
     }
+
+    @media (min-width: 1024px){
+        margin: 2rem;
+    }
 `
 
 export const PokemonCardContainer = styled.ul`
@@ -30,5 +34,26 @@ export const PokemonCardContainer = styled.ul`
     display: grid;
     grid-template-columns: 1fr;
     gap: .5rem;
+
+    @media (min-width: 425px){
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @media (min-width: 650px){
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: .8rem;
+    }
+
+    @media (min-width: 1024px){
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 1rem;
+        margin: 4rem;
+    }
+    
+    @media (min-width: 1440px){
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        gap: 1.4rem;
+        padding: 2rem;
+    }
 
 `
