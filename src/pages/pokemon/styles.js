@@ -50,3 +50,34 @@ export const PokemonImageContainer = styled.div`
         height: 100%;
     }
 `
+
+export const EvolutionContainer = styled.div`
+    margin: 1rem;
+    
+    h6 {
+        margin-bottom: 2rem;
+    }
+    
+`
+
+export const EvolutionImageContainer = styled.div`
+    
+    ul {
+        
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        li {
+            padding: .6rem;
+
+            border: 2px solid green;
+            border-radius: 50px;
+            background-color: #00ff0010;
+            img {
+                height: 3rem;
+            }
+        }
+        
+    }
+`

@@ -1,9 +1,15 @@
 import React from 'react'
 import PokemonHeader from '../../components/pokemon-header'
 
-import { Container, PokemonImageContainer, PokemonNameContainer, SkillContainer } from './styles'
+import { Container, EvolutionContainer, EvolutionImageContainer, PokemonImageContainer, PokemonNameContainer, SkillContainer } from './styles'
+import InfoTabList from '../../components/info-tab-list'
 
 const PokemonImage = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
+
+const Bulbassaur = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
+const Yvessaur = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/2.svg"
+const Venossaur = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/3.svg"
+
 
 export default function Pokemon() {
   return (
@@ -22,6 +28,20 @@ export default function Pokemon() {
       <PokemonImageContainer>
         <img src={PokemonImage} alt='Imagem do pokémon'/>
       </PokemonImageContainer>
+      <EvolutionContainer>
+        <h6>Evolutions</h6>
+        <EvolutionImageContainer>
+          <ul>
+            <li><img src={Bulbassaur} alt='#'/></li>
+            <li><img src={Yvessaur} alt='#'/></li>
+            <li><img src={Venossaur} alt='#'/></li>
+          </ul>
+        </EvolutionImageContainer>
+      </EvolutionContainer>
+      <div>
+        <InfoTabList />
+      </div>
     </Container>
   )
 }
+
