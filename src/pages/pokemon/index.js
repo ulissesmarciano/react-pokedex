@@ -1,15 +1,27 @@
 import React from 'react'
-import { Container, BackArrowContainer } from './styles'
-import { Link } from 'react-router-dom'
+import PokemonHeader from '../../components/pokemon-header'
 
-import BackArrow from '../../assets/icons/left-arrow-icon.svg'
+import { Container, PokemonImageContainer, PokemonNameContainer, SkillContainer } from './styles'
+
+const PokemonImage = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
 
 export default function Pokemon() {
   return (
     <Container>
-        <BackArrowContainer>
-          <Link to="/" ><img src={BackArrow} alt='ícone voltar a página anterior'/> </Link>
-        </BackArrowContainer>
+      <PokemonHeader />
+      <PokemonNameContainer>
+          <h5>Bulbassauro</h5>
+          <p>#001</p>
+      </PokemonNameContainer>
+          <SkillContainer>
+            <ul>
+              <li>planta</li>
+              <li>veneno</li>
+            </ul>
+          </SkillContainer>
+      <PokemonImageContainer>
+        <img src={PokemonImage} alt='Imagem do pokémon'/>
+      </PokemonImageContainer>
     </Container>
   )
 }
