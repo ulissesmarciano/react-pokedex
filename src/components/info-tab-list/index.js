@@ -1,22 +1,37 @@
 import React from 'react'
+import {MainTab, MainTabList, MainTabPanel, MainTabs, SecondaryTab, SecondaryTabList, SecondaryTabPanel, SecondaryTabs} from './styled'
 
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 export default function InfoTabList() {
   return (
-    <Tabs>
-        <TabList>
-            <Tab>Title 1</Tab>
-            <Tab>Title 2</Tab>
-        </TabList>
+    <MainTabs>
+        <MainTabList>
+            <MainTab><h5>sobre</h5></MainTab>
+            <MainTab><h5>versões</h5></MainTab>
+            <MainTab><h5>estatísticas</h5></MainTab>
+        </MainTabList>
 
-        <TabPanel>
-            <h2>Any content 1</h2>
-        </TabPanel>
-        <TabPanel>
-            <h2>Any content 2</h2>
-        </TabPanel>
-  </Tabs>
+        <MainTabPanel>
+            <p></p>
+        </MainTabPanel>
+        <MainTabPanel>
+            <SecondaryTabs>
+                <SecondaryTabList>
+                    <SecondaryTab>normal</SecondaryTab>
+                    <SecondaryTab>shiny</SecondaryTab>
+                </SecondaryTabList>
+                <SecondaryTabPanel>
+                    Conteúdo 1
+                </SecondaryTabPanel>
+                <SecondaryTabPanel>
+                    Conteúdo 2
+                </SecondaryTabPanel>
+            </SecondaryTabs>
+        </MainTabPanel>
+        <MainTabPanel>
+            <h6>Any content 3</h6>
+        </MainTabPanel>
+  </MainTabs>
   )
 }

@@ -11,6 +11,12 @@ export const PokemonNameContainer = styled.div`
 
     h5{
         font-size: 1.4rem;
+        margin-right: .5rem;
+    }
+
+    p{
+        color: #aaaaaa;
+        font-weight: 500;
     }
 `
 
@@ -36,13 +42,12 @@ export const SkillContainer = styled.div`
 
 export const PokemonImageContainer = styled.div`
     margin: 2rem auto;
-    height: 15rem;
+    height: 10rem;
     max-width: fit-content;
 
     display: flex;
     align-items: center;
     justify-content: center;
-    //background: radial-gradient( green 10%, transparent 70%);
     border-radius: 20px;
     
     img {
@@ -55,7 +60,7 @@ export const EvolutionContainer = styled.div`
     margin: 1rem;
     
     h6 {
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
     }
     
 `
