@@ -8,7 +8,6 @@ Projeto de uma pokédex testando habilidades de front-end e habilidades de requi
 - JS
 - React Router Dom
 - Styled Components
-- React tabs
 
 ## Como Utilizar
 

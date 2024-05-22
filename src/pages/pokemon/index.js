@@ -1,8 +1,8 @@
 import React from 'react'
 import PokemonHeader from '../../components/pokemon-header'
+import InfoTabList from '../../components/info-tab-list'
 
 import { Container, EvolutionContainer, EvolutionImageContainer, PokemonImageContainer, PokemonNameContainer, SkillContainer } from './styles'
-import InfoTabList from '../../components/info-tab-list'
 
 const PokemonImage = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
 
@@ -39,7 +39,8 @@ export default function Pokemon() {
         </EvolutionImageContainer>
       </EvolutionContainer>
       <div>
-        <InfoTabList />
+        {/* <InfoTabList /> */}
+        <InfoTabList/>
       </div>
     </Container>
   )
