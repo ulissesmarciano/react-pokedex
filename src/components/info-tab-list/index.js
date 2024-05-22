@@ -1,53 +1,56 @@
 import React, { useState } from "react";
+import AboutInfoTabScreen from "../about-info-tab-screen";
+import VersionsInfoTabScreen from "../versions-info-tab-screen";
+import StatsInfoTabScreen from "../stats-info-tab-screen";
 
-const FirstTab = () => {
-    return (
-      <div className="FirstTab">
-        <p>First Tab!! Hurray!!</p>
-        {/* First tab content will go here */}
-      </div>
-    );
-};
-
-const SecondTab = () => {
-    return (
-      <div className="SecondTab">
-        <p>Second Tab!! Hurray!!</p>
-        {/* Second  tab content will go here */}
-      </div>
-    );
-  };
 
 export default function InfoTabList() {
-    const [activeTab, setActiveTab] = useState("tab1");
+   
+    const [showFirstTab, setShowFirstTab] = useState(true)
+    const [showSecondTab, setShowSecondTab] = useState(false)
+    const [showThirdTab, setShowThirdTab] = useState(false)
+    
+    const changeFirstTab = () => {
+        setShowFirstTab(true)
+        setShowSecondTab(false)
+        setShowThirdTab(false)
+    }
 
-    const handleTab1 = () => {
-      setActiveTab("tab1");
-    };
-  
-    const handleTab2 = () => {
-      setActiveTab("tab2");
-    };
-  
+    const changeSecondTab = () => {
+        setShowSecondTab(true)
+        setShowFirstTab(false)
+        setShowThirdTab(false)
+    }
+
+    const changeThirdTab = () => {
+        setShowThirdTab(true)
+        setShowSecondTab(false)
+        setShowFirstTab(false)
+    }
+
     return (
-      <div className="Tabs">
-        <ul className="nav">
-          <li
-            className={activeTab === "tab1" ? "active" : ""}
-            onClick={handleTab1}
-          >
-            Tab 1
-          </li>
-          <li
-            className={activeTab === "tab2" ? "active" : ""}
-            onClick={handleTab2}
-          >
-            Tab 2
-          </li>
-        </ul>
-        <div className="outlet">
-          {activeTab === "tab1" ? <FirstTab /> : <SecondTab />}
+      <div>
+        <nav>
+
+          <button onClick={changeFirstTab}>
+            {showFirstTab ? true : false}
+            First Tab
+          </button>
+          <button onClick={changeSecondTab}>
+            {showSecondTab ? false : true}
+            Second Tab
+          </button>
+          <button onClick={changeThirdTab}>
+            {showThirdTab ? false : true}  
+            Third Tab
+          </button>
+        </nav>
+        <div>
+          {showFirstTab && <AboutInfoTabScreen/>}
+          {showSecondTab && <VersionsInfoTabScreen />}
+          {showThirdTab && <StatsInfoTabScreen />}
         </div>
       </div>
-    );
+    )
+
 }
