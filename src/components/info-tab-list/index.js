@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import {NavContainer, TabButton} from "./styles"
+
 import AboutInfoTabScreen from "../about-info-tab-screen";
 import VersionsInfoTabScreen from "../versions-info-tab-screen";
 import StatsInfoTabScreen from "../stats-info-tab-screen";
@@ -29,28 +31,27 @@ export default function InfoTabList() {
     }
 
     return (
-      <div>
-        <nav>
-
-          <button onClick={changeFirstTab}>
-            {showFirstTab ? true : false}
-            First Tab
-          </button>
-          <button onClick={changeSecondTab}>
-            {showSecondTab ? false : true}
-            Second Tab
-          </button>
-          <button onClick={changeThirdTab}>
-            {showThirdTab ? false : true}  
-            Third Tab
-          </button>
-        </nav>
+      <section>
+        <NavContainer>
+            <TabButton onClick={changeFirstTab }>
+              {showFirstTab ? true : false}
+              Sobre
+            </TabButton>
+            <TabButton onClick={changeSecondTab}>
+              {showSecondTab ? false : true}
+              Versões
+            </TabButton>
+            <TabButton onClick={changeThirdTab}>
+              {showThirdTab ? false : true}  
+              Estatísticas
+            </TabButton>
+        </NavContainer>
         <div>
           {showFirstTab && <AboutInfoTabScreen/>}
           {showSecondTab && <VersionsInfoTabScreen />}
           {showThirdTab && <StatsInfoTabScreen />}
         </div>
-      </div>
+      </section>
     )
 
 }
