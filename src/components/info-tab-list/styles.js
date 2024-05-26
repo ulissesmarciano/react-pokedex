@@ -20,6 +20,8 @@ export const TabButton = styled.li`
         font-weight: bolder;
 
         transition: 500ms;
+
+                
         &:hover{
                 transition: all 0.5s;
                 cursor: pointer;
@@ -27,15 +29,4 @@ export const TabButton = styled.li`
                 transform: translateY(-4%);
                 box-shadow: #00000020 0px -10px 1rem;
         }
-
-        &:focus{
-                transition: all 0.5s;
-                cursor: pointer;
-                -webkit-transform: translateY(-4%);
-                transform: translateY(-4%);
-                box-shadow: rgb(0 0 0 / 20%) 0px -15px 1rem;
-        }
-        
-        
-
 `

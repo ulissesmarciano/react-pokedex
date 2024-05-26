@@ -33,17 +33,18 @@ export default function InfoTabList() {
     return (
       <section>
         <NavContainer>
-            <TabButton onClick={changeFirstTab }>
+            <TabButton onClick={changeFirstTab }
+>
               {showFirstTab ? true : false}
-              Sobre
+              About
             </TabButton>
             <TabButton onClick={changeSecondTab}>
               {showSecondTab ? false : true}
-              Versões
+              Versions
             </TabButton>
             <TabButton onClick={changeThirdTab}>
               {showThirdTab ? false : true}  
-              Estatísticas
+              Stats
             </TabButton>
         </NavContainer>
         <div>
