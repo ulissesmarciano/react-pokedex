@@ -5,6 +5,9 @@ export const Container = styled.section`
     h5 {
         margin-bottom: .8rem;
         font-size: .8rem;
+        @media(min-width: 425px){
+            font-size: 1.2rem;
+        }
     }
 `
 
@@ -12,6 +15,9 @@ export const StoryContainer = styled.div`
 
     p {
         margin-bottom: 1rem;
+        @media(min-width: 425px){
+            line-height: 1.4rem;
+        }
     }
 `
 export const WeaknessesContainer = styled.div`

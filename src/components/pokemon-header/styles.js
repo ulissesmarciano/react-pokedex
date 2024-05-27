@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     height: 2.4rem;
+    position: absolute;
+    top: 15px;
 
     display: flex;
     align-items: center;
@@ -14,5 +16,13 @@ export const Container = styled.div`
         font-size: 1rem;
         font-weight: 600;
         color: #00000095;
+    }
+
+    @media(min-width: 425px){
+        height: 2.8rem;
+    }
+
+    @media(min-width: 1023px){
+        left: 120px;
     }
 `

@@ -5,7 +5,8 @@ export const Container = styled.div`
         background-color: #f1636b;
         
         display: flex;
-        `
+`
+
 export const MenuContainer = styled.div`
         width: 100%;
 `
