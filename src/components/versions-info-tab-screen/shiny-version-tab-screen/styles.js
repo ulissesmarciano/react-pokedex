@@ -31,4 +31,8 @@ export const DataItemVersionsList = styled.li`
             height: 1rem;
         }
     }
+
+    @media(min-width: 1024px) {
+        color: red;
+    }
 `

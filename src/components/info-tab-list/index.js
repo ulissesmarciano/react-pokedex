@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {NavContainer, TabButton} from "./styles"
+import {InfoContainer, InfoPage, NavContainer, TabButton} from "./styles"
 
 import AboutInfoTabScreen from "../about-info-tab-screen";
 import VersionsInfoTabScreen from "../versions-info-tab-screen";
@@ -33,8 +33,7 @@ export default function InfoTabList() {
     return (
       <section>
         <NavContainer>
-            <TabButton onClick={changeFirstTab }
->
+            <TabButton onClick={changeFirstTab }>
               {showFirstTab ? true : false}
               About
             </TabButton>
@@ -47,11 +46,19 @@ export default function InfoTabList() {
               Stats
             </TabButton>
         </NavContainer>
-        <div>
+        <InfoContainer>
           {showFirstTab && <AboutInfoTabScreen/>}
           {showSecondTab && <VersionsInfoTabScreen />}
           {showThirdTab && <StatsInfoTabScreen />}
-        </div>
+        </InfoContainer>
+        <InfoPage>
+          <h4>About</h4>
+          <AboutInfoTabScreen />
+          <h4>Versions</h4>
+          <VersionsInfoTabScreen />
+          <h4>Stats</h4>
+          <StatsInfoTabScreen />
+        </InfoPage>
       </section>
     )
 

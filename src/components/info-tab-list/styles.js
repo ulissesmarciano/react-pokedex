@@ -29,4 +29,27 @@ export const TabButton = styled.li`
                 transform: translateY(-4%);
                 box-shadow: #00000020 0px -10px 1rem;
         }
+
+        @media (min-width: 1024px){
+                display: none;
+        }
+`
+
+export const InfoContainer = styled.div`
+        @media (min-width: 1024px){
+                display: none;
+        }
+`
+
+export const InfoPage = styled.div`
+        display: none;
+
+        @media(min-width: 1024px){
+                display: flex;
+                flex-direction: column;
+
+                h4 {
+                        font-size: .8rem;
+                }
+        }
 `

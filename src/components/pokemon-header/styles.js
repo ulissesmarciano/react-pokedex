@@ -22,7 +22,7 @@ export const Container = styled.div`
         height: 2.8rem;
     }
 
-    @media(min-width: 1023px){
+    @media(min-width: 1024px){
         left: 120px;
     }
 `

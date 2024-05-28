@@ -4,9 +4,7 @@ export const Container = styled.div`
     margin: 4rem .5rem 0;
     height: calc(100vh - 94.8px);
 
-    background-color: green;
-
-    @media (min-width: 1023px){
+    @media (min-width: 1024px){
         display: flex;
     }
     
@@ -14,8 +12,7 @@ export const Container = styled.div`
 export const NumberPageContainer = styled.div`
     display: none;
     
-    @media (min-width: 1023px){
-        background-color: yellow;
+    @media (min-width: 1024px){
         padding: 2rem;
         display: flex;
         align-items: center;
@@ -94,12 +91,16 @@ export const PokemonImageContainer = styled.div`
         filter:  drop-shadow(0 0 2rem #00ff0070);
         height: 100%;
     }
-
-    @media(min-width: 1023px){
+    @media(min-width: 1024px){
         padding: 3rem 0;
-        height: 20rem;
+        height: 50vh;
+
+        img {
+            height: 20rem;
+        }
     }
 `
+
 
 export const EvolutionContainer = styled.div`
     margin: 1rem;
@@ -110,6 +111,10 @@ export const EvolutionContainer = styled.div`
             font-size: 1rem;
         }
     }
+
+    @media (min-width: 1024px){
+        margin: 0;
+    }
         
 `
 
@@ -119,27 +124,8 @@ export const EvolutionImageContainer = styled.div`
         width: 80%;
     }
 
-    ul {
-        
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        
-        li {
-            padding: .6rem;
-
-            border: 2px solid green;
-            border-radius: 50px;
-            background-color: #00ff0010;
-            img {
-                height: 3rem;
-                @media(min-width: 1023px){
-                    height: 4rem;
-                }
-                
-            }
-        }
-
+    @media (min-width: 1024px){
+        width: 100%;
     }
 `
 

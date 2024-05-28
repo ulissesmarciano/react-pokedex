@@ -31,5 +31,10 @@ export const StatsTabScreenSection = styled.ul`
             font-weight: 500;
 
         }
+
+        @media(min-width: 1024px){
+        font-size: .8rem;
+        
+        }
     }
 `
