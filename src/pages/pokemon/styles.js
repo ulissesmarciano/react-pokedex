@@ -26,6 +26,8 @@ export const NumberPageContainer = styled.div`
     }
 `
 export const LeftSideSection = styled.section`
+    margin: 0 auto;
+    width: 80%;
     flex: 1;
 `
 

@@ -1,15 +1,19 @@
 import React from 'react'
+
+import { Link } from 'react-router-dom'
+import { Container, EvolutionContainer, EvolutionImageContainer, InfoTabListContainer, LeftSideSection, NumberPageContainer, PokemonImageContainer, PokemonNameContainer, RightSideSection, SkillContainer } from './styles'
+
+
 import PokemonHeader from '../../components/pokemon-header'
 import InfoTabList from '../../components/info-tab-list'
-import { Link } from 'react-router-dom'
-
-import { Container, EvolutionContainer, EvolutionImageContainer, InfoTabListContainer, LeftSideSection, NumberPageContainer, PokemonImageContainer, PokemonNameContainer, RightSideSection, SkillContainer } from './styles'
 import EvolutionList from '../../components/evolution-list'
 
 const PokemonImage = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/3.svg"
 
 
 export default function Pokemon() {
+  
+
   return (
     <Container>
       <PokemonHeader />

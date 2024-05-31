@@ -18,6 +18,10 @@ export const StoryContainer = styled.div`
         @media(min-width: 425px){
             line-height: 1.4rem;
         }
+
+        @media(min-width: 1024px){
+            margin: 1rem -1rem;
+        }
     }
 `
 export const WeaknessesContainer = styled.div`
