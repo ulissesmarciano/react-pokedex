@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import api from '../../services/api'
-import axios from 'axios'
 
 import { Container, PokemonCardContainer, TitleContainer } from './styles'
 
@@ -9,32 +8,47 @@ import PokemonCard from '../../components/pokemon-card'
 import SearchBar from '../../components/search-bar'
 
 
+
 export default function Pokedex() {
+
+  const [pokemons, setPokemons] = useState([]);
   
   useEffect(() => {
-    getPokemons();
+    async function getAllPokemons() {
+      const response = await api.get('/pokemon')
+      const { results } = response.data;
+
+      const payloadPokemons = await Promise.all(
+        results.map(async pokemon => {
+          const {id, types} = await getMoreInfo(pokemon.url)
+
+          return{
+            name: pokemon.name,
+            id,
+            types
+          }
+        })
+      )
+      setPokemons(payloadPokemons)
+    }
+    getAllPokemons()
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const [pokemons, setPokemons] = useState([])
+  async function getMoreInfo(url) {
+    const response = await api.get(url)
+    const {id, types} = response.data;
 
-  const getPokemons = () => {
-    var limit = 151
-    var endpoints = []
-
-    for (var i = 1; i <= limit; i++){
-      endpoints.push(`https://pokeapi.co/api/v2/pokemon/${i}/`)
-    } 
-
-    axios
-    .all(endpoints.map((endpoint) => axios.get(endpoint))).then((res) => setPokemons(res)).catch((err) => console.log(err))
+    return {
+      id, types
+    }
   }
-
-
+ 
   
   return (
     <Container>
       <PokedexHeader />
-      {console.log(pokemons)}
+      
         <div>
           <TitleContainer>
             <h2>Pokédex</h2>
