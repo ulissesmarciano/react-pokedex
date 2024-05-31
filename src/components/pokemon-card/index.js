@@ -3,23 +3,28 @@ import React from 'react'
 import { CardTitleContainer, Container, ImageContainer, PokemonCardBottomContainer, TypeContainer } from './styles'
 import { Link } from 'react-router-dom'
 
-const PokemonImage = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
-
-export default function PokemonCard() {
+export default function PokemonCard({
+  to,
+  cardBackground,
+  avatar,
+  alt,
+  id,
+  name,
+  types
+}) {
   return (
-    <Link to="/pokemon">
+    <Link to={to}>
       <Container>
-          <ImageContainer>
-              <img src={PokemonImage} alt='Imagem do pokémon' />
+          <ImageContainer className={cardBackground}>
+              <img src={avatar} alt={alt} />
           </ImageContainer>
           <PokemonCardBottomContainer>
             <CardTitleContainer>
-              <p># 003</p>
-              <h4>bulbasauro</h4>
+              <p>#{id < 10 ? `0${id}`: `${id}`}</p>
+              <h4>{name}</h4>
             </CardTitleContainer>
             <TypeContainer>
-              <li>planta</li>
-              <li>veneno</li>
+              {types}
             </TypeContainer>
           </PokemonCardBottomContainer>
       </Container>

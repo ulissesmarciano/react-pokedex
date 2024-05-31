@@ -4,8 +4,9 @@ import api from '../../services/api'
 import { Container, PokemonCardContainer, TitleContainer } from './styles'
 
 import PokedexHeader from '../../components/pokedex-header'
-import PokemonCard from '../../components/pokemon-card'
 import SearchBar from '../../components/search-bar'
+import PokemonCard from '../../components/pokemon-card'
+import PokemonTypesItem from '../../components/pokemon-types-item'
 
 
 
@@ -15,40 +16,42 @@ export default function Pokedex() {
   
   useEffect(() => {
     async function getAllPokemons() {
-      const response = await api.get('/pokemon')
+      var limit = 151;
+           
+      const response = await api.get(`/pokemon?limit=${limit}`)
       const { results } = response.data;
 
       const payloadPokemons = await Promise.all(
         results.map(async pokemon => {
-          const {id, types} = await getMoreInfo(pokemon.url)
+          const {id, types, sprites} = await getMoreInfo(pokemon.url)
 
           return{
             name: pokemon.name,
             id,
-            types
+            types,
+            sprites
           }
         })
       )
       setPokemons(payloadPokemons)
     }
     getAllPokemons()
-    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   async function getMoreInfo(url) {
     const response = await api.get(url)
-    const {id, types} = response.data;
+    const {id, types, sprites} = response.data;
 
     return {
-      id, types
+      id, types, sprites
     }
   }
+
  
-  
   return (
     <Container>
+      {console.log(pokemons[0])}
       <PokedexHeader />
-      
         <div>
           <TitleContainer>
             <h2>Pokédex</h2>
@@ -59,26 +62,22 @@ export default function Pokedex() {
           </div>
         </div>
         <PokemonCardContainer>
-          <PokemonCard />
-          <PokemonCard />
-          <PokemonCard />
-          <PokemonCard />
-          <PokemonCard />
-          <PokemonCard />
-          <PokemonCard />
-          <PokemonCard />
-          <PokemonCard />
-          <PokemonCard />
-          <PokemonCard />
-          <PokemonCard />
-          <PokemonCard />
-          <PokemonCard />
-          <PokemonCard />
-          <PokemonCard />
-          <PokemonCard />
-          <PokemonCard />
-          <PokemonCard />
-          <PokemonCard />
+          {pokemons.map((pokemon, index) => <PokemonCard
+            key={index}
+            id={pokemon.id}
+            name={pokemon.name}
+            cardBackground={pokemon.types[0].type.name}
+            avatar={pokemon.sprites.other.dream_world.front_default === null ? pokemon.sprites.other['official-artwork'].front_default : pokemon.sprites.other.dream_world.front_default}
+            alt={`Foto do pokémon ${pokemon.name}`}
+            types={pokemon.types.map((types, index) => (
+              <PokemonTypesItem 
+                key={index}
+                types={types.type.name}
+                typeBackground={types.type.name}
+              />
+            ))}
+            to={'pokemon'}
+          />)}
         </PokemonCardContainer>
     </Container>
   )
