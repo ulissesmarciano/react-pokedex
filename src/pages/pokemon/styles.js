@@ -44,6 +44,7 @@ export const PokemonNameContainer = styled.div`
     h4{
         font-size: 1.4rem;
         margin-right: .5rem;
+        text-transform: capitalize;
     }
 
     p{
@@ -88,10 +89,12 @@ export const PokemonImageContainer = styled.div`
     align-items: center;
     justify-content: center;
     border-radius: 20px;
+
     
     img {
         filter:  drop-shadow(0 0 2rem #00ff0070);
-        height: 100%;
+        height: 10rem;
+        width: 10rem;
     }
     @media(min-width: 1024px){
         padding: 3rem 0;
@@ -99,6 +102,7 @@ export const PokemonImageContainer = styled.div`
 
         img {
             height: 20rem;
+            width: 20rem;
         }
     }
 `
