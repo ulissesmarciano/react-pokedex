@@ -18,7 +18,7 @@ export default function Pokedex() {
     async function getAllPokemons() {
       var limit = 151;
            
-      const response = await api.get(`/pokemon?limit=${limit}`)
+      const response = await api.get(`/pokemon?limit=${limit}`).then((res) => (res)).catch((err) => console.log(err))
       const { results } = response.data;
 
       const payloadPokemons = await Promise.all(
