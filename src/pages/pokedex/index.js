@@ -13,9 +13,8 @@ import PokemonTypesItem from '../../components/pokemon-types-item'
 export default function Pokedex() {
 
   const [pokemons, setPokemons] = useState([]);
-  
-  useEffect(() => {
-    async function getAllPokemons() {
+
+  async function getAllPokemons() {
       var limit = 151;
            
       const response = await api.get(`/pokemon?limit=${limit}`).then((res) => (res)).catch((err) => console.log(err))
@@ -35,22 +34,26 @@ export default function Pokedex() {
       )
       setPokemons(payloadPokemons)
     }
-    getAllPokemons()
-  }, [])
-
-  async function getMoreInfo(url) {
-    const response = await api.get(url)
-    const {id, types, sprites} = response.data;
-
-    return {
+    
+    
+    async function getMoreInfo(url) {
+      const response = await api.get(url)
+      const {id, types, sprites} = response.data;
+      
+      return {
       id, types, sprites
     }
+    
   }
-
+  
+  useEffect(() => {
+    getAllPokemons()
+   
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [])
  
   return (
     <Container>
-      {console.log(pokemons[0])}
       <PokedexHeader />
         <div>
           <TitleContainer>
@@ -76,7 +79,7 @@ export default function Pokedex() {
                 typeBackground={types.type.name}
               />
             ))}
-            to={'pokemon'}
+            to={`/pokemon/${pokemon.id}`}
           />)}
         </PokemonCardContainer>
     </Container>
