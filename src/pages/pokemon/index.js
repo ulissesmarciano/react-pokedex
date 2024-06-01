@@ -37,7 +37,10 @@ export default function Pokemon() {
       <PokemonHeader />
       {console.log(pokemon)}
         <NumberPageContainer>
-          <Link to={`/pokemon/${id > 1 ? id - 1 : id}`}>
+          <Link 
+          to={`/pokemon/${id > 1 ? id - 1 : id}`}
+          onClick={Pokemon}
+          >
             #001
           </Link>
         </NumberPageContainer>
@@ -70,7 +73,10 @@ export default function Pokemon() {
         </InfoTabListContainer>
       </RightSideSection>
       <NumberPageContainer>
-        <Link to={`/pokemon/${idNumber + 1}`}>
+        <Link 
+        to={`/pokemon/${idNumber + 1}`}
+        onClick={Pokemon}
+        >
             #001
         </Link>
       </NumberPageContainer>

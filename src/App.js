@@ -12,7 +12,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Pokedex />} />
-            <Route path="/pokemon/:id" element={<Pokemon />} />
+            <Route path="pokemon/:id" element={<Pokemon />} />
           </Routes>
         </Router>
       </>
