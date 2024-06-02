@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import api from '../../services/api'
+import axios from 'axios'
 
 import { Link, useParams } from 'react-router-dom'
 import { Container, EvolutionContainer, EvolutionImageContainer, InfoTabListContainer, LeftSideSection, NumberPageContainer, PokemonImageContainer, PokemonNameContainer, RightSideSection, SkillContainer } from './styles'
@@ -12,36 +13,70 @@ import EvolutionList from '../../components/evolution-list'
 
 export default function Pokemon() {
   const [pokemon, setPokemon] = useState([])
+  const [species, setSpecies] = useState([])
+  const [evolutions, setEvolutions] = useState([])
 
   const getPokemon = async (id) => {
     const details = await getPokemonData(id)
     setPokemon(details.data)
   }
 
+  const getSpecies = async (id) => {
+    const details = await getSpeciesData(id)
+    setSpecies(details.data)
+  }
+
+  const getEvolutions = async () => {
+    const details = await getEvolutionsData()
+    setEvolutions(details.data)
+  }
+
+
+  //===============================================
+  
+  
   const getPokemonData = async (id) => {
     const res = await api.get(`/pokemon/${id}`)
     return res
-
+    
+  }
+  
+  const getSpeciesData = async (id) => {
+  const res = await api.get(`/pokemon-species/${id}`)
+    return res
   }
 
-  const {id} = useParams();
-  const idNumber = parseInt(id)
+  const getEvolutionsData = async () => {
+    const res = await axios.get(`${species.evolution_chain.url}`)
+    console.log(res)
+    return res
+  }
 
+    const {id} = useParams();
+  const idNumber = parseInt(id);
+
+  const PageNumberFoward = idNumber + 1;
+  const PageNumberBack = idNumber - 1;
+ 
   useEffect(() => {
     getPokemon(id)
+    getSpecies(id)
+    getEvolutions()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  console.log(evolutions.chain)
+  //console.log(evolutions.chain)
 
   return (
     <Container>
       <PokemonHeader />
-      {console.log(pokemon)}
         <NumberPageContainer>
           <Link 
           to={`/pokemon/${id > 1 ? id - 1 : id}`}
           onClick={Pokemon}
           >
-            #001
+            #{PageNumberBack < 10 ? `0${PageNumberBack}` : `${PageNumberBack}`}
           </Link>
         </NumberPageContainer>
       <LeftSideSection>
@@ -52,12 +87,12 @@ export default function Pokemon() {
             <SkillContainer>
               <ul>
                 {pokemon.types?.map((type, index) => (
-                  <li key={index}>{type.type.name}</li>
+                  <li className={type.type.name} key={index}>{type.type.name}</li>
                 ))}
               </ul>
             </SkillContainer>
         <PokemonImageContainer>
-          <img src={pokemon.sprites?.other.dream_world.front_default === null ? pokemon.sprites?.other['official-artwork'].front_default : pokemon.sprites?.other.dream_world.front_default}
+          <img className={pokemon.types?.[0].type.name} src={pokemon.sprites?.other.dream_world.front_default === null ? pokemon.sprites?.other['official-artwork'].front_default : pokemon.sprites?.other.dream_world.front_default}
             alt={`Foto do pokémon ${pokemon.name}`}/>
         </PokemonImageContainer>
         <EvolutionContainer>
@@ -77,7 +112,7 @@ export default function Pokemon() {
         to={`/pokemon/${idNumber + 1}`}
         onClick={Pokemon}
         >
-            #001
+          #{PageNumberFoward < 10 ? `0${PageNumberFoward}` : `${PageNumberFoward}`}
         </Link>
       </NumberPageContainer>
     </Container>

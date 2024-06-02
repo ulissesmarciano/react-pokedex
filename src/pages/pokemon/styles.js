@@ -77,6 +77,78 @@ export const SkillContainer = styled.div`
         text-transform: capitalize;
         font-size: .8rem;
         font-weight: 500;
+
+        &.normal {
+            background-color: #a6a87790;
+        }
+
+    &.grass {
+        background-color: #77c850;
+    }
+
+    &.fire {
+        background-color: #ee7f30;
+    }
+
+    &.water {
+        background-color: #678fee;
+    }
+
+    &.electric {
+        background-color: #f7cf2e;
+    }
+
+    &.ice {
+        background-color: #98d5d7;
+    }
+
+    &.ground {
+        background-color: #dfbf69;
+    }
+
+    &.flying {
+        background-color: #a98ff0;
+    }
+
+    &.poison {
+        background-color: #a040a0;
+    }
+
+    &.fighting {
+        background-color: #bf3029;
+    }
+
+    &.psychic {
+        background-color: #f65687;
+    }
+
+    &.dark {
+        background-color: #725847;
+    }
+
+    &.rock {
+        background-color: #b8a137;
+    }
+
+    &.bug {
+        background-color: #a8b720;
+    }
+
+    &.ghost {
+        background-color: #6e5896;
+    }
+    
+    &.steel {
+        background-color: #b9b7cf;
+    }
+
+    &.dragon {
+        background-color: #6f38f6;
+    }
+
+    &.fairy {
+        background-color: #f9aec7;
+    }
     }
 `
 
@@ -95,6 +167,78 @@ export const PokemonImageContainer = styled.div`
         filter:  drop-shadow(0 0 2rem #00ff0070);
         height: 10rem;
         width: 10rem;
+
+        &.normal {
+            filter:  drop-shadow(0 0 2rem #a6a877);
+        }
+        
+        &.grass {
+            filter:  drop-shadow(0 0 2rem #77c850);
+        }
+        
+        &.fire {
+            filter:  drop-shadow(0 0 2rem #ee7f30);
+        }
+        
+        &.water {
+            filter:  drop-shadow(0 0 2rem #678fee);
+        }
+
+        &.electric {
+            filter: drop-shadow(0 0 2rem #f7cf2e);
+        }
+        
+        &.ice {
+            filter: drop-shadow(0 0 2rem #98d5d7);
+        }
+        
+        &.ground {
+            filter: drop-shadow(0 0 2rem #dfbf69);
+        }
+        
+        &.flying {
+            filter: drop-shadow(0 0 2rem #a98ff0);
+        }
+        
+        &.poison {
+            filter: drop-shadow(0 0 2rem #a040a090);
+        }
+        
+        &.fighting {
+            filter: drop-shadow(0 0 2rem #bf3029);
+        }
+        
+        &.psychic {
+            filter: drop-shadow(0 0 2rem #f65687);
+        }
+        
+        &.dark {
+            filter: drop-shadow(0 0 2rem #725847);
+        }
+        
+        &.rock {
+            filter: drop-shadow(0 0 2rem #b8a137);
+        }
+        
+        &.bug {
+            filter: drop-shadow(0 0 2rem #a8b720);
+        }
+        
+        &.ghost {
+            filter: drop-shadow(0 0 2rem #6e5896);
+        }
+        
+        &.steel {
+            filter: drop-shadow(0 0 2rem #b9b7cf);
+        }
+        
+        &.dragon {
+            filter: drop-shadow(0 0 2rem #6f38f6);
+        }
+        
+        &.fairy {
+            filter: drop-shadow(0 0 2rem #f9aec7);
+        }
     }
     @media(min-width: 1024px){
         padding: 3rem 0;

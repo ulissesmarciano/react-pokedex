@@ -33,10 +33,10 @@ export default function Pokedex() {
         })
       )
       setPokemons(payloadPokemons)
-    }
+  }
     
     
-    async function getMoreInfo(url) {
+  async function getMoreInfo(url) {
       const response = await api.get(url)
       const {id, types, sprites} = response.data;
       
