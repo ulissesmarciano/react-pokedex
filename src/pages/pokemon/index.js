@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import api from '../../services/api'
-import axios from 'axios'
+//import axios from 'axios'
 
 import { Link, useParams } from 'react-router-dom'
 import { Container, EvolutionContainer, EvolutionImageContainer, InfoTabListContainer, LeftSideSection, NumberPageContainer, PokemonImageContainer, PokemonNameContainer, RightSideSection, SkillContainer } from './styles'
@@ -12,66 +12,43 @@ import InfoTabList from '../../components/info-tab-list'
 import EvolutionList from '../../components/evolution-list'
 
 export default function Pokemon() {
-  const [pokemon, setPokemon] = useState([])
-  const [species, setSpecies] = useState([])
-  const [evolutions, setEvolutions] = useState([])
+  const [pokemonData, setPokemonData] = useState(null);
+  const id = 1; // Defina o ID do Pokémon que você deseja buscar
 
-  const getPokemon = async (id) => {
-    const details = await getPokemonData(id)
-    setPokemon(details.data)
-  }
+  const fetchPokemonData = async () => {
+    try {
+      const response = await api.get(`/pokemon/${id}`); // Use o ID fornecido para fazer uma solicitação para o Pokémon específico
+      const pokemon = response.data;
 
-  const getSpecies = async (id) => {
-    const details = await getSpeciesData(id)
-    setSpecies(details.data)
-  }
+      // Faz uma nova solicitação para o link species
+      const speciesResponse = await api.get(pokemon.species.url);
+      const speciesData = speciesResponse.data;
 
-  const getEvolutions = async () => {
-    const details = await getEvolutionsData()
-    setEvolutions(details.data)
-  }
+      // Faz uma nova solicitação para o link evolution_chain
+      const evolutionChainResponse = await api.get(speciesData.evolution_chain.url);
+      const evolutionChainData = evolutionChainResponse.data;
 
+      // Atualiza o estado com os dados do pokemon, espécie e cadeia de evolução
+      setPokemonData({
+        ...pokemon,
+        species: speciesData,
+        evolution_chain: evolutionChainData,
+      });
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
-  //===============================================
-  
-  
-  const getPokemonData = async (id) => {
-    const res = await api.get(`/pokemon/${id}`)
-    return res
-    
-  }
-  
-  const getSpeciesData = async (id) => {
-  const res = await api.get(`/pokemon-species/${id}`)
-    return res
-  }
-
-  const getEvolutionsData = async () => {
-    const res = await axios.get(`${species.evolution_chain.url}`)
-    console.log(res)
-    return res
-  }
-
-    const {id} = useParams();
-  const idNumber = parseInt(id);
-
-  const PageNumberFoward = idNumber + 1;
-  const PageNumberBack = idNumber - 1;
- 
   useEffect(() => {
-    getPokemon(id)
-    getSpecies(id)
-    getEvolutions()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    fetchPokemonData();
+  }, [id]);
 
-  console.log(evolutions.chain)
-  //console.log(evolutions.chain)
+  console.log(pokemonData)
 
   return (
     <Container>
       <PokemonHeader />
-        <NumberPageContainer>
+        {/* <NumberPageContainer>
           <Link 
           to={`/pokemon/${id > 1 ? id - 1 : id}`}
           onClick={Pokemon}
@@ -109,12 +86,12 @@ export default function Pokemon() {
       </RightSideSection>
       <NumberPageContainer>
         <Link 
-        to={`/pokemon/${idNumber + 1}`}
+        to={`/pokemon/${id + 1}`}
         onClick={Pokemon}
         >
-          #{PageNumberFoward < 10 ? `0${PageNumberFoward}` : `${PageNumberFoward}`}
+          #{id < 10 ? `0${id}` : `${id}`}
         </Link>
-      </NumberPageContainer>
+      </NumberPageContainer> */}
     </Container>
   )
 }
