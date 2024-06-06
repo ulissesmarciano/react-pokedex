@@ -13,7 +13,9 @@ import EvolutionList from '../../components/evolution-list'
 
 export default function Pokemon() {
   const [pokemonData, setPokemonData] = useState(null);
-  const id = 1; // Defina o ID do Pokémon que você deseja buscar
+
+  const {id} = useParams()
+  const pokemonNumber = parseInt(id)
 
   const fetchPokemonData = async () => {
     try {
@@ -41,6 +43,7 @@ export default function Pokemon() {
 
   useEffect(() => {
     fetchPokemonData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   console.log(pokemonData)
@@ -50,28 +53,27 @@ export default function Pokemon() {
       <PokemonHeader />
         <NumberPageContainer>
           <Link 
-          to={`/pokemon/${id > 1 ? id - 1 : id}`}
+          to={`/pokemon/${pokemonNumber > 1 ? pokemonNumber - 1 : pokemonNumber}`}
           onClick={Pokemon}
           >
-            #{id < 10 ? `0${id}` : `${id}`}
+            #{id < 10 ? `0${id - 1}` : `${id - 1}`}
           </Link>
         </NumberPageContainer>
       <LeftSideSection>
         <PokemonNameContainer>
-          <h4>{pokemonData?.name}</h4>
-            {/* <h4>{pokemonData.name}</h4>
-            <p>#{pokemonData.id < 10 ? `0${pokemonData.id}`: `${pokemonData.id}`}</p> */}
+            <h4>{pokemonData?.name}</h4>
+            <p>#{pokemonData?.id < 10 ? `0${pokemonData?.id}`: `${pokemonData?.id}`}</p>
         </PokemonNameContainer>
             <SkillContainer>
               <ul>
-                {/* {pokemonData.types?.map((type, index) => (
+                {pokemonData?.types.map((type, index) => (
                   <li className={type.type?.name} key={index}>{type.type?.name}</li>
-                ))} */}
+                ))}
               </ul>
             </SkillContainer>
         <PokemonImageContainer>
-          {/* <img className={pokemonData.types?.[0].type.name} src={pokemonData.sprites?.other.dream_world.front_default === null ? pokemonData.sprites?.other['official-artwork'].front_default : pokemonData.sprites?.other.dream_world.front_default}
-            alt={`Foto do pokémon ${pokemonData}`}/> */}
+          <img className={pokemonData?.types?.[0].type.name} src={pokemonData?.sprites?.other.dream_world.front_default === null ? pokemonData?.sprites?.other['official-artwork'].front_default : pokemonData?.sprites?.other.dream_world.front_default}
+            alt={`Foto do pokémon ${pokemonData}`}/>
         </PokemonImageContainer>
         <EvolutionContainer>
           <h6>Evolutions</h6>
@@ -87,7 +89,7 @@ export default function Pokemon() {
       </RightSideSection>
       <NumberPageContainer>
         <Link 
-        to={`/pokemon/${id + 1}`}
+        to={`/pokemon/${pokemonNumber + 1}`}
         onClick={Pokemon}
         >
           #{id < 10 ? `0${id}` : `${id}`}
@@ -97,3 +99,4 @@ export default function Pokemon() {
   )
 }
 
+//RENDERIZAR A MESMA PÁGINA AO INVÉS DE CARREGÁ-LA INTEIRA

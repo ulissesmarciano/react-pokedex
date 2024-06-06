@@ -112,6 +112,7 @@ export const SkillContainer = styled.div`
 
     &.poison {
         background-color: #a040a0;
+        color: #fff;
     }
 
     &.fighting {
