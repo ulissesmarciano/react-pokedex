@@ -48,29 +48,30 @@ export default function Pokemon() {
   return (
     <Container>
       <PokemonHeader />
-        {/* <NumberPageContainer>
+        <NumberPageContainer>
           <Link 
           to={`/pokemon/${id > 1 ? id - 1 : id}`}
           onClick={Pokemon}
           >
-            #{PageNumberBack < 10 ? `0${PageNumberBack}` : `${PageNumberBack}`}
+            #{id < 10 ? `0${id}` : `${id}`}
           </Link>
         </NumberPageContainer>
       <LeftSideSection>
         <PokemonNameContainer>
-            <h4>{pokemon.name}</h4>
-            <p>#{pokemon.id < 10 ? `0${pokemon.id}`: `${pokemon.id}`}</p>
+          <h4>{pokemonData?.name}</h4>
+            {/* <h4>{pokemonData.name}</h4>
+            <p>#{pokemonData.id < 10 ? `0${pokemonData.id}`: `${pokemonData.id}`}</p> */}
         </PokemonNameContainer>
             <SkillContainer>
               <ul>
-                {pokemon.types?.map((type, index) => (
-                  <li className={type.type.name} key={index}>{type.type.name}</li>
-                ))}
+                {/* {pokemonData.types?.map((type, index) => (
+                  <li className={type.type?.name} key={index}>{type.type?.name}</li>
+                ))} */}
               </ul>
             </SkillContainer>
         <PokemonImageContainer>
-          <img className={pokemon.types?.[0].type.name} src={pokemon.sprites?.other.dream_world.front_default === null ? pokemon.sprites?.other['official-artwork'].front_default : pokemon.sprites?.other.dream_world.front_default}
-            alt={`Foto do pokémon ${pokemon.name}`}/>
+          {/* <img className={pokemonData.types?.[0].type.name} src={pokemonData.sprites?.other.dream_world.front_default === null ? pokemonData.sprites?.other['official-artwork'].front_default : pokemonData.sprites?.other.dream_world.front_default}
+            alt={`Foto do pokémon ${pokemonData}`}/> */}
         </PokemonImageContainer>
         <EvolutionContainer>
           <h6>Evolutions</h6>
@@ -91,7 +92,7 @@ export default function Pokemon() {
         >
           #{id < 10 ? `0${id}` : `${id}`}
         </Link>
-      </NumberPageContainer> */}
+      </NumberPageContainer> 
     </Container>
   )
 }
