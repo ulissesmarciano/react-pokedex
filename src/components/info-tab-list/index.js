@@ -6,7 +6,7 @@ import VersionsInfoTabScreen from "../versions-info-tab-screen";
 import StatsInfoTabScreen from "../stats-info-tab-screen";
 
 
-export default function InfoTabList() {
+export default function InfoTabList({weakness}) {
    
     const [showFirstTab, setShowFirstTab] = useState(true)
     const [showSecondTab, setShowSecondTab] = useState(false)
@@ -53,7 +53,9 @@ export default function InfoTabList() {
         </InfoContainer>
         <InfoPage>
           <h4>About</h4>
-          <AboutInfoTabScreen />
+          <AboutInfoTabScreen
+            weakness={weakness}
+          />
           <h4>Versions</h4>
           <VersionsInfoTabScreen />
           <h4>Stats</h4>

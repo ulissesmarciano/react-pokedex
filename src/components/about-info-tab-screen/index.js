@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, StoryContainer, WeaknessesContainer} from './styles'
 
 
-export default function AboutInfoTabScreen() {
+export default function AboutInfoTabScreen({weakness}) {
   return (
     <Container>
       <StoryContainer
@@ -13,9 +13,7 @@ export default function AboutInfoTabScreen() {
       <WeaknessesContainer>
         <h5>Weaknesses</h5>
         <ul>
-          <li>Fire</li>
-          <li>Water</li>
-          <li>Ground</li>
+          {weakness}
         </ul>
       </WeaknessesContainer>
     </Container>

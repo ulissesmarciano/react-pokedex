@@ -19,34 +19,38 @@ export default function Pokemon() {
 
   const fetchPokemonData = async () => {
     try {
-      const response = await api.get(`/pokemon/${id}`); // Use o ID fornecido para fazer uma solicitação para o Pokémon específico
+      const response = await api.get(`/pokemon/${id}`);
       const pokemon = response.data;
-
-      // Faz uma nova solicitação para o link species
+  
       const speciesResponse = await api.get(pokemon.species.url);
       const speciesData = speciesResponse.data;
-
-      // Faz uma nova solicitação para o link evolution_chain
+  
       const evolutionChainResponse = await api.get(speciesData.evolution_chain.url);
       const evolutionChainData = evolutionChainResponse.data;
-
-      // Atualiza o estado com os dados do pokemon, espécie e cadeia de evolução
+  
+      // Mapeie os tipos do Pokémon e faça uma solicitação para cada URL de tipo
+      const typesData = await Promise.all(pokemon.types.map(async (type) => {
+        const typeResponse = await api.get(type.type.url);
+        return typeResponse.data;
+      }));
+  
       setPokemonData({
         ...pokemon,
         species: speciesData,
         evolution_chain: evolutionChainData,
+        types: typesData,
       });
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
-
+  
   useEffect(() => {
     fetchPokemonData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  console.log(pokemonData)
+  console.log(pokemonData?.types[0].name)
 
   return (
     <Container>
@@ -67,12 +71,12 @@ export default function Pokemon() {
             <SkillContainer>
               <ul>
                 {pokemonData?.types.map((type, index) => (
-                  <li className={type.type?.name} key={index}>{type.type?.name}</li>
+                  <li className={type.name} key={index}>{type.name}</li>
                 ))}
               </ul>
             </SkillContainer>
         <PokemonImageContainer>
-          <img className={pokemonData?.types?.[0].type.name} src={pokemonData?.sprites?.other.dream_world.front_default === null ? pokemonData?.sprites?.other['official-artwork'].front_default : pokemonData?.sprites?.other.dream_world.front_default}
+          <img className={pokemonData?.type?.[0].name} src={pokemonData?.sprites?.other.dream_world.front_default === null ? pokemonData?.sprites?.other['official-artwork'].front_default : pokemonData?.sprites?.other.dream_world.front_default}
             alt={`Foto do pokémon ${pokemonData}`}/>
         </PokemonImageContainer>
         <EvolutionContainer>
@@ -84,7 +88,9 @@ export default function Pokemon() {
       </LeftSideSection>
       <RightSideSection>
         <InfoTabListContainer>
-          <InfoTabList/>
+          <InfoTabList
+            weakness={''}
+          />
         </InfoTabListContainer>
       </RightSideSection>
       <NumberPageContainer>
