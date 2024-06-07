@@ -55,6 +55,7 @@ export default function InfoTabList({weakness}) {
           <h4>About</h4>
           <AboutInfoTabScreen
             weakness={weakness}
+            story={story}
           />
           <h4>Versions</h4>
           <VersionsInfoTabScreen />

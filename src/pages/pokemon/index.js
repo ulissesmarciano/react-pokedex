@@ -89,7 +89,7 @@ export default function Pokemon() {
       <RightSideSection>
         <InfoTabListContainer>
           <InfoTabList
-            weakness={''}
+            weakness={pokemonData?.types.map((type, index) => <li>{type.name}</li>) }
           />
         </InfoTabListContainer>
       </RightSideSection>
