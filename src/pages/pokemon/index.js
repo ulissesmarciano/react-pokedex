@@ -14,12 +14,13 @@ import EvolutionItemList from '../../components/evolution-item-list'
 export default function Pokemon() {
   const [pokemonData, setPokemonData] = useState(null);
 
-  const {id} = useParams()
-  const pokemonNumber = parseInt(id)
+  const {name} = useParams()
+  //const pokemonNumber = parseInt(name)
+
 
   const fetchPokemonData = async () => {
     try {
-      const response = await api.get(`/pokemon/${id}`);
+      const response = await api.get(`/pokemon/${name}`);
       const pokemon = response.data;
   
       const speciesResponse = await api.get(pokemon.species.url);
@@ -48,7 +49,7 @@ export default function Pokemon() {
   useEffect(() => {
     fetchPokemonData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+  }, [name]);
 
   console.log(pokemonData?.evolution_chain.chain)
 
@@ -57,16 +58,16 @@ export default function Pokemon() {
       <PokemonHeader />
         <NumberPageContainer>
           <Link 
-          to={`/pokemon/${pokemonNumber > 1 ? pokemonNumber - 1 : pokemonNumber}`}
+          // to={`/pokemon/${pokemonNumber > 1 ? pokemonNumber - 1 : pokemonNumber}`}
           onClick={Pokemon}
           >
-            #{id < 10 ? `0${id - 1}` : `${id - 1}`}
+            {/* #{name < 10 ? `0${name - 1}` : `${name - 1}`} */}
           </Link>
         </NumberPageContainer>
       <LeftSideSection>
         <PokemonNameContainer>
             <h4>{pokemonData?.name}</h4>
-            <p>#{pokemonData?.id < 10 ? `0${pokemonData?.id}`: `${pokemonData?.id}`}</p>
+            <p>#{pokemonData?.name < 10 ? `0${pokemonData?.name}`: `${pokemonData?.name}`}</p>
         </PokemonNameContainer>
             <SkillContainer>
               <ul>
@@ -98,10 +99,10 @@ export default function Pokemon() {
       </RightSideSection>
       <NumberPageContainer>
         <Link 
-        to={`/pokemon/${pokemonNumber + 1}`}
+        // to={`/pokemon/${pokemonNumber + 1}`}
         onClick={Pokemon}
         >
-          #{id < 10 ? `0${id}` : `${id}`}
+          {/* #{name < 10 ? `0${name}` : `${name}`} */}
         </Link>
       </NumberPageContainer> 
     </Container>

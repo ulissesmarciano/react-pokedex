@@ -79,7 +79,7 @@ export default function Pokedex() {
                 typeBackground={types.type.name}
               />
             ))}
-            to={`/pokemon/${pokemon.id}`}
+            to={`/pokemon/${pokemon.name}`}
           />)}
         </PokemonCardContainer>
     </Container>
