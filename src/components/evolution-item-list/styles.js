@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
-export const ListContainer = styled.ul`
+export const PokemonEvolutionItem = styled.ul`
         margin: 0 -3rem;
 
-        display: flex;
-        justify-content: space-around;
         .name-and-title-section {
             display: flex;
             flex-direction: column;
@@ -59,7 +57,7 @@ export const ListContainer = styled.ul`
 
         @media(min-width: 1024px){
             max-width: 500px;
-
+           
             .skill-container li {
                 margin: .1rem;
                 padding: 0 .5rem;

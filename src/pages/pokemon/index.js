@@ -9,7 +9,7 @@ import { Container, EvolutionContainer, EvolutionImageContainer, InfoTabListCont
 
 import PokemonHeader from '../../components/pokemon-header'
 import InfoTabList from '../../components/info-tab-list'
-import EvolutionList from '../../components/evolution-list'
+import EvolutionItemList from '../../components/evolution-item-list'
 
 export default function Pokemon() {
   const [pokemonData, setPokemonData] = useState(null);
@@ -50,7 +50,7 @@ export default function Pokemon() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  console.log(pokemonData?.types[0].name)
+  console.log(pokemonData?.evolution_chain.chain)
 
   return (
     <Container>
@@ -76,20 +76,23 @@ export default function Pokemon() {
               </ul>
             </SkillContainer>
         <PokemonImageContainer>
-          <img className={pokemonData?.type?.[0].name} src={pokemonData?.sprites?.other.dream_world.front_default === null ? pokemonData?.sprites?.other['official-artwork'].front_default : pokemonData?.sprites?.other.dream_world.front_default}
+          <img className={pokemonData?.types?.[0].name} src={pokemonData?.sprites?.other.dream_world.front_default === null ? pokemonData?.sprites?.other['official-artwork'].front_default : pokemonData?.sprites?.other.dream_world.front_default}
             alt={`Foto do pokémon ${pokemonData}`}/>
         </PokemonImageContainer>
         <EvolutionContainer>
           <h6>Evolutions</h6>
           <EvolutionImageContainer>
-            <EvolutionList/>
+            {/* Lógica a revisar */}
+            {pokemonData?.evolution_chain.chain.species.is_baby === false ? pokemonData?.evolution_chain.chain.species.name : pokemonData?.evolution_chain.chain.species.name}
+            {pokemonData?.evolution_chain.chain.species.is_baby === false ? pokemonData?.evolution_chain.chain.evolves_to['0'].species.name : pokemonData?.evolution_chain.chain.evolves_to['0'].species.name}
+            {pokemonData?.evolution_chain.chain.species.is_baby === false ? pokemonData?.evolution_chain.chain.evolves_to['0'].species.name : pokemonData?.evolution_chain.chain.evolves_to['0'].evolves_to['0'].species.name}
           </EvolutionImageContainer>
         </EvolutionContainer>
       </LeftSideSection>
       <RightSideSection>
         <InfoTabListContainer>
           <InfoTabList
-            weakness={pokemonData?.types.map((type, index) => <li>{type.name}</li>) }
+            weakness={pokemonData?.types.map((type, index) => <li key={index}>{type.name}</li>) }
           />
         </InfoTabListContainer>
       </RightSideSection>
