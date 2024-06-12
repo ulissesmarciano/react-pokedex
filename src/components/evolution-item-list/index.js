@@ -1,20 +1,16 @@
 import React from 'react'
 import { PokemonEvolutionItem } from './styles'
 
-
-const Bulbassaur = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
-
-export default function EvolutionItemList() {
+export default function EvolutionItemList({src, alt, pokemonName, type}) {
   return (
     <PokemonEvolutionItem >
         <div className='name-and-title-section'>
             <div>
-                <img src={Bulbassaur} alt='#'/>
+                <img src={src} alt={alt}/>
             </div>
-            <p>bulbassaur</p>
+            <p>{pokemonName}</p>
             <ul className='skill-container'>
-                <li>planta</li>
-                <li>veneno</li>
+                {type}
             </ul>
         </div>
     </PokemonEvolutionItem>
