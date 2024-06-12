@@ -8,6 +8,28 @@ import PokemonHeader from '../../components/pokemon-header';
 import InfoTabList from '../../components/info-tab-list';
 import EvolutionItemList from '../../components/evolution-item-list';
 
+// Mapeamento das fraquezas
+const typeWeaknesses = {
+  normal: ['fighting'],
+  water: ['electric', 'grass'],
+  grass: ['fire', 'ice', 'flying', 'poison', 'bug'],
+  fire: ['water', 'ground', 'rock'],
+  fighting: ['flying', 'psychic', 'fairy'],
+  psychic: ['ghost', 'dark', 'bug'],
+  ghost: ['ghost', 'dark'],
+  dark: ['fighting', 'fairy', 'bug'],
+  fairy: ['steel', 'poison'],
+  flying: ['electric', 'rock', 'ice'],
+  bug: ['fire', 'flying'],
+  rock: ['fighting', 'water', 'grass', 'ground', 'steel'],
+  ground: ['water', 'grass', 'ice'],
+  ice: ['fighting', 'fire', 'rock', 'steel'],
+  steel: ['fire', 'fighting', 'ground'],
+  poison: ['psychic', 'ground'],
+  electric: ['ground'],
+  dragon: ['dragon', 'fairy', 'ice']
+};
+
 export default function Pokemon() {
   const [pokemonData, setPokemonData] = useState(null);
   const [evolutionImages, setEvolutionImages] = useState({});
@@ -103,7 +125,6 @@ export default function Pokemon() {
 
     // Log only the URLs
     Object.keys(evolutionTypes).forEach(name => evolutionTypes[name]);
-
   };
 
   useEffect(() => {
@@ -114,15 +135,27 @@ export default function Pokemon() {
     return <div>Loading...</div>;
   }
 
+  const calculateWeaknesses = (types) => {
+    const weaknesses = new Set();
+    types.forEach((type) => {
+      if (typeWeaknesses[type]) {
+        typeWeaknesses[type].forEach((weakness) => weaknesses.add(weakness));
+      }
+    });
+    return Array.from(weaknesses);
+  };
+
+  const weaknesses = calculateWeaknesses(pokemonData.types.map((type) => type.name));
+
   return (
     <Container>
       <PokemonHeader />
       <NumberPageContainer>
         <Link 
-          to={`/pokemon/${pokemonData.id > 1 ? pokemonData.id : pokemonData.id -1}`}
+          // to={`/pokemon/${pokemonNumber > 1 ? pokemonNumber - 1 : pokemonNumber}`}
           onClick={() => {}}
         >
-          #{pokemonData.id < 10 ? `0${pokemonData.id - 1}` : `${pokemonData}`}
+          {/* #{name < 10 ? `0${name - 1}` : `${name - 1}`} */}
         </Link>
       </NumberPageContainer>
       <LeftSideSection>
@@ -154,8 +187,7 @@ export default function Pokemon() {
                   pokemonName={evolution.species.name}
                   src={evolutionImages[evolution.species.name]}
                   alt={`${evolution.species.name} sprite`}
-                  className={evolutionType}
-                  type={<li className={evolutionType}>{evolutionType}</li>}
+                  type={evolutionType} // Verifica se evolutionType é definido antes de chamar o método join()
                 />
               );
             })
@@ -163,28 +195,22 @@ export default function Pokemon() {
                 <>
                   {pokemonData.evolution_chain.chain.is_baby === false && (
                     <EvolutionItemList
-                    pokemonName={pokemonData.evolution_chain.chain.species.name}
-                    src={evolutionImages[pokemonData.evolution_chain.chain.species.name]}
-                    alt={`${pokemonData.evolution_chain.chain.species.name} sprite`}
-                    className={
-                      evolutionTypes[pokemonData.evolution_chain.chain.species.name] 
-                        ? evolutionTypes[pokemonData.evolution_chain.chain.species.name][0] 
-                        : ''
-                    }
-                    type={
-                      evolutionTypes[pokemonData.evolution_chain.chain.species.name] && 
-                      evolutionTypes[pokemonData.evolution_chain.chain.species.name].map((type, index) => {
-                        return (
+                      pokemonName={pokemonData.evolution_chain.chain.species.name}
+                      src={evolutionImages[pokemonData.evolution_chain.chain.species.name]}
+                      alt={`${pokemonData.evolution_chain.chain.species.name} sprite`}
+                      className={evolutionTypes[pokemonData.evolution_chain.chain.species.name] ? 
+                        evolutionTypes[pokemonData.evolution_chain.chain.species.name][0] : ''}
+                      type={evolutionTypes[pokemonData.evolution_chain.chain.species.name] && (
+                        evolutionTypes[pokemonData.evolution_chain.chain.species.name].map((type, index) => (
                           <li 
-                            key={index}
-                            className={type}
+                          key={index}
+                          className={type}
                           >
                             {type}
                           </li>
-                        );
-                      })
-                    }
-                  />
+                        ))
+                      )}
+                    />
                   )}
                   {pokemonData.evolution_chain.chain.evolves_to[0] && pokemonData.evolution_chain.chain.evolves_to[0].is_baby === false && (
                     <EvolutionItemList
@@ -193,19 +219,14 @@ export default function Pokemon() {
                       alt={`${pokemonData.evolution_chain.chain.evolves_to[0].species.name} sprite`}
                       className={evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].species.name] ? 
                         evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].species.name][0] : ''}
-                      type={
-                        evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].species.name] && 
-                        evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].species.name].map((type, index) => {
-                          return (
-                            <li 
-                              key={index}
-                              className={type}
-                            >
-                              {type}
-                            </li>
-                          );
-                        })
-                      }
+                      type={evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].species.name] && (
+                        evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].species.name].map((type, index) => (
+                          <li key={index}
+                              className={type}>
+                            {type}
+                          </li>
+                        ))
+                      )}
                     />
                   )}
                   {pokemonData.evolution_chain.chain.evolves_to[0] && pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0] && pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].is_baby === false && (
@@ -215,19 +236,14 @@ export default function Pokemon() {
                       alt={`${pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name} sprite`}
                       className={evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name] ? 
                         evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name][0] : ''}
-                      type={
-                        evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name] && 
-                        evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name].map((type, index) => {
-                          return (
-                            <li 
-                              key={index}
-                              className={type}
-                            >
-                              {type}
-                            </li>
-                          );
-                        })
-                      }
+                      type={evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name] && (
+                        evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name].map((type, index) => (
+                          <li key={index}
+                              className={type}>
+                            {type}
+                          </li>
+                        ))
+                      )}
                     />
                   )}
                 </>
@@ -239,16 +255,16 @@ export default function Pokemon() {
       <RightSideSection>
         <InfoTabListContainer>
           <InfoTabList
-            weakness={pokemonData.types.map((type, index) => <li key={index}>{type.name}</li>)}
+            weakness={weaknesses.map((weakness, index) => <li className={weakness} key={index}>{weakness}</li>)}
           />
         </InfoTabListContainer>
       </RightSideSection>
       <NumberPageContainer>
         <Link 
-          to={`/pokemon/${pokemonData.id + 1}`}
+          // to={`/pokemon/${pokemonNumber + 1}`}
           onClick={() => {}}
         >
-          #{pokemonData.id < 10 ? `0${pokemonData.id}` : `${pokemonData.id}`}
+          {/* #{name < 10 ? `0${name}` : `${name}`} */}
         </Link>
       </NumberPageContainer>
     </Container>
