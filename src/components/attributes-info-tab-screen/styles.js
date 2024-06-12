@@ -11,7 +11,7 @@ export const Container = styled.ul`
     
 `
 
-export const DataItemVersionsList = styled.li`
+export const DataItemAttributesList = styled.li`
     margin-bottom: .8rem;
         
     display: flex;
@@ -32,7 +32,8 @@ export const DataItemVersionsList = styled.li`
         }
     }
 
-    @media(min-width: 1024px) {
-        color: red;
+    @media(min-width: 1024px){
+        font-size: .8rem;
+        
     }
 `

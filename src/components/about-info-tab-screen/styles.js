@@ -33,6 +33,7 @@ export const WeaknessesContainer = styled.div`
             padding: 0 .8rem;
 
             border-radius: 50px;
+            text-transform: capitalize;
 
             &.normal {
             background-color: #a6a87790;

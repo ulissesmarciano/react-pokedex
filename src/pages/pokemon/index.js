@@ -149,13 +149,14 @@ export default function Pokemon() {
 
   return (
     <Container>
+      {console.log(pokemonData)}
       <PokemonHeader />
       <NumberPageContainer>
         <Link 
-          // to={`/pokemon/${pokemonNumber > 1 ? pokemonNumber - 1 : pokemonNumber}`}
+          to={`/pokemon/${pokemonData.id > 1 ? pokemonData.id - 1 : pokemonData.id}`}
           onClick={() => {}}
         >
-          {/* #{name < 10 ? `0${name - 1}` : `${name - 1}`} */}
+          #{pokemonData.id < 10 ? `0${pokemonData.id - 1}` : `${pokemonData.id - 1}`}
         </Link>
       </NumberPageContainer>
       <LeftSideSection>
@@ -261,10 +262,10 @@ export default function Pokemon() {
       </RightSideSection>
       <NumberPageContainer>
         <Link 
-          // to={`/pokemon/${pokemonNumber + 1}`}
+          to={`/pokemon/${pokemonData.id + 1}`}
           onClick={() => {}}
         >
-          {/* #{name < 10 ? `0${name}` : `${name}`} */}
+          #{pokemonData.id < 10 ? `0${pokemonData.id + 1}` : `${pokemonData.id + 1}`}
         </Link>
       </NumberPageContainer>
     </Container>

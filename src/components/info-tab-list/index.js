@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {InfoContainer, InfoPage, NavContainer, TabButton} from "./styles"
 
 import AboutInfoTabScreen from "../about-info-tab-screen";
-import VersionsInfoTabScreen from "../versions-info-tab-screen";
+import AttributesInfoTabScreen from "../attributes-info-tab-screen";
 import StatsInfoTabScreen from "../stats-info-tab-screen";
 
 
@@ -39,7 +39,7 @@ export default function InfoTabList({weakness}) {
             </TabButton>
             <TabButton onClick={changeSecondTab}>
               {showSecondTab ? false : true}
-              Versions
+              Attributes
             </TabButton>
             <TabButton onClick={changeThirdTab}>
               {showThirdTab ? false : true}  
@@ -48,7 +48,7 @@ export default function InfoTabList({weakness}) {
         </NavContainer>
         <InfoContainer>
           {showFirstTab && <AboutInfoTabScreen/>}
-          {showSecondTab && <VersionsInfoTabScreen />}
+          {showSecondTab && <AttributesInfoTabScreen />}
           {showThirdTab && <StatsInfoTabScreen />}
         </InfoContainer>
         <InfoPage>
@@ -56,8 +56,8 @@ export default function InfoTabList({weakness}) {
           <AboutInfoTabScreen
             weakness={weakness}
           />
-          <h4>Versions</h4>
-          <VersionsInfoTabScreen />
+          <h4>Attributes</h4>
+          <AttributesInfoTabScreen />
           <h4>Stats</h4>
           <StatsInfoTabScreen />
         </InfoPage>
