@@ -154,7 +154,8 @@ export default function Pokemon() {
                   pokemonName={evolution.species.name}
                   src={evolutionImages[evolution.species.name]}
                   alt={`${evolution.species.name} sprite`}
-                  type={evolutionType} // Verifica se evolutionType é definido antes de chamar o método join()
+                  className={evolutionType}
+                  type={<li className={evolutionType}>{evolutionType}</li>} // Verifica se evolutionType é definido antes de chamar o método join()
                 />
               );
             })
@@ -162,22 +163,49 @@ export default function Pokemon() {
                 <>
                   {pokemonData.evolution_chain.chain.is_baby === false && (
                     <EvolutionItemList
-                      pokemonName={pokemonData.evolution_chain.chain.species.name}
-                      src={evolutionImages[pokemonData.evolution_chain.chain.species.name]}
-                      alt={`${pokemonData.evolution_chain.chain.species.name} sprite`}
-                      type={evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].species.name] && (
-                        evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].species.name].map((type, index) => (
-                          <li>{type}</li>
-                        ))
-                      )}
-                    />
+                    pokemonName={pokemonData.evolution_chain.chain.species.name}
+                    src={evolutionImages[pokemonData.evolution_chain.chain.species.name]}
+                    alt={`${pokemonData.evolution_chain.chain.species.name} sprite`}
+                    className={
+                      evolutionTypes[pokemonData.evolution_chain.chain.species.name] 
+                        ? evolutionTypes[pokemonData.evolution_chain.chain.species.name][0] 
+                        : ''
+                    }
+                    type={
+                      evolutionTypes[pokemonData.evolution_chain.chain.species.name] && 
+                      evolutionTypes[pokemonData.evolution_chain.chain.species.name].map((type, index) => {
+                        return (
+                          <li 
+                            key={index}
+                            className={type}
+                          >
+                            {type}
+                          </li>
+                        );
+                      })
+                    }
+                  />
                   )}
                   {pokemonData.evolution_chain.chain.evolves_to[0] && pokemonData.evolution_chain.chain.evolves_to[0].is_baby === false && (
                     <EvolutionItemList
                       pokemonName={pokemonData.evolution_chain.chain.evolves_to[0].species.name}
                       src={evolutionImages[pokemonData.evolution_chain.chain.evolves_to[0].species.name]}
                       alt={`${pokemonData.evolution_chain.chain.evolves_to[0].species.name} sprite`}
-                      type={evolutionTypes[pokemonData.evolution_chain?.chain.evolves_to[0].species.name]}// Passando os tipos para EvolutionItemList
+                      className={evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].species.name] ? 
+                        evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].species.name][0] : ''}
+                      type={
+                        evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].species.name] && 
+                        evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].species.name].map((type, index) => {
+                          return (
+                            <li 
+                              key={index}
+                              className={type}
+                            >
+                              {type}
+                            </li>
+                          );
+                        })
+                      }
                     />
                   )}
                   {pokemonData.evolution_chain.chain.evolves_to[0] && pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0] && pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].is_baby === false && (
@@ -185,7 +213,21 @@ export default function Pokemon() {
                       pokemonName={pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name}
                       src={evolutionImages[pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name]}
                       alt={`${pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name} sprite`}
-                      types={evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name]} // Passando os tipos para EvolutionItemList
+                      className={evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name] ? 
+                        evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name][0] : ''}
+                      type={
+                        evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name] && 
+                        evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name].map((type, index) => {
+                          return (
+                            <li 
+                              key={index}
+                              className={type}
+                            >
+                              {type}
+                            </li>
+                          );
+                        })
+                      }
                     />
                   )}
                 </>
