@@ -8,7 +8,7 @@ export default function AboutInfoTabScreen({weakness}) {
       <StoryContainer
       >
         <h5>Story</h5>
-        <p>From the time it is born, a flame burns at the tip its tail, its lifi would end if  the flame were to go out. It has a preference for hot things. When it rains, steam is said to spout from the tip of its tail.</p>
+        <p>This section is intended for a brief description of the Pokémon listed here, as we await updates, take the opportunity to consult all the skills and details that are on the page.</p>
       </StoryContainer>
       <WeaknessesContainer>
         <h5>Weaknesses</h5>

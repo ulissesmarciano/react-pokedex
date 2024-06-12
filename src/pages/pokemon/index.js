@@ -119,10 +119,10 @@ export default function Pokemon() {
       <PokemonHeader />
       <NumberPageContainer>
         <Link 
-          // to={`/pokemon/${pokemonNumber > 1 ? pokemonNumber - 1 : pokemonNumber}`}
+          to={`/pokemon/${pokemonData.id > 1 ? pokemonData.id : pokemonData.id -1}`}
           onClick={() => {}}
         >
-          {/* #{name < 10 ? `0${name - 1}` : `${name - 1}`} */}
+          #{pokemonData.id < 10 ? `0${pokemonData.id - 1}` : `${pokemonData}`}
         </Link>
       </NumberPageContainer>
       <LeftSideSection>
@@ -155,7 +155,7 @@ export default function Pokemon() {
                   src={evolutionImages[evolution.species.name]}
                   alt={`${evolution.species.name} sprite`}
                   className={evolutionType}
-                  type={<li className={evolutionType}>{evolutionType}</li>} // Verifica se evolutionType é definido antes de chamar o método join()
+                  type={<li className={evolutionType}>{evolutionType}</li>}
                 />
               );
             })
@@ -245,10 +245,10 @@ export default function Pokemon() {
       </RightSideSection>
       <NumberPageContainer>
         <Link 
-          // to={`/pokemon/${pokemonNumber + 1}`}
+          to={`/pokemon/${pokemonData.id + 1}`}
           onClick={() => {}}
         >
-          {/* #{name < 10 ? `0${name}` : `${name}`} */}
+          #{pokemonData.id < 10 ? `0${pokemonData.id}` : `${pokemonData.id}`}
         </Link>
       </NumberPageContainer>
     </Container>
