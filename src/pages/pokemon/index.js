@@ -8,7 +8,6 @@ import PokemonHeader from '../../components/pokemon-header';
 import InfoTabList from '../../components/info-tab-list';
 import EvolutionItemList from '../../components/evolution-item-list';
 
-// Mapeamento das fraquezas
 const typeWeaknesses = {
   normal: ['fighting'],
   water: ['electric', 'grass'],
@@ -34,6 +33,7 @@ export default function Pokemon() {
   const [pokemonData, setPokemonData] = useState(null);
   const [evolutionImages, setEvolutionImages] = useState({});
   const [evolutionTypes, setEvolutionTypes] = useState({});
+  const [pokemonList, setPokemonList] = useState([]);
   const { name } = useParams();
 
   const fetchPokemonData = async () => {
@@ -65,17 +65,16 @@ export default function Pokemon() {
     }
   };
 
-  const fetchEvolutionData = async (chain) => {
-    const fetchPokemonData = async (name) => {
-      try {
-        const response = await api.get(`/pokemon/${name}`);
-        return response.data;
-      } catch (error) {
-        console.error('Error fetching Pokémon data:', error);
-        return null;
-      }
-    };
+  const fetchPokemonList = async () => {
+    try {
+      const response = await api.get('/pokemon?limit=1000');
+      setPokemonList(response.data.results);
+    } catch (error) {
+      console.error('Error fetching Pokémon list:', error);
+    }
+  };
 
+  const fetchEvolutionData = async (chain) => {
     const fetchImage = async (name) => {
       try {
         const response = await api.get(`/pokemon/${name}`);
@@ -122,18 +121,26 @@ export default function Pokemon() {
 
     setEvolutionImages(images);
     setEvolutionTypes(types);
-
-    // Log only the URLs
-    Object.keys(evolutionTypes).forEach(name => evolutionTypes[name]);
   };
 
   useEffect(() => {
     fetchPokemonData();
+    fetchPokemonList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name]);
 
-  if (!pokemonData) {
+  if (!pokemonData || pokemonList.length === 0) {
     return <div>Loading...</div>;
   }
+
+  const getNextPokemonName = () => {
+    const currentIndex = pokemonList.findIndex(pokemon => pokemon.name === name);
+    if (currentIndex === -1) return null;
+    const nextIndex = (currentIndex + 1) % pokemonList.length;
+    return pokemonList[nextIndex].name;
+  };
+
+  const nextPokemonName = getNextPokemonName();
 
   const calculateWeaknesses = (types) => {
     const weaknesses = new Set();
@@ -149,12 +156,10 @@ export default function Pokemon() {
 
   return (
     <Container>
-      {console.log(pokemonData)}
       <PokemonHeader />
       <NumberPageContainer>
         <Link 
-          to={`/pokemon/${pokemonData.id > 1 ? pokemonData.id - 1 : pokemonData.id}`}
-          onClick={() => {}}
+          to={`/pokemon/${pokemonData.id > 1 ? pokemonList[pokemonData.id - 2].name : pokemonData.name}`}
         >
           #{pokemonData.id < 10 ? `0${pokemonData.id - 1}` : `${pokemonData.id - 1}`}
         </Link>
@@ -188,7 +193,8 @@ export default function Pokemon() {
                   pokemonName={evolution.species.name}
                   src={evolutionImages[evolution.species.name]}
                   alt={`${evolution.species.name} sprite`}
-                  type={evolutionType} // Verifica se evolutionType é definido antes de chamar o método join()
+                  type={evolutionType}
+                  to={`/pokemon/${evolution.species.name}`}
                 />
               );
             })
@@ -196,6 +202,7 @@ export default function Pokemon() {
                 <>
                   {pokemonData.evolution_chain.chain.is_baby === false && (
                     <EvolutionItemList
+                      to={`/pokemon/${pokemonData.evolution_chain.chain.species.name}`}
                       pokemonName={pokemonData.evolution_chain.chain.species.name}
                       src={evolutionImages[pokemonData.evolution_chain.chain.species.name]}
                       alt={`${pokemonData.evolution_chain.chain.species.name} sprite`}
@@ -215,6 +222,7 @@ export default function Pokemon() {
                   )}
                   {pokemonData.evolution_chain.chain.evolves_to[0] && pokemonData.evolution_chain.chain.evolves_to[0].is_baby === false && (
                     <EvolutionItemList
+                      to={`/pokemon/${pokemonData.evolution_chain.chain.evolves_to[0].species.name}`}
                       pokemonName={pokemonData.evolution_chain.chain.evolves_to[0].species.name}
                       src={evolutionImages[pokemonData.evolution_chain.chain.evolves_to[0].species.name]}
                       alt={`${pokemonData.evolution_chain.chain.evolves_to[0].species.name} sprite`}
@@ -222,8 +230,10 @@ export default function Pokemon() {
                         evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].species.name][0] : ''}
                       type={evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].species.name] && (
                         evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].species.name].map((type, index) => (
-                          <li key={index}
-                              className={type}>
+                          <li 
+                          key={index}
+                          className={type}
+                          >
                             {type}
                           </li>
                         ))
@@ -232,6 +242,7 @@ export default function Pokemon() {
                   )}
                   {pokemonData.evolution_chain.chain.evolves_to[0] && pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0] && pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].is_baby === false && (
                     <EvolutionItemList
+                      to={`/pokemon/${pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name}`}
                       pokemonName={pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name}
                       src={evolutionImages[pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name]}
                       alt={`${pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name} sprite`}
@@ -239,8 +250,10 @@ export default function Pokemon() {
                         evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name][0] : ''}
                       type={evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name] && (
                         evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name].map((type, index) => (
-                          <li key={index}
-                              className={type}>
+                          <li 
+                          key={index}
+                          className={type}
+                          >
                             {type}
                           </li>
                         ))
@@ -257,16 +270,23 @@ export default function Pokemon() {
         <InfoTabListContainer>
           <InfoTabList
             weakness={weaknesses.map((weakness, index) => <li className={weakness} key={index}>{weakness}</li>)}
+            height={`${(pokemonData.height / 3.048).toFixed(2)} feet (${(pokemonData.height / 10).toFixed(2)} cm)`}
+            weight={`${(pokemonData.weight / 4.436).toFixed(2)} lbs (${(pokemonData.weight / 10).toFixed(1)} kg)`}
+            abilities={pokemonData.abilities.map((ability) => ability.ability.name).reduce((prev, curr) => [prev, ', ', curr])}
+            malePercentage={`${((pokemonData.species.gender_rate*-100)/8)+100}%`}
+            femalePercentage={`${((pokemonData.species.gender_rate*100)/8)}%`}
+            eggGroup={pokemonData.species.egg_groups[0]?.name || ''}
+            eggCycle={pokemonData.species.egg_groups[1]?.name || 'Dont Have'}
+
           />
         </InfoTabListContainer>
       </RightSideSection>
       <NumberPageContainer>
-        <Link 
-          to={`/pokemon/${pokemonData.id + 1}`}
-          onClick={() => {}}
-        >
-          #{pokemonData.id < 10 ? `0${pokemonData.id + 1}` : `${pokemonData.id + 1}`}
-        </Link>
+        {nextPokemonName && (
+          <Link to={`/pokemon/${nextPokemonName}`}>
+            #{pokemonData.id < 10 ? `0${pokemonData.id + 1}` : `${pokemonData.id + 1}`}
+          </Link>
+        )}
       </NumberPageContainer>
     </Container>
   );
