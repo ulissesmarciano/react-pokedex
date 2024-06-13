@@ -2,12 +2,15 @@ import styled from "styled-components";
 
 export const StatsTabScreenSection = styled.ul`
     margin-top: 1rem;
+
+
     @media(min-width: 425px){
         margin-top: 1.2rem;
     }
     
     li {
         margin-bottom: 1rem;
+        width: 100%;
 
         display: flex;
         align-items: center;
