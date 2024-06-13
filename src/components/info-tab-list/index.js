@@ -6,7 +6,7 @@ import AttributesInfoTabScreen from "../attributes-info-tab-screen";
 import StatsInfoTabScreen from "../stats-info-tab-screen";
 
 
-export default function InfoTabList({weakness}) {
+export default function InfoTabList({weakness, height, weight, abilities, malePercentage, femalePercentage, eggGroup, eggCycle}) {
    
     const [showFirstTab, setShowFirstTab] = useState(true)
     const [showSecondTab, setShowSecondTab] = useState(false)
@@ -57,7 +57,15 @@ export default function InfoTabList({weakness}) {
             weakness={weakness}
           />
           <h4>Attributes</h4>
-          <AttributesInfoTabScreen />
+          <AttributesInfoTabScreen 
+            height={height}
+            weight={weight}
+            abilities={abilities}
+            malePercentage={malePercentage}
+            femalePercentage={femalePercentage}
+            eggGroup={eggGroup}
+            eggCycle={eggCycle}
+          />
           <h4>Stats</h4>
           <StatsInfoTabScreen />
         </InfoPage>

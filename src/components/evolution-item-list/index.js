@@ -1,9 +1,11 @@
 import React from 'react'
 import { PokemonEvolutionItem } from './styles'
+import { Link } from 'react-router-dom'
 
-export default function EvolutionItemList({src, alt, pokemonName, type, className}) {
+export default function EvolutionItemList({src, alt, pokemonName, type, className, to}) {
   return (
     <PokemonEvolutionItem >
+      <Link to={to} onClick={() => {}}>
         <div className='name-and-title-section'>
             <div className={className}>
                 <img src={src} alt={alt}/>
@@ -13,6 +15,7 @@ export default function EvolutionItemList({src, alt, pokemonName, type, classNam
                 {type}
             </ul>
         </div>
+      </Link>
     </PokemonEvolutionItem>
   )
 }

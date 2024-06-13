@@ -2,11 +2,13 @@ import styled from "styled-components";
 
 export const PokemonEvolutionItem = styled.ul`
         margin: 0 -3rem;
-
+        
         .name-and-title-section {
             display: flex;
             flex-direction: column;
             align-items: center;
+
+            color: #000;
 
         }
         
