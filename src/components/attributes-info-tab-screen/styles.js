@@ -19,6 +19,7 @@ export const DataItemAttributesList = styled.li`
 
     color: #c1c1c1;
     font-weight: 800;
+    text-transform: capitalize;
 
     span {
         margin-left: 1rem;
