@@ -269,14 +269,27 @@ export default function Pokemon() {
       <RightSideSection>
         <InfoTabListContainer>
           <InfoTabList
+
+            //attributes
             weakness={weaknesses.map((weakness, index) => <li className={weakness} key={index}>{weakness}</li>)}
             height={`${(pokemonData.height / 3.048).toFixed(2)} feet (${(pokemonData.height / 10).toFixed(2)} cm)`}
             weight={`${(pokemonData.weight / 4.436).toFixed(2)} lbs (${(pokemonData.weight / 10).toFixed(1)} kg)`}
             abilities={pokemonData.abilities.map((ability) => ability.ability.name).reduce((prev, curr) => [prev, ', ', curr])}
+
+            //breeding
             malePercentage={`${((pokemonData.species.gender_rate*-100)/8)+100}%`}
             femalePercentage={`${((pokemonData.species.gender_rate*100)/8)}%`}
             eggGroup={pokemonData.species.egg_groups[0]?.name || ''}
             eggCycle={pokemonData.species.egg_groups[1]?.name || 'Dont Have'}
+            
+            //stats
+            hp={pokemonData.stats[0].base_stat}
+            attack={pokemonData.stats[1].base_stat}
+            defense={pokemonData.stats[2].base_stat}
+            spAtk={pokemonData.stats[3].base_stat}
+            spDef={pokemonData.stats[4].base_stat}
+            speed={pokemonData.stats[5].base_stat}
+            total={pokemonData.stats.map((base) => (base.base_stat)).reduce((prev, curr) => prev + curr)}
 
           />
         </InfoTabListContainer>

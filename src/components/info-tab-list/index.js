@@ -6,7 +6,7 @@ import AttributesInfoTabScreen from "../attributes-info-tab-screen";
 import StatsInfoTabScreen from "../stats-info-tab-screen";
 
 
-export default function InfoTabList({weakness, height, weight, abilities, malePercentage, femalePercentage, eggGroup, eggCycle}) {
+export default function InfoTabList({weakness, height, weight, abilities, malePercentage, femalePercentage, eggGroup, eggCycle, hp, attack, defense, spAtk, spDef, speed, total}) {
    
     const [showFirstTab, setShowFirstTab] = useState(true)
     const [showSecondTab, setShowSecondTab] = useState(false)
@@ -47,9 +47,33 @@ export default function InfoTabList({weakness, height, weight, abilities, malePe
             </TabButton>
         </NavContainer>
         <InfoContainer>
-          {showFirstTab && <AboutInfoTabScreen/>}
-          {showSecondTab && <AttributesInfoTabScreen />}
-          {showThirdTab && <StatsInfoTabScreen />}
+          {showFirstTab && 
+            <AboutInfoTabScreen
+              weakness={weakness}
+            />
+          }
+          {showSecondTab && 
+            <AttributesInfoTabScreen 
+              height={height}
+              weight={weight}
+              abilities={abilities}
+              malePercentage={malePercentage}
+              femalePercentage={femalePercentage}
+              eggGroup={eggGroup}
+              eggCycle={eggCycle}
+            />
+          }
+          {showThirdTab && 
+            <StatsInfoTabScreen 
+              hp={hp}
+              attack={attack}
+              defense={defense}
+              spAtk={spAtk}
+              spDef={spDef}
+              speed={speed}
+              total={total}
+            />
+          }
         </InfoContainer>
         <InfoPage>
           <h4>About</h4>
@@ -67,7 +91,15 @@ export default function InfoTabList({weakness, height, weight, abilities, malePe
             eggCycle={eggCycle}
           />
           <h4>Stats</h4>
-          <StatsInfoTabScreen />
+          <StatsInfoTabScreen 
+            hp={hp}
+            attack={attack}
+            defense={defense}
+            spAtk={spAtk}
+            spDef={spDef}
+            speed={speed}
+            total={total}
+          />
         </InfoPage>
       </section>
     )
