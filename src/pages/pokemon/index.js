@@ -7,6 +7,7 @@ import { Container, EvolutionContainer, EvolutionImageContainer, InfoTabListCont
 import PokemonHeader from '../../components/pokemon-header';
 import InfoTabList from '../../components/info-tab-list';
 import EvolutionItemList from '../../components/evolution-item-list';
+import PokemonPageLoader from '../../components/pokemon-page-loader';
 
 const typeWeaknesses = {
   normal: ['fighting'],
@@ -130,7 +131,12 @@ export default function Pokemon() {
   }, [name]);
 
   if (!pokemonData || pokemonList.length === 0) {
-    return <div>Loading...</div>;
+    return (
+      <>
+        <PokemonHeader />
+        <PokemonPageLoader />
+      </>
+    )
   }
 
   const getNextPokemonName = () => {
@@ -157,6 +163,7 @@ export default function Pokemon() {
   return (
     <Container>
       <PokemonHeader />
+      {console.log(evolutionTypes)}
       <NumberPageContainer>
         <Link 
           to={`/pokemon/${pokemonData.id > 1 ? pokemonList[pokemonData.id - 2].name : pokemonData.name}`}

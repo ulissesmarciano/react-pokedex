@@ -267,6 +267,7 @@ export const EvolutionContainer = styled.ul`
     }
 
     li {
+        
         &.normal {
             background-color: #a6a87790;
             }
@@ -344,13 +345,14 @@ export const EvolutionContainer = styled.ul`
 `
 
 export const EvolutionImageContainer = styled.div`
-
-
+    padding: 0 2rem;
     display: flex;
+    justify-content: space-between;
 
     @media(min-width: 425px){
         margin: auto;
         width: 80%;
+        padding: 0;
     }
 
     @media (min-width: 1024px){
