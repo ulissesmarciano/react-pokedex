@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import api from '../../services/api';
 
 import { Container, PokemonCardContainer, TitleContainer } from './styles';
@@ -11,12 +11,25 @@ import PokemonCardLoader from '../../components/card-loader';
 
 export default function Pokedex() {
   const [pokemons, setPokemons] = useState([]);
+  const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const searchNumber = parseInt(search, 10);
+
+  // Memoize the filtered pokemons list to avoid recalculating it on every render
+  const lowerSearch = search.toLowerCase();
+  const pokemonsFiltered = useMemo(() => 
+    pokemons.filter((pokemon) => 
+      pokemon.name.toLowerCase().includes(lowerSearch) ||
+      pokemon.id === searchNumber
+    ), [pokemons, search, searchNumber]
+  );
+
+  // Function to fetch all pokemons
   async function getAllPokemons() {
     try {
-      const limit = 151;
+      const limit = 300;
       const response = await api.get(`/pokemon?limit=${limit}`);
       const { results } = response.data;
 
@@ -40,18 +53,19 @@ export default function Pokedex() {
     }
   }
 
+  // Function to fetch additional information about a specific pokemon
   async function getMoreInfo(url) {
     const response = await api.get(url);
     const { id, types, sprites } = response.data;
     return { id, types, sprites };
   }
 
+  // Fetch pokemons on component mount
   useEffect(() => {
     getAllPokemons();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  
   return (
     <Container>
       <PokedexHeader />
@@ -61,7 +75,10 @@ export default function Pokedex() {
           <p>Procure por seu pokémon pelo nome ou seu número</p>
         </TitleContainer>
         <div>
-          <SearchBar />
+          <SearchBar 
+            onChange={(event) => setSearch(event.target.value)}
+            value={search}
+          />
         </div>
       </div>
       <PokemonCardContainer>
@@ -72,7 +89,7 @@ export default function Pokedex() {
         ) : error ? (
           <div>{error}</div>
         ) : (
-          pokemons.map((pokemon) => (
+          pokemonsFiltered.map((pokemon) => (
             <PokemonCard
               key={pokemon.id}
               id={pokemon.id}
