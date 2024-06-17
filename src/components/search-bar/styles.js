@@ -37,6 +37,7 @@ export const SearchLabel = styled.div`
     }
 
     input {
+        width: 100%;
         border: none;
         background-color: transparent;
         outline: none;
@@ -49,15 +50,3 @@ export const SearchLabel = styled.div`
     }
 `
 
-export const SearchButton = styled.button`
-    padding: .4rem;
-    margin-left: .2rem;
-    
-    border: none;
-    background-color: #f1636b;
-    border-radius: 5px;
-    color: #ffffff;
-    font-size: 1rem;
-    font-weight: 600;
-
-`
