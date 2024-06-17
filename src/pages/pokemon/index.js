@@ -32,6 +32,8 @@ const typeWeaknesses = {
 
 export default function Pokemon() {
   const [pokemonData, setPokemonData] = useState(null);
+  const [evolutionDataList, setEvolutionDataList] = useState([]);
+
   const [evolutionImages, setEvolutionImages] = useState({});
   const [evolutionTypes, setEvolutionTypes] = useState({});
   const [pokemonList, setPokemonList] = useState([]);
@@ -85,7 +87,7 @@ export default function Pokemon() {
         return null;
       }
     };
-
+  
     const fetchPokemonTypes = async (name) => {
       try {
         const response = await api.get(`/pokemon/${name}`);
@@ -95,34 +97,39 @@ export default function Pokemon() {
         return null;
       }
     };
-
-    const images = {};
-    const types = {};
-
+  
+    const evolutionDataList = [];
+  
     const fetchChainData = async (chain) => {
-      images[chain.species.name] = await fetchImage(chain.species.name);
-      types[chain.species.name] = await fetchPokemonTypes(chain.species.name);
-
+      const image = await fetchImage(chain.species.name);
+      const types = await fetchPokemonTypes(chain.species.name);
+      evolutionDataList.push({ Name: chain.species.name, Types: types, Photo: image });
+  
       if (chain.evolves_to.length > 0) {
         for (const evo of chain.evolves_to) {
-          images[evo.species.name] = await fetchImage(evo.species.name);
-          types[evo.species.name] = await fetchPokemonTypes(evo.species.name);
-
+          const evoImage = await fetchImage(evo.species.name);
+          const evoTypes = await fetchPokemonTypes(evo.species.name);
+          evolutionDataList.push({ Name: evo.species.name, Types: evoTypes, Photo: evoImage });
+  
           if (evo.evolves_to.length > 0) {
             for (const subEvo of evo.evolves_to) {
-              images[subEvo.species.name] = await fetchImage(subEvo.species.name);
-              types[subEvo.species.name] = await fetchPokemonTypes(subEvo.species.name);
+              const subEvoImage = await fetchImage(subEvo.species.name);
+              const subEvoTypes = await fetchPokemonTypes(subEvo.species.name);
+              evolutionDataList.push({ Name: subEvo.species.name, Types: subEvoTypes, Photo: subEvoImage });
             }
           }
         }
       }
     };
-
+  
     await fetchChainData(chain);
-
-    setEvolutionImages(images);
-    setEvolutionTypes(types);
+  
+    setEvolutionImages(evolutionDataList.reduce((acc, data) => ({ ...acc, [data.Name]: data.Photo }), {}));
+    setEvolutionTypes(evolutionDataList.reduce((acc, data) => ({ ...acc, [data.Name]: data.Types }), {}));
+    setEvolutionDataList(evolutionDataList);  // Update state with evolution data list
   };
+  
+
 
   useEffect(() => {
     fetchPokemonData();
@@ -163,7 +170,6 @@ export default function Pokemon() {
   return (
     <Container>
       <PokemonHeader />
-      {console.log(evolutionTypes)}
       <NumberPageContainer>
         <Link 
           to={`/pokemon/${pokemonData.id > 1 ? pokemonList[pokemonData.id - 2].name : pokemonData.name}`}
@@ -190,86 +196,16 @@ export default function Pokemon() {
         <EvolutionContainer>
           <h6>Evolutions</h6>
           <EvolutionImageContainer>
-            <>
-            {['eevee', 'jolteon', 'vaporeon', 'flareon', 'espeon', 'umbreon', 'leafeon', 'glaceon', 'sylveon'].includes(name.toLowerCase()) ? (
-            pokemonData.evolution_chain.chain.evolves_to.map((evolution, index) => {
-              const evolutionType = evolutionTypes[evolution.species.name];
-              return (
-                <EvolutionItemList 
-                  key={index}
-                  pokemonName={evolution.species.name}
-                  src={evolutionImages[evolution.species.name]}
-                  alt={`${evolution.species.name} sprite`}
-                  type={evolutionType}
-                  to={`/pokemon/${evolution.species.name}`}
-                />
-              );
-            })
-              ) : (
-                <>
-                  {pokemonData.evolution_chain.chain.is_baby === false && (
-                    <EvolutionItemList
-                      to={`/pokemon/${pokemonData.evolution_chain.chain.species.name}`}
-                      pokemonName={pokemonData.evolution_chain.chain.species.name}
-                      src={evolutionImages[pokemonData.evolution_chain.chain.species.name]}
-                      alt={`${pokemonData.evolution_chain.chain.species.name} sprite`}
-                      className={evolutionTypes[pokemonData.evolution_chain.chain.species.name] ? 
-                        evolutionTypes[pokemonData.evolution_chain.chain.species.name][0] : ''}
-                      type={evolutionTypes[pokemonData.evolution_chain.chain.species.name] && (
-                        evolutionTypes[pokemonData.evolution_chain.chain.species.name].map((type, index) => (
-                          <li 
-                          key={index}
-                          className={type}
-                          >
-                            {type}
-                          </li>
-                        ))
-                      )}
-                    />
-                  )}
-                  {pokemonData.evolution_chain.chain.evolves_to[0] && pokemonData.evolution_chain.chain.evolves_to[0].is_baby === false && (
-                    <EvolutionItemList
-                      to={`/pokemon/${pokemonData.evolution_chain.chain.evolves_to[0].species.name}`}
-                      pokemonName={pokemonData.evolution_chain.chain.evolves_to[0].species.name}
-                      src={evolutionImages[pokemonData.evolution_chain.chain.evolves_to[0].species.name]}
-                      alt={`${pokemonData.evolution_chain.chain.evolves_to[0].species.name} sprite`}
-                      className={evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].species.name] ? 
-                        evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].species.name][0] : ''}
-                      type={evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].species.name] && (
-                        evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].species.name].map((type, index) => (
-                          <li 
-                          key={index}
-                          className={type}
-                          >
-                            {type}
-                          </li>
-                        ))
-                      )}
-                    />
-                  )}
-                  {pokemonData.evolution_chain.chain.evolves_to[0] && pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0] && pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].is_baby === false && (
-                    <EvolutionItemList
-                      to={`/pokemon/${pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name}`}
-                      pokemonName={pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name}
-                      src={evolutionImages[pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name]}
-                      alt={`${pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name} sprite`}
-                      className={evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name] ? 
-                        evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name][0] : ''}
-                      type={evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name] && (
-                        evolutionTypes[pokemonData.evolution_chain.chain.evolves_to[0].evolves_to[0].species.name].map((type, index) => (
-                          <li 
-                          key={index}
-                          className={type}
-                          >
-                            {type}
-                          </li>
-                        ))
-                      )}
-                    />
-                  )}
-                </>
-              )}
-            </>
+            {evolutionDataList.map((evolution, index) => (
+              <EvolutionItemList 
+                key={index}
+                src={evolution.Photo}
+                alt={`foto da evolução ${evolution.Name}`}
+                className={evolution.Types[0]}
+                pokemonName={evolution.Name}
+                type={evolution.Types}
+              />
+            ))}
           </EvolutionImageContainer>
         </EvolutionContainer>
       </LeftSideSection>

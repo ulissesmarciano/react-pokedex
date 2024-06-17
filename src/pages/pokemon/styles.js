@@ -268,7 +268,7 @@ export const EvolutionContainer = styled.ul`
 
     li {
         
-        &.normal {
+            &.normal {
             background-color: #a6a87790;
             }
 
