@@ -30,6 +30,7 @@ export const DataItemAttributesList = styled.li`
 
         img{
             height: 1rem;
+            width: 1rem;
         }
     }
 

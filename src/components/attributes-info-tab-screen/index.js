@@ -13,7 +13,7 @@ export default function AttributesInfoTabScreen({height, weight, abilities, male
       <DataItemAttributesList>Abilities<span>{abilities}</span></DataItemAttributesList>
 
       <h5>Breeding</h5>
-      <DataItemAttributesList>Gender<span><img src={MaleSimbol} alt='Simbolo Macho '/>{malePercentage}</span><span><img src={FemaleSimbol} alt='Simbolo Fêmea'/>{femalePercentage}</span></DataItemAttributesList>
+      <DataItemAttributesList>Gender<span><img src={MaleSimbol} alt='Simbolo Macho'/>{malePercentage}</span><span><img src={FemaleSimbol} alt='Simbolo Fêmea'/>{femalePercentage}</span></DataItemAttributesList>
       <DataItemAttributesList>Egg Group<span>{eggGroup}</span></DataItemAttributesList>
       <DataItemAttributesList>Egg Cycle<span>{eggCycle}</span></DataItemAttributesList>
     </Container>
