@@ -33,9 +33,6 @@ const typeWeaknesses = {
 export default function Pokemon() {
   const [pokemonData, setPokemonData] = useState(null);
   const [evolutionDataList, setEvolutionDataList] = useState([]);
-
-  const [evolutionImages, setEvolutionImages] = useState({});
-  const [evolutionTypes, setEvolutionTypes] = useState({});
   const [pokemonList, setPokemonList] = useState([]);
   const { name } = useParams();
 
@@ -87,7 +84,7 @@ export default function Pokemon() {
         return null;
       }
     };
-  
+
     const fetchPokemonTypes = async (name) => {
       try {
         const response = await api.get(`/pokemon/${name}`);
@@ -97,20 +94,20 @@ export default function Pokemon() {
         return null;
       }
     };
-  
+
     const evolutionDataList = [];
-  
+
     const fetchChainData = async (chain) => {
       const image = await fetchImage(chain.species.name);
       const types = await fetchPokemonTypes(chain.species.name);
       evolutionDataList.push({ Name: chain.species.name, Types: types, Photo: image });
-  
+
       if (chain.evolves_to.length > 0) {
         for (const evo of chain.evolves_to) {
           const evoImage = await fetchImage(evo.species.name);
           const evoTypes = await fetchPokemonTypes(evo.species.name);
           evolutionDataList.push({ Name: evo.species.name, Types: evoTypes, Photo: evoImage });
-  
+
           if (evo.evolves_to.length > 0) {
             for (const subEvo of evo.evolves_to) {
               const subEvoImage = await fetchImage(subEvo.species.name);
@@ -121,15 +118,10 @@ export default function Pokemon() {
         }
       }
     };
-  
-    await fetchChainData(chain);
-  
-    setEvolutionImages(evolutionDataList.reduce((acc, data) => ({ ...acc, [data.Name]: data.Photo }), {}));
-    setEvolutionTypes(evolutionDataList.reduce((acc, data) => ({ ...acc, [data.Name]: data.Types }), {}));
-    setEvolutionDataList(evolutionDataList);  // Update state with evolution data list
-  };
-  
 
+    await fetchChainData(chain);
+    setEvolutionDataList(evolutionDataList);
+  };
 
   useEffect(() => {
     fetchPokemonData();
@@ -143,7 +135,7 @@ export default function Pokemon() {
         <PokemonHeader />
         <PokemonPageLoader />
       </>
-    )
+    );
   }
 
   const getNextPokemonName = () => {
@@ -203,7 +195,10 @@ export default function Pokemon() {
                 alt={`foto da evolução ${evolution.Name}`}
                 className={evolution.Types[0]}
                 pokemonName={evolution.Name}
-                type={evolution.Types}
+                type={evolution.Types.map((name, index) => 
+                  <li key={index} className={name}>{name}</li>
+                )}
+                to={`/pokemon/${evolution.Name}`}
               />
             ))}
           </EvolutionImageContainer>
@@ -212,19 +207,16 @@ export default function Pokemon() {
       <RightSideSection>
         <InfoTabListContainer>
           <InfoTabList
-
             //attributes
             weakness={weaknesses.map((weakness, index) => <li className={weakness} key={index}>{weakness}</li>)}
             height={`${(pokemonData.height / 3.048).toFixed(2)} feet (${(pokemonData.height / 10).toFixed(2)} cm)`}
             weight={`${(pokemonData.weight / 4.436).toFixed(2)} lbs (${(pokemonData.weight / 10).toFixed(1)} kg)`}
             abilities={pokemonData.abilities.map((ability) => ability.ability.name).reduce((prev, curr) => [prev, ', ', curr])}
-
             //breeding
-            malePercentage={`${((pokemonData.species.gender_rate*-100)/8)+100}%`}
-            femalePercentage={`${((pokemonData.species.gender_rate*100)/8)}%`}
+            malePercentage={`${((pokemonData.species.gender_rate * -100) / 8) + 100}%`}
+            femalePercentage={`${((pokemonData.species.gender_rate * 100) / 8)}%`}
             eggGroup={pokemonData.species.egg_groups[0]?.name || ''}
             eggCycle={pokemonData.species.egg_groups[1]?.name || 'Dont Have'}
-            
             //stats
             hp={pokemonData.stats[0].base_stat}
             attack={pokemonData.stats[1].base_stat}
@@ -233,7 +225,6 @@ export default function Pokemon() {
             spDef={pokemonData.stats[4].base_stat}
             speed={pokemonData.stats[5].base_stat}
             total={pokemonData.stats.map((base) => (base.base_stat)).reduce((prev, curr) => prev + curr)}
-
           />
         </InfoTabListContainer>
       </RightSideSection>
