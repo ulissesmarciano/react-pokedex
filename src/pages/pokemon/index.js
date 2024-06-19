@@ -8,6 +8,7 @@ import PokemonHeader from '../../components/pokemon-header';
 import InfoTabList from '../../components/info-tab-list';
 import EvolutionItemList from '../../components/evolution-item-list';
 import PokemonPageLoader from '../../components/pokemon-page-loader';
+import PokemonTypesItem from '../../components/pokemon-types-item';
 
 const typeWeaknesses = {
   normal: ['fighting'],
@@ -177,7 +178,11 @@ export default function Pokemon() {
         <SkillContainer>
           <ul>
             {pokemonData.types.map((type, index) => (
-              <li className={type.name} key={index}>{type.name}</li>
+              <PokemonTypesItem 
+                key={index}
+                typeBackground={type.name}
+                typeName={type.name}
+              />
             ))}
           </ul>
         </SkillContainer>
@@ -196,7 +201,11 @@ export default function Pokemon() {
                 className={evolution.Types[0]}
                 pokemonName={evolution.Name}
                 type={evolution.Types.map((name, index) => 
-                  <li key={index} className={name}>{name}</li>
+                  <PokemonTypesItem
+                    key={index} 
+                    typeBackground={name}
+                    typeName={name}
+                  />
                 )}
                 to={`/pokemon/${evolution.Name}`}
               />
@@ -208,7 +217,15 @@ export default function Pokemon() {
         <InfoTabListContainer>
           <InfoTabList
             //attributes
-            weakness={weaknesses.map((weakness, index) => <li className={weakness} key={index}>{weakness}</li>)}
+            weakness={
+              weaknesses
+              .map((weakness, index) => 
+              <PokemonTypesItem 
+                typeBackground={weakness}
+                typeName={weakness}
+                key={index}
+              />
+            )}
             height={`${(pokemonData.height / 3.048).toFixed(2)} feet (${(pokemonData.height / 10).toFixed(2)} cm)`}
             weight={`${(pokemonData.weight / 4.436).toFixed(2)} lbs (${(pokemonData.weight / 10).toFixed(1)} kg)`}
             abilities={pokemonData.abilities.map((ability) => ability.ability.name).reduce((prev, curr) => [prev, ', ', curr])}
