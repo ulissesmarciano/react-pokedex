@@ -1,21 +1,19 @@
-import { BrowserRouter as Router,
-  Routes,
-  Route
- } from "react-router-dom";
- 
-import Pokedex from "./pages/pokedex";
-import Pokemon from "./pages/pokemon";
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { PokemonLimitProvider } from './contexts/PokemonLimitContext';
+import Pokedex from './pages/pokedex';
+import Pokemon from './pages/pokemon';
 
 function App() {
   return (
-      <>
-        <Router>
-          <Routes>
-            <Route path="/" element={<Pokedex />} />
-            <Route path="pokemon/:name" element={<Pokemon />} />
-          </Routes>
-        </Router>
-      </>
+    <PokemonLimitProvider>
+      <Router>
+        <Routes>
+          <Route path="/pokemon/:name" element={<Pokemon />} />
+          <Route path="/" element={<Pokedex />} />
+        </Routes>
+      </Router>
+    </PokemonLimitProvider>
   );
 }
 

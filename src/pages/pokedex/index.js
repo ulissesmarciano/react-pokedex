@@ -1,3 +1,4 @@
+// src/pages/pokedex/index.js
 import React, { useEffect, useState, useMemo } from 'react';
 import api from '../../services/api';
 
@@ -16,14 +17,14 @@ export default function Pokedex() {
   const [error, setError] = useState(null);
 
   const searchNumber = parseInt(search, 10);
+  const lowerSearch = search.toLowerCase();
 
   // Memoize the filtered pokemons list to avoid recalculating it on every render
-  const lowerSearch = search.toLowerCase();
   const pokemonsFiltered = useMemo(() => 
     pokemons.filter((pokemon) => 
       pokemon.name.toLowerCase().includes(lowerSearch) ||
       pokemon.id === searchNumber
-    ), [pokemons, search, searchNumber]
+    ), [pokemons, lowerSearch, searchNumber] // added lowerSearch to the dependencies
   );
 
   // Function to fetch all pokemons
@@ -116,4 +117,3 @@ export default function Pokedex() {
     </Container>
   );
 }
-

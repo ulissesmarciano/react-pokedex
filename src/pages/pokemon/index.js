@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../services/api';
 import { Link, useParams } from 'react-router-dom';
+import { usePokemonLimit } from '../../contexts/PokemonLimitContext';
 
 import { Container, EvolutionContainer, EvolutionImageContainer, InfoTabListContainer, LeftSideSection, NumberPageContainer, PokemonImageContainer, PokemonNameContainer, RightSideSection, SkillContainer } from './styles';
 
@@ -38,6 +39,7 @@ export default function Pokemon() {
   const [evolutionDataList, setEvolutionDataList] = useState([]);
   const [pokemonList, setPokemonList] = useState([]);
   const { name } = useParams();
+  const { limit } = usePokemonLimit();
 
   const fetchPokemonData = async () => {
     try {
@@ -70,7 +72,7 @@ export default function Pokemon() {
 
   const fetchPokemonList = async () => {
     try {
-      const response = await api.get('/pokemon?limit=1000');
+      const response = await api.get(`/pokemon?limit=${limit}`);
       setPokemonList(response.data.results);
     } catch (error) {
       console.error('Error fetching Pokémon list:', error);
@@ -148,7 +150,15 @@ export default function Pokemon() {
     return pokemonList[nextIndex].name;
   };
 
+  const getPrevPokemonName = () => {
+    const currentIndex = pokemonList.findIndex(pokemon => pokemon.name === name);
+    if (currentIndex === -1) return null;
+    const prevIndex = (currentIndex - 1 + pokemonList.length) % pokemonList.length;
+    return pokemonList[prevIndex].name;
+  };
+
   const nextPokemonName = getNextPokemonName();
+  const prevPokemonName = getPrevPokemonName();
 
   const calculateWeaknesses = (types) => {
     const weaknesses = new Set();
@@ -167,9 +177,9 @@ export default function Pokemon() {
       <PokemonHeader />
       <NumberPageContainer>
         <Link 
-          to={`/pokemon/${pokemonData.id > 1 ? pokemonList[pokemonData.id - 2].name : pokemonData.name}`}
+          to={`/pokemon/${prevPokemonName}`}
         >
-          #{pokemonData.id < 10 ? `0${pokemonData.id - 1}` : `${pokemonData.id - 1}`}
+          #{(pokemonData.id < 10 ? `0${pokemonData.id - 1}` : `${pokemonData.id - 1}`)}
         </Link>
       </NumberPageContainer>
       <LeftSideSection>
