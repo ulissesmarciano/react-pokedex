@@ -10,6 +10,8 @@ import EvolutionItemList from '../../components/evolution-item-list';
 import PokemonPageLoader from '../../components/pokemon-page-loader';
 import PokemonTypesItem from '../../components/pokemon-types-item';
 
+import PokebalImage from '../../assets/icons/pokeball-icon.svg';
+
 const typeWeaknesses = {
   normal: ['fighting'],
   water: ['electric', 'grass'],
@@ -186,9 +188,10 @@ export default function Pokemon() {
             ))}
           </ul>
         </SkillContainer>
-        <PokemonImageContainer>
-          <img className={pokemonData.types[0].name} src={pokemonData.sprites.other.dream_world.front_default === null ? pokemonData.sprites.other['official-artwork'].front_default : pokemonData.sprites.other.dream_world.front_default}
+        <PokemonImageContainer className={pokemonData.types[0].name} >
+          <img className='pokemon-image'  src={pokemonData.sprites.other.dream_world.front_default === null ? pokemonData.sprites.other['official-artwork'].front_default : pokemonData.sprites.other.dream_world.front_default}
             alt={`Foto do pokémon ${pokemonData.name}`} />
+          <img className='pokeball-image' src={PokebalImage} alt='animação de pokébola girando atrás da foto'/>
         </PokemonImageContainer>
         <EvolutionContainer>
           <h6>Evolutions</h6>

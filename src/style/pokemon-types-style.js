@@ -2,7 +2,7 @@ import { css } from "styled-components";
 
 export const pokemonTypeStyles = css`
     &.normal {
-        background-color: #a6a87790;
+        background-color: #a6a877;
     }
 
     &.grass {

@@ -86,100 +86,73 @@ export const SkillContainer = styled.div`
 export const PokemonImageContainer = styled.div`
     margin: 2rem auto;
     height: 10rem;
-    max-width: fit-content;
+    position: relative;
 
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 20px;
+    border-radius: 10px;
 
+    @media(min-width: 1024px) {
+        position: relative;
+    }
+
+    ${pokemonTypeStyles}
     
-    img {
+    .pokemon-image {
         height: 10rem;
         width: 10rem;
+        z-index: 1;
 
-        //TESTAR NOVO BACKGROUND
-
-        &.normal {
-            filter:  drop-shadow(0 0 2rem #a6a87770);
-        }
-        
-        &.grass {
-            filter:  drop-shadow(0 0 2rem #77c85070);
-        }
-        
-        &.fire {
-            filter:  drop-shadow(0 0 2rem #ee7f3070);
-        }
-        
-        &.water {
-            filter:  drop-shadow(0 0 2rem #678fee70);
-        }
-
-        &.electric {
-            filter: drop-shadow(0 0 2rem #f7cf2e70);
-        }
-        
-        &.ice {
-            filter: drop-shadow(0 0 2rem #98d5d770);
-        }
-        
-        &.ground {
-            filter: drop-shadow(0 0 2rem #dfbf6970);
-        }
-        
-        &.flying {
-            filter: drop-shadow(0 0 2rem #a98ff070);
-        }
-        
-        &.poison {
-            filter: drop-shadow(0 0 2rem #a040a070);
-        }
-        
-        &.fighting {
-            filter: drop-shadow(0 0 2rem #bf302970);
-        }
-        
-        &.psychic {
-            filter: drop-shadow(0 0 2rem #f6568770);
-        }
-        
-        &.dark {
-            filter: drop-shadow(0 0 2rem #72584770);
-        }
-        
-        &.rock {
-            filter: drop-shadow(0 0 2rem #b8a13770);
-        }
-        
-        &.bug {
-            filter: drop-shadow(0 0 2rem #a8b72070);
-        }
-        
-        &.ghost {
-            filter: drop-shadow(0 0 2rem #6e589670);
-        }
-        
-        &.steel {
-            filter: drop-shadow(0 0 2rem #b9b7cf70);
-        }
-        
-        &.dragon {
-            filter: drop-shadow(0 0 2rem #6f38f670);
-        }
-        
-        &.fairy {
-            filter: drop-shadow(0 0 2rem #f9aec770);
+        @media(min-width: 1024px) {
+            position: absolute;
+            height: 20rem;
+            width: 20rem;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
         }
     }
+
+    .pokeball-image {
+        display: none;
+
+        @media(min-width: 1024px) {
+            position: absolute;
+            left: 15%;
+            right: 0;
+            top: 0;
+            bottom: 15%;
+            margin: auto;
+
+            height: 20rem;
+            width: 20rem;
+            
+            display: flex;
+            opacity: 0.5;
+
+            @keyframes runningball {
+                0% {
+                    transform: rotate(0);
+                }
+
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            animation: runningball 3s linear infinite;
+        }
+    }
+
     @media(min-width: 1024px){
         padding: 3rem 0;
         height: 50vh;
 
-        img {
-            height: 20rem;
-            width: 20rem;
-        }
+        
     }
 `
 
