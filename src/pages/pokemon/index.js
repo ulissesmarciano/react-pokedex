@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import api from '../../services/api';
 import { Link, useParams } from 'react-router-dom';
 import { usePokemonLimit } from '../../contexts/PokemonLimitContext';
+import typeWeaknesses from '../../constants/typeWeaknesses';
 
 import { Container, EvolutionContainer, EvolutionImageContainer, InfoTabListContainer, LeftSideSection, NumberPageContainer, PokemonImageContainer, PokemonNameContainer, RightSideSection, SkillContainer } from './styles';
 
@@ -12,27 +13,6 @@ import PokemonPageLoader from '../../components/pokemon-page-loader';
 import PokemonTypesItem from '../../components/pokemon-types-item';
 
 import PokebalImage from '../../assets/icons/pokeball-icon.svg';
-
-const typeWeaknesses = {
-  normal: ['fighting'],
-  water: ['electric', 'grass'],
-  grass: ['fire', 'ice', 'flying', 'poison', 'bug'],
-  fire: ['water', 'ground', 'rock'],
-  fighting: ['flying', 'psychic', 'fairy'],
-  psychic: ['ghost', 'dark', 'bug'],
-  ghost: ['ghost', 'dark'],
-  dark: ['fighting', 'fairy', 'bug'],
-  fairy: ['steel', 'poison'],
-  flying: ['electric', 'rock', 'ice'],
-  bug: ['fire', 'flying'],
-  rock: ['fighting', 'water', 'grass', 'ground', 'steel'],
-  ground: ['water', 'grass', 'ice'],
-  ice: ['fighting', 'fire', 'rock', 'steel'],
-  steel: ['fire', 'fighting', 'ground'],
-  poison: ['psychic', 'ground'],
-  electric: ['ground'],
-  dragon: ['dragon', 'fairy', 'ice']
-};
 
 export default function Pokemon() {
   const [pokemonData, setPokemonData] = useState(null);
