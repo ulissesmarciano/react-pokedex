@@ -4,6 +4,7 @@ import { usePokemonLimit } from '../../contexts/PokemonLimitContext';
 import useFetchPokemonData from '../../hooks/useFetchPokemonData';
 import useFetchPokemonList from '../../hooks/useFetchPokemonList';
 import useFetchEvolutionData from '../../hooks/useFetchEvolutionData';
+import typeWeaknesses from '../../constants/typeWeaknesses'
 import PokemonHeader from '../../components/pokemon-header';
 import PokemonPageLoader from '../../components/pokemon-page-loader';
 import PokemonTypesItem from '../../components/pokemon-types-item';
@@ -23,28 +24,7 @@ import {
 } from './styles';
 import EvolutionItemList from '../../components/evolution-item-list';
 
-const typeWeaknesses = {
-  normal: ['fighting'],
-  water: ['electric', 'grass'],
-  grass: ['fire', 'ice', 'flying', 'poison', 'bug'],
-  fire: ['water', 'ground', 'rock'],
-  fighting: ['flying', 'psychic', 'fairy'],
-  psychic: ['ghost', 'dark', 'bug'],
-  ghost: ['ghost', 'dark'],
-  dark: ['fighting', 'fairy', 'bug'],
-  fairy: ['steel', 'poison'],
-  flying: ['electric', 'rock', 'ice'],
-  bug: ['fire', 'flying'],
-  rock: ['fighting', 'water', 'grass', 'ground', 'steel'],
-  ground: ['water', 'grass', 'ice'],
-  ice: ['fighting', 'fire', 'rock', 'steel'],
-  steel: ['fire', 'fighting', 'ground'],
-  poison: ['psychic', 'ground'],
-  electric: ['ground'],
-  dragon: ['dragon', 'fairy', 'ice']
-};
-
-const Pokemon = () => {
+  const Pokemon = () => {
   const { name } = useParams();
   const { limit } = usePokemonLimit();
   const pokemonData = useFetchPokemonData(name);

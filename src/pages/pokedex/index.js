@@ -90,9 +90,9 @@ export default function Pokedex() {
         ) : error ? (
           <div>{error}</div>
         ) : (
-          pokemonsFiltered.map((pokemon) => (
+          pokemonsFiltered.map((pokemon, index) => (
             <PokemonCard
-              key={pokemon.id}
+              key={index}
               id={pokemon.id}
               name={pokemon.name}
               cardBackground={pokemon.types[0].type.name}
@@ -105,7 +105,7 @@ export default function Pokedex() {
               types={pokemon.types.map((type, index) => (
                 <PokemonTypesItem
                   key={index}
-                  types={type.type.name}
+                  typeName={type.type.name}
                   typeBackground={type.type.name}
                 />
               ))}
