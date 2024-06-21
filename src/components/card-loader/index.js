@@ -5,17 +5,17 @@ import { CardTitleContainer, Container, ImageContainer, PokemonCardBottomContain
 export default function PokemonCardLoader() {
   return (
     <Container>
-        <ImageContainer />
-        <PokemonCardBottomContainer>
-          <CardTitleContainer>
+        <div className='image-container'/>
+        <div className='bottom-info-container'>
+          <ul>
             <li />
             <li />
-          </CardTitleContainer>
-          <TypeContainer>
+          </ul>
+          <ul>
             <li />
             <li />
-          </TypeContainer>
-        </PokemonCardBottomContainer>
+          </ul>
+        </div>
     </Container>
   )
 }
