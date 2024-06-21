@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { pokemonEvolutionStyles} from "../../style/pokemon-types-style";
+import { pokemonEvolutionStyles} from "../../constants/colors";
 
 export const PokemonEvolutionItem = styled.ul`
         margin: 0 -3rem;
