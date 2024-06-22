@@ -6,9 +6,6 @@ export const Container = styled.ul`
         margin: 1.6rem 0 1.2rem;
         font-size: 1.4rem;
     }
-    
-        
-    
 `
 
 export const DataItemAttributesList = styled.li`

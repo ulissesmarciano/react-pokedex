@@ -6,11 +6,11 @@ const PokemonLimitContext = createContext();
 export const usePokemonLimit = () => useContext(PokemonLimitContext);
 
 export const PokemonLimitProvider = ({ children }) => {
-  const [limit, setLimit] = useState(300);
+    const [limit, setLimit] = useState(300);
 
-  return (
-    <PokemonLimitContext.Provider value={{ limit, setLimit }}>
-      {children}
-    </PokemonLimitContext.Provider>
-  );
+    return (
+        <PokemonLimitContext.Provider value={{ limit, setLimit }}>
+            {children}
+        </PokemonLimitContext.Provider>
+    );  
 };

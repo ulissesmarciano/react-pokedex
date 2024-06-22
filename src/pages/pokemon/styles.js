@@ -3,7 +3,7 @@ import { pokemonTypeStyles } from "../../constants/colors";
 
 export const Container = styled.div`
     margin: 4rem .5rem 0;
-    height: calc(100vh - 94.8px);
+    height: calc(100vh - 94.08px);
 
     @media (min-width: 1024px){
         display: flex;
@@ -34,10 +34,12 @@ export const LeftSideSection = styled.section`
 
 export const RightSideSection = styled.section`
     flex: 1;
+
+    height: 100%;
 `
 
 export const PokemonNameContainer = styled.div`
-    margin: 1rem 1rem .4rem;
+    margin: 0.5rem 1rem .4rem;
     display: flex;
     align-items: center;
 
@@ -84,7 +86,7 @@ export const SkillContainer = styled.div`
 `
 
 export const PokemonImageContainer = styled.div`
-    margin: 2rem auto;
+    margin: 1rem auto;
     height: 10rem;
     position: relative;
 
@@ -158,8 +160,7 @@ export const PokemonImageContainer = styled.div`
 
 
 export const EvolutionContainer = styled.ul`
-    margin: 1rem;
-   
+  margin-bottom: 1rem;
     h6 {
         margin-bottom: 1rem;
         @media(min-width: 425px){

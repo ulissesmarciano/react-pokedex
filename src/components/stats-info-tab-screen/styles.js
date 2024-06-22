@@ -36,8 +36,7 @@ export const StatsTabScreenSection = styled.ul`
         }
 
         @media(min-width: 1024px){
-        font-size: .8rem;
-        
+            font-size: .8rem;
         }
     }
 `

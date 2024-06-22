@@ -1,20 +1,17 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-        padding: .2rem 1rem;
-        background-color: #f1636b;
-        
-        display: flex;
-`
+export const Container = styled.nav`
+    padding: .2rem 1rem;
+    background-color: #f1636b;
 
-export const MenuContainer = styled.div`
+    display: flex;
+
+    .menu-container {
         width: 100%;
-`
+    }
 
-export const HomeIcon = styled.img`
+    .menu-container img {
         height: 3rem;
+        width: 3rem;
+    }
 `
-
-
-
-

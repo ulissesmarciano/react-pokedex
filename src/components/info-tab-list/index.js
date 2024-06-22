@@ -1,107 +1,51 @@
 import React, { useState } from "react";
-import {InfoContainer, InfoPage, NavContainer, TabButton} from "./styles"
+import { InfoContainer, InfoPage, NavContainer, TabButton } from "./styles";
 
 import AboutInfoTabScreen from "../about-info-tab-screen";
 import AttributesInfoTabScreen from "../attributes-info-tab-screen";
 import StatsInfoTabScreen from "../stats-info-tab-screen";
 
+const tabs = [
+    { id: 1, label: "About", component: AboutInfoTabScreen },
+    { id: 2, label: "Attributes", component: AttributesInfoTabScreen },
+    { id: 3, label: "Stats", component: StatsInfoTabScreen },
+];
 
-export default function InfoTabList({weakness, height, weight, abilities, malePercentage, femalePercentage, eggGroup, eggCycle, hp, attack, defense, spAtk, spDef, speed, total}) {
-   
-    const [showFirstTab, setShowFirstTab] = useState(true)
-    const [showSecondTab, setShowSecondTab] = useState(false)
-    const [showThirdTab, setShowThirdTab] = useState(false)
-    
-    const changeFirstTab = () => {
-        setShowFirstTab(true)
-        setShowSecondTab(false)
-        setShowThirdTab(false)
-    }
+export default function InfoTabList(props) {
+    const [activeTab, setActiveTab] = useState(1);
 
-    const changeSecondTab = () => {
-        setShowSecondTab(true)
-        setShowFirstTab(false)
-        setShowThirdTab(false)
-    }
-
-    const changeThirdTab = () => {
-        setShowThirdTab(true)
-        setShowSecondTab(false)
-        setShowFirstTab(false)
-    }
+    const renderTabContent = () => {
+      const ActiveComponent = tabs.find(tab => tab.id === activeTab)?.component;
+      if (ActiveComponent) {
+        return <ActiveComponent {...props} />;
+      }
+      return null;
+    };
 
     return (
-      <section>
-        <NavContainer>
-            <TabButton onClick={changeFirstTab }>
-              {showFirstTab ? true : false}
-              About
-            </TabButton>
-            <TabButton onClick={changeSecondTab}>
-              {showSecondTab ? false : true}
-              Attributes
-            </TabButton>
-            <TabButton onClick={changeThirdTab}>
-              {showThirdTab ? false : true}  
-              Stats
-            </TabButton>
-        </NavContainer>
-        <InfoContainer>
-          {showFirstTab && 
-            <AboutInfoTabScreen
-              weakness={weakness}
-            />
-          }
-          {showSecondTab && 
-            <AttributesInfoTabScreen 
-              height={height}
-              weight={weight}
-              abilities={abilities}
-              malePercentage={malePercentage}
-              femalePercentage={femalePercentage}
-              eggGroup={eggGroup}
-              eggCycle={eggCycle}
-            />
-          }
-          {showThirdTab && 
-            <StatsInfoTabScreen 
-              hp={hp}
-              attack={attack}
-              defense={defense}
-              spAtk={spAtk}
-              spDef={spDef}
-              speed={speed}
-              total={total}
-            />
-          }
-        </InfoContainer>
-        <InfoPage>
-          <h4>About</h4>
-          <AboutInfoTabScreen
-            weakness={weakness}
-          />
-          <h4>Attributes</h4>
-          <AttributesInfoTabScreen 
-            height={height}
-            weight={weight}
-            abilities={abilities}
-            malePercentage={malePercentage}
-            femalePercentage={femalePercentage}
-            eggGroup={eggGroup}
-            eggCycle={eggCycle}
-          />
-          <h4>Stats</h4>
-          <StatsInfoTabScreen 
-            hp={hp}
-            attack={attack}
-            defense={defense}
-            spAtk={spAtk}
-            spDef={spDef}
-            speed={speed}
-            total={total}
-          />
-        </InfoPage>
-      </section>
-    )
-
+        <section>
+            <NavContainer>
+                {tabs.map(tab => (
+                  <TabButton
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    $isActive={activeTab === tab.id}
+                  >
+                    {tab.label}
+                  </TabButton>
+                ))}
+            </NavContainer>
+            <InfoContainer>{renderTabContent()}</InfoContainer>
+            <InfoPage>
+                {tabs.map(tab => (
+                  <div key={tab.id}>
+                    <h4>{tab.label}</h4>
+                    <tab.component {...props} />
+                  </div>
+                ))}
+            </InfoPage>
+        </section>
+    );
 }
+
+

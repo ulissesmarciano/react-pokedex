@@ -1,55 +1,56 @@
 import styled from "styled-components";
 
 export const NavContainer = styled.nav`
-
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 `
 
 export const TabButton = styled.li`
+    padding: .6rem;
 
-        padding: .6rem;
-    
-        list-style: none;
+    list-style: none;
+    border-radius: 1rem 1rem 0 0;
+    border-bottom: none;
+    font-weight: bolder;
 
-        border-radius: 1rem 1rem 0 0;
-        border-bottom: none;
+    transition: 500ms;
+    cursor: pointer;
 
-        font-weight: bolder;
+    &:hover{
+        transition: all 0.5s;
+        -webkit-transform: translateY(-4%);
+        transform: translateY(-4%);
+        box-shadow: #00000020 0px -10px 1rem;
+     }
 
-        transition: 500ms;
+    ${({ $isActive }) => $isActive && `
+        transition: all 0.5s;
+        -webkit-transform: translateY(-4%);
+        transform: translateY(-4%);
+        box-shadow: #00000020 0px -10px 1rem;
+    `}
 
-                
-        &:hover{
-                transition: all 0.5s;
-                cursor: pointer;
-                -webkit-transform: translateY(-4%);
-                transform: translateY(-4%);
-                box-shadow: #00000020 0px -10px 1rem;
-        }
-
-        @media (min-width: 1024px){
-                display: none;
-        }
+     @media (min-width: 1024px){
+        display: none;
+    }
 `
 
 export const InfoContainer = styled.div`
-        @media (min-width: 1024px){
-                display: none;
-        }
+    @media (min-width: 1024px){
+        display: none;
+    }
 `
 
 export const InfoPage = styled.div`
-        display: none;
+    display: none;
 
-        @media(min-width: 1024px){
-                display: flex;
-                flex-direction: column;
+    @media(min-width: 1024px){
+        display: flex;
+        flex-direction: column;
 
-                h4 {
-                        font-size: .8rem;
-                }
+        h4 {
+                font-size: .8rem;
         }
+    }
 `
