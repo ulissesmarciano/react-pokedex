@@ -8,9 +8,10 @@
 
 <img src="./src/assets/readme/image.gif" alt="Animação responsiva do projeto">
 
-Projeto de uma pokédex testando habilidades de front-end, habilidades para manipulação de objetos, lógica na implantação do JavaScript e habilidades de requisição de API's.
+Projeto de uma pokédex testando habilidades de front-end, habilidades para manipulação de objetos, lógica na implantação do JavaScript e habilidades de requisição de API's em um ecossistema componetizado.
 
 ## 💻 Tecnologias usadas
+- React
 - HTML
 - CSS
 - JS
@@ -42,7 +43,7 @@ Obs. Para o pleno funcionamento do projeto utilize a instalação da biblioteca 
 
 
 
-### Ajustes e melhorias
+### 🧰 Ajustes e melhorias
 
 O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
