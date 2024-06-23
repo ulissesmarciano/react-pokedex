@@ -16,7 +16,7 @@ Projeto de uma pokédex testando habilidades de front-end, habilidades para mani
 
 <br>
 
-🎁 [CLIQUE AQUI](https://react-pokedex-weld.vercel.app/)🎁 e acesse o deploy do!
+<a href="URL_DO_SEU_LINK" target="_blank">🎁CLIQUE AQUI🎁</a> e acesse o deploy do projeto!
 
 <br>
 
