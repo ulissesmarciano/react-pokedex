@@ -2,12 +2,10 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     margin: 0 1.2rem;
+    width: 100%;
+    
     display: flex;
     justify-content: center;
-
-    @media (min-width: 650px){
-        margin-bottom: 1.2rem;
-    }
 
 `
 
@@ -23,6 +21,7 @@ export const SearchLabel = styled.div`
     background-color: #b44b5010;
     img {
         height: 1rem;
+        width: 1rem;
         margin: .2rem;
 
         opacity: 0.3;

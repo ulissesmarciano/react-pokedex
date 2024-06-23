@@ -26,18 +26,14 @@ export default function Pokedex() {
     return (
           <Container>
               <PokedexHeader />
-              <div>
-                  <TitleContainer>
-                      <h2>Pokédex</h2>
-                      <p>Procure por seu pokémon pelo nome ou seu número</p>
-                  </TitleContainer>
-                  <div>
-                      <SearchBar 
-                        onChange={(event) => setSearch(event.target.value)}
-                        value={search}
-                      />
-                  </div>
-              </div>
+              <TitleContainer>
+                  <h2>Pokédex</h2>
+                  <p>Procure por seu pokémon pelo nome ou seu número</p>
+                  <SearchBar 
+                      onChange={(event) => setSearch(event.target.value)}
+                      value={search}
+                  />
+                </TitleContainer>
               <PokemonCardContainer>
                   {loading ? (
                       Array.from({ length: 50 }).map((_, index) => (

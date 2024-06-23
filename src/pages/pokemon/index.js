@@ -69,17 +69,17 @@ import EvolutionItemList from '../../components/evolution-item-list';
   return (
     <Container>
       <PokemonHeader />
-      <NumberPageContainer>
+      <aside className='number-page-container'>
         <Link to={`/pokemon/${getPrevPokemonName()}`}>
           #{(pokemonData.id < 10 ? `0${pokemonData.id - 1}` : `${pokemonData.id - 1}`)}
         </Link>
-      </NumberPageContainer>
-      <LeftSideSection>
-        <PokemonNameContainer>
+      </aside >
+      <section className='left-side-section'>
+        <section className='pokemon-name-section'>
           <h4>{pokemonData.name}</h4>
           <p>#{pokemonData.id < 10 ? `0${pokemonData.id}` : `${pokemonData.id}`}</p>
-        </PokemonNameContainer>
-        <SkillContainer>
+        </section>
+        <section className='skills-container'>
           <ul>
             {pokemonData.types.map((type, index) => (
               <PokemonTypesItem 
@@ -89,22 +89,25 @@ import EvolutionItemList from '../../components/evolution-item-list';
               />
             ))}
           </ul>
-        </SkillContainer>
-        <PokemonImageContainer className={pokemonData.types[0].name}>
-          <img
-            className='pokemon-image'
-            src={pokemonData.sprites.other.dream_world.front_default === null ? pokemonData.sprites.other['official-artwork'].front_default : pokemonData.sprites.other.dream_world.front_default}
-            alt={`Foto do pokémon ${pokemonData.name}`}
-          />
-          <img
-            className='pokeball-image'
-            src={PokebalImage}
-            alt='animação de pokébola girando atrás da foto'
-          />
-        </PokemonImageContainer>
-        <EvolutionContainer>
+        </section>
+        <section className={`${pokemonData.types[0].name} pokemon-image-section`}>
+          <figure className='pokemon-image'>
+            <img
+              
+              src={pokemonData.sprites.other.dream_world.front_default === null ? pokemonData.sprites.other['official-artwork'].front_default : pokemonData.sprites.other.dream_world.front_default}
+              alt={`Foto do pokémon ${pokemonData.name}`}
+            />
+          </figure>
+          <figure className='pokeball-image'>
+            <img
+              src={PokebalImage}
+              alt='animação de pokébola girando atrás da foto'
+            />
+          </figure>
+        </section>
+        <section className='evolution-container'>
           <h6>Evolutions</h6>
-          <EvolutionImageContainer>
+          <div className='evolution-image-container'>
             {evolutionDataList.map((evolution, index) => (
               <EvolutionItemList 
                 key={index}
@@ -122,11 +125,11 @@ import EvolutionItemList from '../../components/evolution-item-list';
                 ))}
               />
             ))}
-          </EvolutionImageContainer>
-        </EvolutionContainer>
-      </LeftSideSection>
-      <RightSideSection>
-        <InfoTabListContainer>
+          </div>
+        </section>
+      </section>
+      <section className='right-side-section'>
+        <section className='info-tab-list-container'>
           <InfoTabList
             weakness={weaknesses.map((weakness, index) => (
               <PokemonTypesItem
@@ -150,15 +153,15 @@ import EvolutionItemList from '../../components/evolution-item-list';
             speed={pokemonData.stats[5].base_stat}
             total={pokemonData.stats.map((base) => base.base_stat).reduce((prev, curr) => prev + curr)}
           />
-        </InfoTabListContainer>
-      </RightSideSection>
-      <NumberPageContainer>
+        </section>
+      </section>
+      <aside className='number-page-container'>
         {getNextPokemonName() && (
           <Link to={`/pokemon/${getNextPokemonName()}`}>
             #{pokemonData.id < 10 ? `0${pokemonData.id + 1}` : `${pokemonData.id + 1}`}
           </Link>
         )}
-      </NumberPageContainer>
+      </aside>
     </Container>
   );
 };

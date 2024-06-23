@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.nav`
+export const Container = styled.header`
     padding: .2rem 1rem;
     background-color: #f1636b;
 

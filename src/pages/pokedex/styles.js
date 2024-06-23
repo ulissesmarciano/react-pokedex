@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.main`
+    background-color: #f1f1f1;
 `
 
-export const TitleContainer = styled.div`
+export const TitleContainer = styled.section`
     margin: .8rem 1.2rem;
 
     display: flex;
@@ -16,6 +17,7 @@ export const TitleContainer = styled.div`
     }
 
     p{
+        margin-bottom: 2rem;
         color: #b44b5095;
         font-weight: 500;
     }

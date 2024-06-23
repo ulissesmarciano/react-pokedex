@@ -16,7 +16,9 @@ export default function PokemonCard({
         <Link to={to}>
             <Container>
                 <div className={`${cardBackground} image-container`}>
-                    <img src={avatar} alt={alt} />
+                    <picture>
+                        <img src={avatar} alt={alt} />
+                    </picture>
                 </div>
                 <div className='card-bottom-container'>
                     <div className='card-title-container'>
