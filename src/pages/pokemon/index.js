@@ -1,28 +1,29 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { Container } from './styles';
+
 import { usePokemonLimit } from '../../contexts/PokemonLimitContext';
 import useFetchPokemonData from '../../hooks/useFetchPokemonData';
 import useFetchPokemonList from '../../hooks/useFetchPokemonList';
 import useFetchEvolutionData from '../../hooks/useFetchEvolutionData';
+import { 
+  getPokemonImage,
+  calculateGenderPercentage,
+  calculateHeight,
+  calculateWeight,
+  formatAbilities
+} from '../../utils/pokemonUtils';
+
 import typeWeaknesses from '../../constants/typeWeaknesses'
-import PokemonHeader from '../../components/pokemon-header';
 import PokemonPageLoader from '../../components/pokemon-page-loader';
+import PokemonHeader from '../../components/pokemon-header';
 import PokemonTypesItem from '../../components/pokemon-types-item';
-import PokebalImage from '../../assets/icons/pokeball-icon.svg';
 import InfoTabList from '../../components/info-tab-list'
-import {
-  Container,
-  EvolutionContainer,
-  EvolutionImageContainer,
-  InfoTabListContainer,
-  LeftSideSection,
-  NumberPageContainer,
-  PokemonImageContainer,
-  PokemonNameContainer,
-  RightSideSection,
-  SkillContainer
-} from './styles';
 import EvolutionItemList from '../../components/evolution-item-list';
+
+import PokebalImage from '../../assets/icons/pokeball-icon.svg';
+
+
 
   const Pokemon = () => {
   const { name } = useParams();
@@ -93,8 +94,7 @@ import EvolutionItemList from '../../components/evolution-item-list';
         <section className={`${pokemonData.types[0].name} pokemon-image-section`}>
           <figure className='pokemon-image'>
             <img
-              
-              src={pokemonData.sprites.other.dream_world.front_default === null ? pokemonData.sprites.other['official-artwork'].front_default : pokemonData.sprites.other.dream_world.front_default}
+              src={getPokemonImage(pokemonData)}
               alt={`Foto do pokémon ${pokemonData.name}`}
             />
           </figure>
@@ -138,11 +138,11 @@ import EvolutionItemList from '../../components/evolution-item-list';
                 typeName={weakness}
               />
             ))}
-            height={`${(pokemonData.height / 3.048).toFixed(2)} feet (${(pokemonData.height / 10).toFixed(2)} cm)`}
-            weight={`${(pokemonData.weight / 4.436).toFixed(2)} lbs (${(pokemonData.weight / 10).toFixed(1)} kg)`}
-            abilities={pokemonData.abilities.map((ability) => ability.ability.name).join(', ')}
-            malePercentage={`${((pokemonData.species.gender_rate * -100) / 8) + 100}%`}
-            femalePercentage={`${((pokemonData.species.gender_rate * 100) / 8)}%`}
+            height={calculateHeight(pokemonData.height)}
+            weight={calculateWeight(pokemonData.weight)}
+            abilities={formatAbilities(pokemonData.abilities)}
+            malePercentage={calculateGenderPercentage(pokemonData.species.gender_rate).female}
+            femalePercentage={calculateGenderPercentage(pokemonData.species.gender_rate).male}
             eggGroup={pokemonData.species.egg_groups[0]?.name || ''}
             eggCycle={pokemonData.species.egg_groups[1]?.name || 'Dont Have'}
             hp={pokemonData.stats[0].base_stat}

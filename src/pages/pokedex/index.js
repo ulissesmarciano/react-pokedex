@@ -9,6 +9,8 @@ import PokemonCard from '../../components/pokemon-card';
 import PokemonTypesItem from '../../components/pokemon-types-item';
 import PokemonCardLoader from '../../components/card-loader';
 
+import { getPokemonImage } from '../../utils/pokemonUtils';
+
 export default function Pokedex() {
     const { pokemons, loading, error } = useFetchAllPokemons();
     const [search, setSearch] = useState('');
@@ -48,11 +50,7 @@ export default function Pokedex() {
                             id={pokemon.id}
                             name={pokemon.name}
                             cardBackground={pokemon.types[0].type.name}
-                            avatar={
-                                pokemon.sprites.other.dream_world.front_default === null
-                                  ? pokemon.sprites.other['official-artwork'].front_default
-                                  : pokemon.sprites.other.dream_world.front_default
-                            }
+                            avatar={getPokemonImage(pokemon)}
                             alt={`Foto do pokémon ${pokemon.name}`}
                             types={pokemon.types.map((type, index) => (
                                 <PokemonTypesItem

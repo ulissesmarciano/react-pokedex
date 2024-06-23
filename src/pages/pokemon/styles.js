@@ -79,13 +79,11 @@ export const Container = styled.main`
         
             ${pokemonTypeStyles}
         }
-        
-
     }
 
     .pokemon-image-section {
         margin: 1rem auto;
-        height: 10rem;
+        height: 20rem;
         position: relative;
         
         display: flex;
@@ -103,56 +101,55 @@ export const Container = styled.main`
             height: 10rem;
             width: 10rem;
             z-index: 1;
-        
+            position: absolute;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            
             @media(min-width: 1024px) {
-                position: absolute;
                 height: 20rem;
                 width: 20rem;
-                position: absolute;
-                left: 0;
-                right: 0;
-                top: 0;
-                bottom: 0;
-                margin: auto;
             }
         }
         
         .pokeball-image img {
-            display: none;
-        
+            position: absolute;
+            left: 15%;
+            right: 0;
+            top: 0;
+            bottom: 15%;
+            margin: auto;
+    
+            height: 10rem;
+            width: 10rem;
+            
+            display: flex;
+            opacity: 0.5;
+    
+            @keyframes runningball {
+                0% {
+                    transform: rotate(0);
+                }
+    
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+    
+            animation: runningball 3s linear infinite;
+
             @media(min-width: 1024px) {
-                position: absolute;
-                left: 15%;
-                right: 0;
-                top: 0;
-                bottom: 15%;
-                margin: auto;
-        
                 height: 20rem;
                 width: 20rem;
-                
-                display: flex;
-                opacity: 0.5;
-        
-                @keyframes runningball {
-                    0% {
-                        transform: rotate(0);
-                    }
-        
-                    100% {
-                        transform: rotate(360deg);
-                    }
-                }
-        
-                animation: runningball 3s linear infinite;
             }
         }
         
         @media(min-width: 1024px){
             padding: 3rem 0;
             height: 50vh;
-        
-            
         }
     }
 
