@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/react-pokedex/static/js/main.c38d4485.js",
+    "static/media/pokeball-icon.svg": "/react-pokedex/static/media/pokeball-icon.483bd5590b8f405f3a3b5761e2cac68b.svg",
+    "index.html": "/react-pokedex/index.html",
+    "static/media/search-icon.svg": "/react-pokedex/static/media/search-icon.431bcf649ef8096d3c6fca129fb23c51.svg",
+    "main.c38d4485.js.map": "/react-pokedex/static/js/main.c38d4485.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.c38d4485.js"
+  ]
+}
