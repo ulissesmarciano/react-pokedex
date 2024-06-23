@@ -8,7 +8,17 @@
 
 <img src="./src/assets/readme/image.gif" alt="Animação responsiva do projeto">
 
+
+<br>
+
+
 Projeto de uma pokédex testando habilidades de front-end, habilidades para manipulação de objetos, lógica na implantação do JavaScript e habilidades de requisição de API's em um ecossistema componetizado.
+
+<br>
+
+🎁 [CLIQUE AQUI](https://react-pokedex-weld.vercel.app/)🎁 e acesse o deploy do!
+
+<br>
 
 ## 💻 Tecnologias usadas
 - React
@@ -53,6 +63,6 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 - [x] Responsividade com Mobile First
 - [x] Instalação do Axios e implementação da api
 - [x] Renderização e criação das lógicas para os componentes
-- [ ] Realizar o deploy com um link para exposição no github.
+- [x] Realizar o deploy com um link para exposição no github.
 - [ ] Criação de rolagem automática com o objetivo de carregar todos os cards.
 
