@@ -55,7 +55,7 @@ export default function Pokedex() {
                             types={pokemon.types.map((type, index) => (
                                 <PokemonTypesItem
                                     key={index}
-                                    typeName={type.type.name}
+                                    typeName={console.log(type?.type?.name)}
                                     typeBackground={type.type.name}
                                 />
                             ))}
