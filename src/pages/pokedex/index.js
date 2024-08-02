@@ -44,7 +44,7 @@ export default function Pokedex() {
                   ) : error ? (
                     <div>{error}</div>
                   ) : (
-                    pokemonsFiltered.map((pokemon, index) => (
+                    pokemonsFiltered?.map((pokemon, index) => (
                         <PokemonCard
                             key={index}
                             id={pokemon?.id}
@@ -52,7 +52,7 @@ export default function Pokedex() {
                             cardBackground={pokemon?.types?.[0].type.name}
                             avatar={getPokemonImage(pokemon)}
                             alt={`Foto do pokémon ${pokemon?.name}`}
-                            types={pokemon?.types.map((type, index) => (
+                            types={pokemon?.types?.map((type, index) => (
                                 <PokemonTypesItem
                                     key={index}
                                     typeName={type?.type?.name}
