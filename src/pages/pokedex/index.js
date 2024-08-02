@@ -49,7 +49,7 @@ export default function Pokedex() {
                             key={index}
                             id={pokemon?.id}
                             name={pokemon?.name}
-                            cardBackground={pokemon?.types[0]?.type.name}
+                            cardBackground={pokemon?.types[0].type.name}
                             avatar={getPokemonImage(pokemon)}
                             alt={`Foto do pokémon ${pokemon?.name}`}
                             types={pokemon?.types.map((type, index) => (
