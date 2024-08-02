@@ -47,12 +47,12 @@ export default function Pokedex() {
                     pokemonsFiltered.map((pokemon, index) => (
                         <PokemonCard
                             key={index}
-                            id={pokemon.id}
-                            name={pokemon.name}
-                            cardBackground={pokemon.types[0]?.type.name}
+                            id={pokemon?.id}
+                            name={pokemon?.name}
+                            cardBackground={pokemon?.types[0]?.type.name}
                             avatar={getPokemonImage(pokemon)}
-                            alt={`Foto do pokémon ${pokemon.name}`}
-                            types={pokemon.types.map((type, index) => (
+                            alt={`Foto do pokémon ${pokemon?.name}`}
+                            types={pokemon?.types.map((type, index) => (
                                 <PokemonTypesItem
                                     key={index}
                                     typeName={type?.type?.name}
