@@ -1,6 +1,6 @@
 export const getPokemonImage = (pokemon) => {
-    if (pokemon.sprites.other.dream_world.front_default !== null) {
-        return pokemon.sprites.other.dream_world.front_default;
+    if (pokemon.sprites?.other.dream_world?.front_default !== null) {
+        return pokemon.sprites?.other?.dream_world?.front_default;
     } else {
         return pokemon.sprites.other['official-artwork'].front_default;
     }
