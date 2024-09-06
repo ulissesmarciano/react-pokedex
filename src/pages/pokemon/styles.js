@@ -30,8 +30,6 @@ export const Container = styled.main`
 
     .right-side-section {
         flex: 1;
-
-        height: 100%;   
     }
 
     .pokemon-name-section {
