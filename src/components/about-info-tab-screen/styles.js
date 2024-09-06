@@ -28,6 +28,7 @@ export const StoryContainer = styled.div`
 export const WeaknessesContainer = styled.div`
     ul {
         display: flex;
+        flex-wrap: wrap;
 
         li {
             margin-left: .5rem;
