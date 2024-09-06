@@ -2,11 +2,6 @@ import styled from "styled-components";
 
 export const StatsTabScreenSection = styled.ul`
     margin-top: 1rem;
-
-
-    @media(min-width: 425px){
-        margin-top: 1.2rem;
-    }
     
     li {
         margin-bottom: 1rem;
@@ -24,7 +19,7 @@ export const StatsTabScreenSection = styled.ul`
         }
 
         span {
-            width: 78%;
+            width: 66%;
 
             display: flex;
             justify-content: flex-end;
@@ -35,8 +30,26 @@ export const StatsTabScreenSection = styled.ul`
 
         }
 
-        @media(min-width: 1024px){
-            font-size: .8rem;
+    }
+    
+    @media(min-width: 425px){
+        margin-top: 1.2rem;
+        
+    }
+
+    @media(min-width: 768px){
+        li {
+            span {
+                width: 78%;
+            }
         }
     }
+
+    @media(min-width: 1024px){
+       li {
+        font-size: .8rem;
+       }
+    }
+
+
 `
