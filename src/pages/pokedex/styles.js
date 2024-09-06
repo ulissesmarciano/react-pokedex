@@ -7,12 +7,9 @@ export const Container = styled.main`
 export const TitleContainer = styled.section`
     margin: .8rem 1.2rem;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     text-align: center;
 
-    h2 {
+    h1 {
         margin-bottom: .3rem;
     }
 

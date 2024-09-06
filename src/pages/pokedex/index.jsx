@@ -29,7 +29,7 @@ export default function Pokedex() {
           <Container>
               <PokedexHeader />
               <TitleContainer>
-                  <h2>Pokédex</h2>
+                  <h1>Pokédex</h1>
                   <p>Procure por seu pokémon pelo nome ou seu número</p>
                   <SearchBar 
                       onChange={(event) => setSearch(event.target.value)}
