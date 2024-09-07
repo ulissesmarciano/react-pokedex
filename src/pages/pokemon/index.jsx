@@ -67,9 +67,9 @@ import PokebalImage from '../../assets/icons/pokeball-icon.svg';
 
   const weaknesses = calculateWeaknesses(pokemonData.types.map(type => type.name));
 
-  return (
+  return (<>
+    <PokemonHeader />
     <Container>
-      <PokemonHeader />
       <aside className='number-page-container'>
         <Link to={`/pokemon/${getPrevPokemonName()}`}>
           #{(pokemonData.id < 10 ? `0${pokemonData.id - 1}` : `${pokemonData.id - 1}`)}
@@ -163,7 +163,7 @@ import PokebalImage from '../../assets/icons/pokeball-icon.svg';
         )}
       </aside>
     </Container>
-  );
+  </>)
 };
 
 export default Pokemon;
