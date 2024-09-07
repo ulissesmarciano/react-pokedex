@@ -6,14 +6,18 @@ export const Container = styled.header`
     top: 15px;
     left: 10%;
 
-    display: flex;
-    align-items: center;
+    a {
+        display: flex;
+        align-items: center;
+    }
+    
     svg {
         height: 1.2rem;
         margin: 0 .4rem -.3rem;
     }
 
     p {
+        margin-top: .4rem;
         font-size: 1rem;
         font-weight: 600;
         color: #00000095;
