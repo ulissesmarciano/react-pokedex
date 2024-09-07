@@ -2,17 +2,14 @@ import styled from "styled-components";
 import { pokemonTypeStyles } from "../../constants/colors";
 
 export const Container = styled.main`
-background-color: yellow;
     margin: 4rem .5rem 0;
     height: calc(100vh - 94.08px);
 
     .number-page-container {
-    background-color: pink;
         display: none;
     }
 
     .left-side-section {
-    background-color: orangered;
         margin: 0 auto;
         width: 80%;
         flex: 1;
@@ -49,7 +46,6 @@ background-color: yellow;
         margin-right: .8rem;
         padding: 0.1rem 1rem;
     
-        background-color: red;
         border-radius: 50px;
     
         color: #fff;
@@ -132,7 +128,6 @@ background-color: yellow;
     }
 
     .right-side-section {
-    background-color: greenyellow;
         flex: 1;
     }
 
@@ -158,19 +153,34 @@ background-color: yellow;
     }
 
     @media (min-width: 1024px){
-        display: flex;
+        display: grid;
+        grid: "number-page-container-left left-side-section right-side-section number-page-container-right"
+              / 2.22rem 1fr 1fr 2.22rem;
+
 
         .number-page-container {
-            padding: 2rem;
             display: flex;
             align-items: center;
         
             font-size: 1.2rem;
             font-weight: 700;
+
         }
 
         .number-page-container a {
             color: #000;
+        }
+
+        .number-page-container.left{
+            grid-area: number-page-container-left;
+        }
+
+        .number-page-container.right{
+            grid-area: number-page-container-right;
+        }
+
+        .left-side-section {
+            grid-area: left-side-section;
         }
 
         .left-side-section .pokemon-image-section {
@@ -195,6 +205,10 @@ background-color: yellow;
 
         .left-side-section .evolution-container .evolution-image-container {
             width: 100%;
+        }
+
+        .right-side-section {
+            grid-area: right-side-section;
         }
     }
 `

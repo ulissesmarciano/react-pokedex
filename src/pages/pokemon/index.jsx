@@ -70,7 +70,7 @@ import PokebalImage from '../../assets/icons/pokeball-icon.svg';
   return (<>
     <PokemonHeader />
     <Container>
-      <aside className='number-page-container'>
+      <aside className='number-page-container left'>
         <Link to={`/pokemon/${getPrevPokemonName()}`}>
           #{(pokemonData.id < 10 ? `0${pokemonData.id - 1}` : `${pokemonData.id - 1}`)}
         </Link>
@@ -155,7 +155,7 @@ import PokebalImage from '../../assets/icons/pokeball-icon.svg';
           />
         </section>
       </section>
-      <aside className='number-page-container'>
+      <aside className='number-page-container right'>
         {getNextPokemonName() && (
           <Link to={`/pokemon/${getNextPokemonName()}`}>
             #{pokemonData.id < 10 ? `0${pokemonData.id + 1}` : `${pokemonData.id + 1}`}
