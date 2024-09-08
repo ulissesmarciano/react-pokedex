@@ -42,7 +42,7 @@ export default function Pokedex() {
                           <PokemonCardLoader key={index} />
                       ))
                   ) : error ? (
-                    <div>{error}</div>
+                    <p>{error}</p>
                   ) : (
                     pokemonsFiltered?.map((pokemon, index) => (
                         <PokemonCard
