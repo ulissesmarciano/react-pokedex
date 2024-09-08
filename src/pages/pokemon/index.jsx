@@ -76,11 +76,11 @@ import PokebalImage from '../../assets/icons/pokeball-icon.svg';
         </Link>
       </aside >
       <section className='left-side-section'>
-        <section className='pokemon-name-section'>
+        <div className='pokemon-name-section'>
           <h4>{pokemonData.name}</h4>
           <p>#{pokemonData.id < 10 ? `0${pokemonData.id}` : `${pokemonData.id}`}</p>
-        </section>
-        <section className='skills-container'>
+        </div>
+        <div className='skills-container'>
           <ul>
             {pokemonData.types.map((type, index) => (
               <PokemonTypesItem 
@@ -90,8 +90,8 @@ import PokebalImage from '../../assets/icons/pokeball-icon.svg';
               />
             ))}
           </ul>
-        </section>
-        <section className={`${pokemonData.types[0].name} pokemon-image-section`}>
+        </div>
+        <div className={`${pokemonData.types[0].name} pokemon-image-section`}>
           <figure className='pokemon-image'>
             <img
               src={getPokemonImage(pokemonData)}
@@ -104,8 +104,8 @@ import PokebalImage from '../../assets/icons/pokeball-icon.svg';
               alt='animação de pokébola girando atrás da foto'
             />
           </figure>
-        </section>
-        <section className='evolution-container'>
+        </div>
+        <div className='evolution-container'>
           <h6>Evolutions</h6>
           <div className='evolution-image-container'>
             {evolutionDataList.map((evolution, index) => (
@@ -126,10 +126,10 @@ import PokebalImage from '../../assets/icons/pokeball-icon.svg';
               />
             ))}
           </div>
-        </section>
+        </div>
       </section>
       <section className='right-side-section'>
-        <section className='info-tab-list-container'>
+        <div className='info-tab-list-container'>
           <InfoTabList
             weakness={weaknesses.map((weakness, index) => (
               <PokemonTypesItem
@@ -153,7 +153,7 @@ import PokebalImage from '../../assets/icons/pokeball-icon.svg';
             speed={pokemonData.stats[5].base_stat}
             total={pokemonData.stats.map((base) => base.base_stat).reduce((prev, curr) => prev + curr)}
           />
-        </section>
+        </div>
       </section>
       <aside className='number-page-container right'>
         {getNextPokemonName() && (
