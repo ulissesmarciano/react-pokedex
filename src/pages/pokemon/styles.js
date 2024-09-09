@@ -153,10 +153,13 @@ export const Container = styled.main`
     }
 
     @media (min-width: 1024px){
+        height: 100vh;
+        max-width: 1440px;
+        margin: 0 auto;
         display: grid;
         grid: "number-page-container-left left-side-section right-side-section number-page-container-right"
-              / 2.22rem 1fr 1fr 2.22rem;
-
+              / 3.4rem 1fr 1fr 3.4rem;
+        align-items: center;
 
         .number-page-container {
             display: flex;
@@ -164,15 +167,56 @@ export const Container = styled.main`
         
             font-size: 1.2rem;
             font-weight: 700;
-
         }
 
         .number-page-container a {
+            display: flex;
+            align-items: center;
+            
             color: #000;
+
+            transition: 0.3s;
+        }
+
+        .number-page-container.left a:hover svg{
+
+            @keyframes slideLeft {
+                from {
+                    transform: translateX(0%);
+                }
+
+                to {
+                    transform: translateX(-80%);
+                }
+            }
+
+            animation: slideLeft 0.3s linear forwards;
+        }
+        
+        .number-page-container.right a:hover svg{
+
+            @keyframes slideRight {
+                from {
+                    transform: translateX(0%);
+                }
+
+                to {
+                    transform: translateX(80%);
+                }
+            }
+
+            animation: slideRight 0.3s linear forwards;
+        }
+
+        .number-page-container a svg {
+            stroke: #000;
+            stroke-width: 30;
         }
 
         .number-page-container.left{
             grid-area: number-page-container-left;
+            
+            justify-content: flex-end;
         }
 
         .number-page-container.right{

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Container } from './styles';
+import { SlArrowLeft, SlArrowRight} from "react-icons/sl";
 
 import { usePokemonLimit } from '../../contexts/PokemonLimitContext';
 import useFetchPokemonData from '../../hooks/useFetchPokemonData';
@@ -72,7 +73,8 @@ import PokebalImage from '../../assets/icons/pokeball-icon.svg';
     <Container>
       <aside className='number-page-container left'>
         <Link to={`/pokemon/${getPrevPokemonName()}`}>
-          #{(pokemonData.id < 10 ? `0${pokemonData.id - 1}` : `${pokemonData.id - 1}`)}
+          <SlArrowLeft />
+          {(pokemonData.id < 10 ? `0${pokemonData.id - 1}` : `${pokemonData.id - 1}`)}
         </Link>
       </aside >
       <section className='left-side-section'>
@@ -158,7 +160,8 @@ import PokebalImage from '../../assets/icons/pokeball-icon.svg';
       <aside className='number-page-container right'>
         {getNextPokemonName() && (
           <Link to={`/pokemon/${getNextPokemonName()}`}>
-            #{pokemonData.id < 10 ? `0${pokemonData.id + 1}` : `${pokemonData.id + 1}`}
+            {pokemonData.id < 10 ? `0${pokemonData.id + 1}` : `${pokemonData.id + 1}`}
+            <SlArrowRight />
           </Link>
         )}
       </aside>
