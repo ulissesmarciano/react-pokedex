@@ -14,6 +14,7 @@ export const Container = styled.header`
     svg {
         height: 1.2rem;
         margin: 0 .4rem -.3rem;
+        color: black;
     }
 
     p {
