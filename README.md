@@ -29,6 +29,7 @@ Projeto de uma pokédex testando habilidades de front-end, habilidades para mani
 - React Router Dom
 - Styled Components
 - Axios
+- React Icons
 
 ## 🚀 Como Utilizar
 
