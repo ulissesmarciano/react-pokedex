@@ -1,5 +1,5 @@
-import React from 'react'
-import { Container } from './styles'
+import React from 'react';
+import { Container } from './styles';
 
 import PokeballIcon from '../../assets/icons/pokeball-icon.svg'
 import { Link } from 'react-router-dom'
@@ -13,5 +13,5 @@ export default function PokedexHeader() {
                 </Link>
             </div>
         </Container>
-    )
-}
+    );
+};
