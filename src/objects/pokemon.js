@@ -12,5 +12,10 @@ const pokemon = {
     genderRate: '',
     eggGroup: '',
     eggCycle: '',
-    stats: []
+    stats: [],
+    setPokemonInfo(){
+
+    }
+
+    
 }
