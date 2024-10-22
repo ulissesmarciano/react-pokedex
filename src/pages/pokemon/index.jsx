@@ -33,6 +33,10 @@ import PokebalImage from '../../assets/icons/pokeball-icon.svg';
   const pokemonList = useFetchPokemonList(limit);
   const evolutionDataList = useFetchEvolutionData(pokemonData?.species?.evolution_chain?.url);
 
+  console.log(pokemonData);
+  
+  
+
   if (!pokemonData || pokemonList.length === 0) {
     return (
       <>
