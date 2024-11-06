@@ -31,19 +31,19 @@ const useFetchEvolutionData = (evolutionChainUrl) => {
           const fetchChainData = async (chain) => {
               const image = await fetchImage(chain.species.name);
               const types = await fetchPokemonTypes(chain.species.name);
-              evolutionDataList.push({ Name: chain.species.name, Types: types, Photo: image });
+              evolutionDataList.push({ name: chain.species.name, types: types, photo: image });
 
               if (chain.evolves_to.length > 0) {
                   for (const evo of chain.evolves_to) {
                       const evoImage = await fetchImage(evo.species.name);
                       const evoTypes = await fetchPokemonTypes(evo.species.name);
-                      evolutionDataList.push({ Name: evo.species.name, Types: evoTypes, Photo: evoImage });
+                      evolutionDataList.push({ name: evo.species.name, types: evoTypes, photo: evoImage });
 
                       if (evo.evolves_to.length > 0) {
                           for (const subEvo of evo.evolves_to) {
                               const subEvoImage = await fetchImage(subEvo.species.name);
                               const subEvoTypes = await fetchPokemonTypes(subEvo.species.name);
-                              evolutionDataList.push({ Name: subEvo.species.name, Types: subEvoTypes, Photo: subEvoImage });
+                              evolutionDataList.push({ name: subEvo.species.name, types: subEvoTypes, photo: subEvoImage });
                           }
                       }
                   }
