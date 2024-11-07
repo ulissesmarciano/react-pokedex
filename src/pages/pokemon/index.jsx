@@ -3,12 +3,11 @@ import { Link, useParams } from 'react-router-dom';
 import { Container } from './styles';
 import { SlArrowLeft, SlArrowRight} from "react-icons/sl";
 
+import usePokemonData from '../../hooks/usePokemonData';
 import { usePokemonLimit } from '../../contexts/PokemonLimitContext';
 import useFetchPokemonData from '../../hooks/useFetchPokemonData';
 import useFetchPokemonList from '../../hooks/useFetchPokemonList';
-import useFetchEvolutionData from '../../hooks/useFetchEvolutionData';
 import { 
-  getPokemonImage,
   calculateGenderPercentage,
   calculateHeight,
   calculateWeight,
@@ -31,11 +30,8 @@ import PokebalImage from '../../assets/icons/pokeball-icon.svg';
   const { limit } = usePokemonLimit();
   const pokemonData = useFetchPokemonData(name);
   const pokemonList = useFetchPokemonList(limit);
-  const evolutionDataList = useFetchEvolutionData(pokemonData?.species?.evolution_chain?.url);
 
-  console.log(pokemonData);
-  
-  
+  const pokemon = usePokemonData(name) 
 
   if (!pokemonData || pokemonList.length === 0) {
     return (
@@ -72,36 +68,39 @@ import PokebalImage from '../../assets/icons/pokeball-icon.svg';
 
   const weaknesses = calculateWeaknesses(pokemonData.types.map(type => type.name));
 
+  const LeftArrow = pokemon.id < 10 ? `0${pokemon.id - 1}` : `${pokemon.id - 1}`
+  const RightArrow = pokemonData.id < 10 ? `0${pokemonData.id + 1}` : `${pokemonData.id + 1}`
+
   return (<>
     <PokemonHeader />
     <Container>
       <aside className='number-page-container left'>
         <Link to={`/pokemon/${getPrevPokemonName()}`}>
           <SlArrowLeft />
-          {(pokemonData.id < 10 ? `0${pokemonData.id - 1}` : `${pokemonData.id - 1}`)}
+          {LeftArrow}
         </Link>
       </aside >
       <section className='left-side-section'>
         <div className='pokemon-name-section'>
-          <h4>{pokemonData.name}</h4>
-          <p>#{pokemonData.id < 10 ? `0${pokemonData.id}` : `${pokemonData.id}`}</p>
+          <h4>{pokemon.name}</h4>
+          <p>#{pokemon.id < 10 ? `0${pokemon.id}` : `${pokemon.id}`}</p>
         </div>
         <div className='skills-container'>
           <ul>
-            {pokemonData.types.map((type, index) => (
+            {pokemon.types.map((type, index) => (
               <PokemonTypesItem 
                 key={index}
-                typeBackground={type.name}
-                typeName={type.name}
+                typeBackground={type}
+                typeName={type}
               />
             ))}
           </ul>
         </div>
-        <div className={`${pokemonData.types[0].name} pokemon-image-section`}>
+        <div className={`${pokemon.background} pokemon-image-section`}>
           <figure className='pokemon-image'>
             <img
-              src={getPokemonImage(pokemonData)}
-              alt={`Foto do pokémon ${pokemonData.name}`}
+              src={pokemon.picture}
+              alt={`Foto do pokémon ${pokemon.name}`}
             />
           </figure>
           <figure className='pokeball-image'>
@@ -114,15 +113,15 @@ import PokebalImage from '../../assets/icons/pokeball-icon.svg';
         <div className='evolution-container'>
           <h6>Evolutions</h6>
           <div className='evolution-image-container'>
-            {evolutionDataList.map((evolution, index) => (
+            {pokemon?.evolution?.map((evolution, index) => (
               <EvolutionItemList 
                 key={index}
-                to={`/pokemon/${evolution.Name}`}
-                src={evolution.Photo}
-                alt={`foto da evolução ${evolution.Name}`}
-                className={evolution.Types[0]}
-                pokemonName={evolution.Name}
-                type={evolution.Types.map((name, index) => (
+                to={`/pokemon/${evolution.name}`}
+                src={evolution.picture}
+                alt={`foto da evolução ${evolution.name}`}
+                className={evolution.types[0]}
+                pokemonName={evolution.name}
+                type={evolution?.types?.map((name, index) => (
                   <PokemonTypesItem 
                     key={index}
                     typeBackground={name}
@@ -164,7 +163,7 @@ import PokebalImage from '../../assets/icons/pokeball-icon.svg';
       <aside className='number-page-container right'>
         {getNextPokemonName() && (
           <Link to={`/pokemon/${getNextPokemonName()}`}>
-            {pokemonData.id < 10 ? `0${pokemonData.id + 1}` : `${pokemonData.id + 1}`}
+            {RightArrow}
             <SlArrowRight />
           </Link>
         )}
