@@ -10,6 +10,7 @@ const usePokemonData = (name) => {
         types: [],
         background: '',
         picture: '',
+        evolution: [],
     });
 
     const pokemonData = useFetchPokemonData(name);
@@ -24,13 +25,11 @@ const usePokemonData = (name) => {
                 types: pokemonData.types.map(type => type.name),
                 background: pokemonData.types[0].name,
                 picture: getPokemonImage(pokemonData),
-                evolution: [],
             }))
         }
     }, [pokemonData]);
 
     useEffect(() => {
-        console.log('Evoluções:', evolutionData);
         if(evolutionData) {
             setPokemon(prevState => ({
                 ...prevState,
