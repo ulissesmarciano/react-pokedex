@@ -7,14 +7,13 @@ import usePokemonData from '../../hooks/usePokemonData';
 import { usePokemonLimit } from '../../contexts/PokemonLimitContext';
 import useFetchPokemonData from '../../hooks/useFetchPokemonData';
 import useFetchPokemonList from '../../hooks/useFetchPokemonList';
-import { 
-  calculateGenderPercentage,
-  calculateHeight,
-  calculateWeight,
-  formatAbilities
-} from '../../utils/pokemonUtils';
+// import { 
+//   calculateGenderPercentage,
+//   calculateHeight,
+//   calculateWeight,
+//   formatAbilities,
+// } from '../../utils/pokemonUtils';
 
-import typeWeaknesses from '../../constants/typeWeaknesses'
 import PokemonPageLoader from '../../components/pokemon-page-loader';
 import PokemonHeader from '../../components/pokemon-header';
 import PokemonTypesItem from '../../components/pokemon-types-item';
@@ -55,18 +54,6 @@ import PokebalImage from '../../assets/icons/pokeball-icon.svg';
     const prevIndex = (currentIndex - 1 + pokemonList.length) % pokemonList.length;
     return pokemonList[prevIndex].name;
   };
-
-  const calculateWeaknesses = (types) => {
-    const weaknesses = new Set();
-    types.forEach((type) => {
-      if (typeWeaknesses[type]) {
-        typeWeaknesses[type].forEach((weakness) => weaknesses.add(weakness));
-      }
-    });
-    return Array.from(weaknesses);
-  };
-
-  const weaknesses = calculateWeaknesses(pokemonData.types.map(type => type.name));
 
   const LeftArrow = pokemon.id < 10 ? `0${pokemon.id - 1}` : `${pokemon.id - 1}`
   const RightArrow = pokemonData.id < 10 ? `0${pokemonData.id + 1}` : `${pokemonData.id + 1}`
@@ -136,20 +123,20 @@ import PokebalImage from '../../assets/icons/pokeball-icon.svg';
       <section className='right-side-section'>
         <div className='info-tab-list-container'>
           <InfoTabList
-            weakness={weaknesses.map((weakness, index) => (
+            weakness={pokemon.weaknesses.map((weakness, index) => (
               <PokemonTypesItem
                 key={index}
                 typeBackground={weakness}
                 typeName={weakness}
               />
             ))}
-            height={calculateHeight(pokemonData.height)}
-            weight={calculateWeight(pokemonData.weight)}
-            abilities={formatAbilities(pokemonData.abilities)}
-            malePercentage={calculateGenderPercentage(pokemonData.species.gender_rate).female}
-            femalePercentage={calculateGenderPercentage(pokemonData.species.gender_rate).male}
-            eggGroup={pokemonData.species.egg_groups[0]?.name || ''}
-            eggCycle={pokemonData.species.egg_groups[1]?.name || 'Dont Have'}
+            height={pokemon.height}
+            weight={pokemon.weight}
+            abilities={pokemon.abilities}
+            malePercentage={pokemon.male}
+            femalePercentage={pokemon.female}
+            eggGroup={pokemon.eggGroup}
+            eggCycle={pokemon.eggCycle}
             hp={pokemonData.stats[0].base_stat}
             attack={pokemonData.stats[1].base_stat}
             defense={pokemonData.stats[2].base_stat}
