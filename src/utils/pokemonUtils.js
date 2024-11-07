@@ -1,3 +1,5 @@
+import typeWeaknesses from "../constants/typeWeaknesses";
+
 export const getPokemonImage = (pokemon) => {
     if (pokemon.sprites?.other.dream_world?.front_default !== null) {
         return pokemon.sprites?.other?.dream_world?.front_default;
@@ -32,3 +34,12 @@ export const calculateGenderPercentage = (genderRate) => {
     };
 };
 
+export const calculateWeaknesses = (types) => {
+    const weaknesses = new Set();
+    types.forEach((type) => {
+      if (typeWeaknesses[type]) {
+        typeWeaknesses[type].forEach((weakness) => weaknesses.add(weakness));
+      }
+    });
+    return Array.from(weaknesses);
+  };
