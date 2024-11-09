@@ -1,18 +1,11 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Container } from './styles';
-import { SlArrowLeft, SlArrowRight} from "react-icons/sl";
+import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 
 import usePokemonData from '../../hooks/usePokemonData';
 import { usePokemonLimit } from '../../contexts/PokemonLimitContext';
-import useFetchPokemonData from '../../hooks/useFetchPokemonData';
 import useFetchPokemonList from '../../hooks/useFetchPokemonList';
-// import { 
-//   calculateGenderPercentage,
-//   calculateHeight,
-//   calculateWeight,
-//   formatAbilities,
-// } from '../../utils/pokemonUtils';
 
 import PokemonPageLoader from '../../components/pokemon-page-loader';
 import PokemonHeader from '../../components/pokemon-header';
@@ -24,15 +17,14 @@ import PokebalImage from '../../assets/icons/pokeball-icon.svg';
 
 
 
-  const Pokemon = () => {
+const Pokemon = () => {
   const { name } = useParams();
   const { limit } = usePokemonLimit();
-  const pokemonData = useFetchPokemonData(name);
   const pokemonList = useFetchPokemonList(limit);
 
-  const pokemon = usePokemonData(name) 
+  const pokemon = usePokemonData(name)
 
-  if (!pokemonData || pokemonList.length === 0) {
+  if (!pokemon || pokemonList.length === 0) {
     return (
       <>
         <PokemonHeader />
@@ -56,7 +48,8 @@ import PokebalImage from '../../assets/icons/pokeball-icon.svg';
   };
 
   const LeftArrow = pokemon.id < 10 ? `0${pokemon.id - 1}` : `${pokemon.id - 1}`
-  const RightArrow = pokemonData.id < 10 ? `0${pokemonData.id + 1}` : `${pokemonData.id + 1}`
+  const RightArrow = pokemon.id < 10 ? `0${pokemon.id + 1}` : `${pokemon.id + 1}`
+  console.log(pokemon);
 
   return (<>
     <PokemonHeader />
@@ -75,7 +68,7 @@ import PokebalImage from '../../assets/icons/pokeball-icon.svg';
         <div className='skills-container'>
           <ul>
             {pokemon.types.map((type, index) => (
-              <PokemonTypesItem 
+              <PokemonTypesItem
                 key={index}
                 typeBackground={type}
                 typeName={type}
@@ -101,7 +94,7 @@ import PokebalImage from '../../assets/icons/pokeball-icon.svg';
           <h6>Evolutions</h6>
           <div className='evolution-image-container'>
             {pokemon?.evolution?.map((evolution, index) => (
-              <EvolutionItemList 
+              <EvolutionItemList
                 key={index}
                 to={`/pokemon/${evolution.name}`}
                 src={evolution.picture}
@@ -109,11 +102,11 @@ import PokebalImage from '../../assets/icons/pokeball-icon.svg';
                 className={evolution.types[0]}
                 pokemonName={evolution.name}
                 type={evolution?.types?.map((name, index) => (
-                  <PokemonTypesItem 
+                  <PokemonTypesItem
                     key={index}
                     typeBackground={name}
                     typeName={name}
-                    />
+                  />
                 ))}
               />
             ))}
@@ -137,13 +130,13 @@ import PokebalImage from '../../assets/icons/pokeball-icon.svg';
             femalePercentage={pokemon.female}
             eggGroup={pokemon.eggGroup}
             eggCycle={pokemon.eggCycle}
-            hp={pokemonData.stats[0].base_stat}
-            attack={pokemonData.stats[1].base_stat}
-            defense={pokemonData.stats[2].base_stat}
-            spAtk={pokemonData.stats[3].base_stat}
-            spDef={pokemonData.stats[4].base_stat}
-            speed={pokemonData.stats[5].base_stat}
-            total={pokemonData.stats.map((base) => base.base_stat).reduce((prev, curr) => prev + curr)}
+            hp={pokemon.stats.hp}
+            attack={pokemon.stats.attack}
+            defense={pokemon.stats.defense}
+            spAtk={pokemon.stats.spAtk}
+            spDef={pokemon.stats.spDef}
+            speed={pokemon.stats.speed}
+            total={pokemon.stats.total}
           />
         </div>
       </section>
