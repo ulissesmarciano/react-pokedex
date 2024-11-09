@@ -26,6 +26,15 @@ const usePokemonData = (name) => {
         abilities: [],
         eggGroup:  '',
         eggCycle: '',
+        stats: {
+            hp: '',
+            attack: '',
+            defense: '',
+            spAtk: '',
+            spDef: '',
+            speed: '',
+            total: '',
+        }
     });
 
     const pokemonData = useFetchPokemonData(name);
@@ -48,7 +57,17 @@ const usePokemonData = (name) => {
                 female: calculateGenderPercentage(pokemonData.species.gender_rate).male,
                 eggGroup: pokemonData.species.egg_groups[0]?.name || '',
                 eggCycle: pokemonData.species.egg_groups[1]?.name || 'Dont Have',
+                stats: {
+                    hp: pokemonData.stats[0].base_stat,
+                    attack: pokemonData.stats[1].base_stat,
+                    defense: pokemonData.stats[2].base_stat,
+                    spAtk: pokemonData.stats[3].base_stat,
+                    spDef: pokemonData.stats[4].base_stat,
+                    speed: pokemonData.stats[5].base_stat,
+                    total: pokemonData.stats.map((base) => base.base_stat).reduce((prev, curr) => prev + curr),
+                }
             }))
+            
         }
     }, [pokemonData]);
 
