@@ -19,6 +19,11 @@ export const TitleContainer = styled.section`
         font-weight: 500;
     }
 
+    .search-filter-container {
+        display: flex;
+        gap: .2rem;
+    }
+
     @media (min-width: 1024px){
         margin: 2rem;
     }

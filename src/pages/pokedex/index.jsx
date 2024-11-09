@@ -10,6 +10,7 @@ import PokemonTypesItem from '../../components/pokemon-types-item';
 import PokemonCardLoader from '../../components/card-loader';
 
 import { getPokemonImage } from '../../utils/pokemonUtils';
+import FilterDropDown from '../../components/filter-dropdown';
 
 export default function Pokedex() {
     const { pokemons, loading, error } = useFetchAllPokemons();
@@ -31,10 +32,13 @@ export default function Pokedex() {
               <TitleContainer>
                   <h1>Pokédex</h1>
                   <p>Procure por seu pokémon pelo nome ou seu número</p>
-                  <SearchBar 
-                      onChange={(event) => setSearch(event.target.value)}
-                      value={search}
-                  />
+                  <div className='search-filter-container'>
+                    <SearchBar 
+                        onChange={(event) => setSearch(event.target.value)}
+                        value={search}
+                    />
+                    <FilterDropDown />
+                  </div>
                 </TitleContainer>
               <PokemonCardContainer>
                   {loading ? (
