@@ -49,7 +49,6 @@ const Pokemon = () => {
 
   const LeftArrow = pokemon.id < 10 ? `0${pokemon.id - 1}` : `${pokemon.id - 1}`
   const RightArrow = pokemon.id < 10 ? `0${pokemon.id + 1}` : `${pokemon.id + 1}`
-  console.log(pokemon);
 
   return (<>
     <PokemonHeader />
