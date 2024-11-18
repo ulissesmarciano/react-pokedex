@@ -15,6 +15,7 @@ const FilterDropDown = () => {
         <span>Tipo</span>
         <FaChevronDown className={isOpen ? 'rotate' : ''} />
       </button>
+    
     </Container>
   );
 };
