@@ -2,14 +2,9 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     width: 100%;
-    
-    display: flex;
-    justify-content: center;
-
 `
 
 export const SearchLabel = styled.div`
-    width: 100%;
     height: 2rem;
     
     display: flex;
@@ -50,12 +45,10 @@ export const SearchLabel = styled.div`
     }
     
     @media (min-width: 650px){
-        width: 70%;
         height: 2.4rem;
     }
 
     @media (min-width: 1024px){
-        max-width: 650px;
 
         input{
             font-size: 1.2rem;
