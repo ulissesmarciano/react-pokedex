@@ -7,7 +7,9 @@ export const Container = styled.main`
 export const TitleContainer = styled.section`
     margin: .8rem 1.2rem;
 
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     h1 {
         margin-bottom: .3rem;
@@ -20,8 +22,16 @@ export const TitleContainer = styled.section`
     }
 
     .search-filter-container {
+        width: 100%;
         display: flex;
         gap: .2rem;
+        justify-content: center;
+    }
+
+    @media (min-width: 650px) {
+        .search-filter-container {
+            max-width: 650px;
+        }
     }
 
     @media (min-width: 1024px){
@@ -46,6 +56,7 @@ export const PokemonCardContainer = styled.ul`
     @media (min-width: 650px){
         grid-template-columns: 1fr 1fr 1fr;
         gap: .8rem;
+        
     }
 
     @media (min-width: 1024px){
