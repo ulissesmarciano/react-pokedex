@@ -24,8 +24,15 @@ export const TitleContainer = styled.section`
     .search-filter-container {
         width: 100%;
         display: flex;
+        flex-direction: column;
         gap: .2rem;
-        justify-content: center;
+        align-items: flex-end;
+    }
+
+    @media (min-width: 425px){
+        .search-filter-container {
+            flex-direction: row;
+        }
     }
 
     @media (min-width: 650px) {
