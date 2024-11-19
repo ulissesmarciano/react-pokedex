@@ -65,8 +65,10 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 - [x] Instalação do Axios e implementação da api
 - [x] Renderização e criação das lógicas para os componentes
 - [x] Realizar o deploy com um link para exposição no github.
-- [ ] Criar um objeto pokemon para renderizar nas páginas
+- [x] Criar um objeto pokemon para renderizar nas páginas
+- [x] Criar filtro de tipos na lista Pokédex
 - [ ] Componetizar setores renderizados na pokemon-page.
 - [ ] Criação de rolagem automática com o objetivo de carregar todos os cards.
+- [ ] Unificar o idioma da página (inglês).
 
 
