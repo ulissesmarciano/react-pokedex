@@ -1,15 +1,7 @@
 import React, { useState } from "react";
 import { InfoContainer, InfoPage, NavContainer, TabButton } from "./styles";
 
-import AboutInfoTabScreen from "../about-info-tab-screen";
-import AttributesInfoTabScreen from "../attributes-info-tab-screen";
-import StatsInfoTabScreen from "../stats-info-tab-screen";
-
-const tabs = [
-    { id: 1, label: "About", component: AboutInfoTabScreen },
-    { id: 2, label: "Attributes", component: AttributesInfoTabScreen },
-    { id: 3, label: "Stats", component: StatsInfoTabScreen },
-];
+import { tabs } from "../../constants/tabs";
 
 export default function InfoTabList(props) {
     const [activeTab, setActiveTab] = useState(1);
