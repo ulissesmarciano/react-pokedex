@@ -57,8 +57,6 @@ const Pokemon = () => {
   const lowercaseName = pokemon.name;
   const captalizeName = capitalizeFirstLetter(lowercaseName);
 
-  console.log(pokemon.abilities)
-
   return (<>
     <PokemonHeader />
     <Container>

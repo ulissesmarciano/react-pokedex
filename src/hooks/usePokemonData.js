@@ -41,9 +41,6 @@ const usePokemonData = (name) => {
     const pokemonData = useFetchPokemonData(name);
     const evolutionData = useFetchEvolutionData(pokemonData?.species?.evolution_chain?.url)
 
-    console.log(pokemonData);
-    
-
     useEffect(() => {
         if(pokemonData) {
             setPokemon(prevState => ({
