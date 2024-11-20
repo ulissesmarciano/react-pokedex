@@ -50,6 +50,15 @@ const Pokemon = () => {
   const LeftArrow = pokemon.id < 10 ? `0${pokemon.id - 1}` : `${pokemon.id - 1}`
   const RightArrow = pokemon.id < 10 ? `0${pokemon.id + 1}` : `${pokemon.id + 1}`
 
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.substring(1);
+  }
+
+  const lowercaseName = pokemon.name;
+  const captalizeName = capitalizeFirstLetter(lowercaseName);
+
+  console.log(pokemon.abilities)
+
   return (<>
     <PokemonHeader />
     <Container>
@@ -115,6 +124,12 @@ const Pokemon = () => {
       <section className='right-side-section'>
         <div className='info-tab-list-container'>
           <InfoTabList
+            pokemonName={captalizeName}
+            pokemonType={pokemon.types[0]}
+            pokemonHP={pokemon.stats.hp}
+            pokemonSpeed={pokemon.stats.speed}
+            pokemonAbility={pokemon.abilities}
+            pokemonMove={pokemon.move}
             weakness={pokemon.weaknesses.map((weakness, index) => (
               <PokemonTypesItem
                 key={index}
