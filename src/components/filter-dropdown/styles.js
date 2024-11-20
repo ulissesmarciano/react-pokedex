@@ -36,7 +36,7 @@ export const Container = styled.div`
   }
 
   .rotate {
-    transform: rotate(-180deg);
+    transform: rotate(180deg);
   }
 
   .dropdown-list {

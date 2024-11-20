@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef } from 'react';
 import { Container } from './styles';
 import { FaChevronDown } from "react-icons/fa";
 import types from '../../constants/types';
 
-const FilterDropDown = ({ onClickItem, onClickResetItem }) => {
+const FilterDropDown = forwardRef(({ onClickItem, onClickResetItem }, ref) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
@@ -11,7 +11,7 @@ const FilterDropDown = ({ onClickItem, onClickResetItem }) => {
   };
 
   return (
-    <Container>
+    <Container ref={ref}>
       <button className={`filter-btn ${isOpen ? 'active' : ''}`} onClick={handleToggle}>
         <span>Tipo</span>
         <FaChevronDown className={isOpen ? 'rotate' : ''} />
@@ -26,6 +26,6 @@ const FilterDropDown = ({ onClickItem, onClickResetItem }) => {
       </div>
     </Container>
   );
-};
+});
 
 export default FilterDropDown;
