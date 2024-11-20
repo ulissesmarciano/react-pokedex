@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Container, StoryContainer, WeaknessesContainer } from './styles';
 
-export default function AboutInfoTabScreen({ weakness }) {
+export default function AboutInfoTabScreen({ weakness, pokemonName, pokemonType, pokemonHP, pokemonSpeed, pokemonAbility, pokemonMove }) {
     const [isExpanded, setIsExpanded] = useState(false);
 
     const handleToggleExpand = () => {
       setIsExpanded(!isExpanded);
     };
 
-    const fullText = "This section is intended for a brief description of the Pokémon listed here, as we await updates, take the opportunity to consult all the skills and details that are on the page.";
+    const fullText = `Meet ${pokemonName}, an amazing ${pokemonType}-type Pokémon with a base HP of ${pokemonHP} and speed of ${pokemonSpeed}. Known for its ability ${pokemonAbility} and signature move ${pokemonMove}, it stands out as a true powerhouse in battles!`;
     const truncatedText = fullText.substring(0, 40) + '...';
 
     return (
