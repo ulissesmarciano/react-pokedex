@@ -13,7 +13,7 @@ const FilterDropDown = forwardRef(({ onClickItem, onClickResetItem }, ref) => {
   return (
     <Container ref={ref}>
       <button className={`filter-btn ${isOpen ? 'active' : ''}`} onClick={handleToggle}>
-        <span>Tipo</span>
+        <span>Type</span>
         <FaChevronDown className={isOpen ? 'rotate' : ''} />
       </button>
       <div className={`dropdown-list ${isOpen ? 'active open-drawer' : ''}`}>

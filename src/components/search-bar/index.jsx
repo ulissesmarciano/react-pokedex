@@ -9,7 +9,7 @@ export default function SearchBar({onChange, value}) {
         <Container>
             <SearchLabel>
                 <img src={SearchIcon} alt='Ícone de pesquisa' />
-                <input placeholder='Nome ou Número' type='text' onChange={onChange} value={value}/>
+                <input placeholder='Name or Number' type='text' onChange={onChange} value={value}/>
             </SearchLabel>
         </Container>
     )
