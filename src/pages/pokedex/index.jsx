@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import useFetchAllPokemons from '../../hooks/useFetchAllPokemons';
 
 import { Container, PokemonCardContainer, TitleContainer } from './styles';
@@ -16,6 +16,7 @@ export default function Pokedex() {
     const { pokemons, loading, error } = useFetchAllPokemons();
     const [search, setSearch] = useState('');
     const [filterType, setFilterType] = useState('');
+    const dropdownRef = useRef();
 
     const searchNumber = parseInt(search, 10);
     const lowerSearch = search.toLowerCase();
@@ -37,6 +38,24 @@ export default function Pokedex() {
         setFilterType(item);
     };
 
+    const handleResetClick = () => {
+        setFilterType('');
+    };
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                const dropdownComponent = dropdownRef.current.querySelector('.filter-btn');
+                if (dropdownComponent) dropdownComponent.click();
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside); 
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [])
+
 
     return (
         <Container>
@@ -50,8 +69,9 @@ export default function Pokedex() {
                         value={search}
                     />
                     <FilterDropDown
+                        ref={dropdownRef}
                         onClickItem={handleItemClick}
-                        onClickResetItem={() => setFilterType('')}
+                        onClickResetItem={handleResetClick}
                     />
                 </div>
             </TitleContainer>
