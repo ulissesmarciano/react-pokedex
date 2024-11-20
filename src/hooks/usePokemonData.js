@@ -34,11 +34,15 @@ const usePokemonData = (name) => {
             spDef: '',
             speed: '',
             total: '',
-        }
+        },
+        move: '',
     });
 
     const pokemonData = useFetchPokemonData(name);
     const evolutionData = useFetchEvolutionData(pokemonData?.species?.evolution_chain?.url)
+
+    console.log(pokemonData);
+    
 
     useEffect(() => {
         if(pokemonData) {
@@ -65,7 +69,8 @@ const usePokemonData = (name) => {
                     spDef: pokemonData.stats[4].base_stat,
                     speed: pokemonData.stats[5].base_stat,
                     total: pokemonData.stats.map((base) => base.base_stat).reduce((prev, curr) => prev + curr),
-                }
+                },
+                move: pokemonData.moves[0].move.name
             }))
             
         }
