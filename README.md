@@ -67,8 +67,8 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 - [x] Realizar o deploy com um link para exposição no github.
 - [x] Criar um objeto pokemon para renderizar nas páginas
 - [x] Criar filtro de tipos na lista Pokédex
+- [x] Unificar o idioma da página (inglês).
 - [ ] Componetizar setores renderizados na pokemon-page.
 - [ ] Criação de rolagem automática com o objetivo de carregar todos os cards.
-- [ ] Unificar o idioma da página (inglês).
 
 
