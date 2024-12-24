@@ -70,5 +70,6 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 - [x] Unificar o idioma da página (inglês).
 - [ ] Componetizar setores renderizados na pokemon-page.
 - [ ] Criação de rolagem automática com o objetivo de carregar todos os cards.
+- [ ] Criar um loader para cada seção renderizada
 
 
