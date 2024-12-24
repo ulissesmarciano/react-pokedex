@@ -15,6 +15,7 @@ import FilterDropDown from '../../components/filter-dropdown';
 export default function Pokedex() {
     const { pokemons, loading, error } = useFetchAllPokemons();
     const [search, setSearch] = useState('');
+    const searchBarRef = useRef();
     const [filterType, setFilterType] = useState('');
     const dropdownRef = useRef();
 
@@ -44,17 +45,22 @@ export default function Pokedex() {
 
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+            if (
+                dropdownRef.current &&
+                !dropdownRef.current.contains(event.target) &&
+                searchBarRef.current &&
+                !searchBarRef.current.contains(event.target)
+            ) {
                 const dropdownComponent = dropdownRef.current.querySelector('.filter-btn');
                 if (dropdownComponent) dropdownComponent.click();
             }
         };
 
-        document.addEventListener('mousedown', handleClickOutside); 
+        document.addEventListener('mousedown', handleClickOutside);
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [])
+    }, []);
 
 
     return (
@@ -65,6 +71,7 @@ export default function Pokedex() {
                 <p>Search for your pokemon by name or id.</p>
                 <div className='search-filter-container'>
                     <SearchBar
+                        ref={searchBarRef}
                         onChange={(event) => setSearch(event.target.value)}
                         value={search}
                     />
