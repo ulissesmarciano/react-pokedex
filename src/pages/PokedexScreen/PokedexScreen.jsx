@@ -3,16 +3,16 @@ import useFetchAllPokemons from "../../hooks/useFetchAllPokemons";
 
 import { Container, PokemonCardContainer, TitleContainer } from "./styles";
 
-import PokedexHeader from "../../components/pokedex-header";
-import SearchBar from "../../components/search-bar";
-import PokemonCard from "../../components/pokemon-card";
-import PokemonTypesItem from "../../components/pokemon-types-item";
-import PokemonCardLoader from "../../components/card-loader";
+import PokedexHeader from "../../components/PokedexHeader/PokedexHeader";
+import SearchBar from "../../components/SearchBar/SearchBar";
+import PokemonCard from "../../components/PokedexCard/PokedexHeader";
+import PokemonTypesItem from "../../components/PokemonTypesItem/PokemonTypesItem";
+import PokemonCardLoader from "../../components/CardLoader/CardLoader";
+import FilterDropDown from "../../components/FilterDropDown/EvolutionItemList";
 
 import { getPokemonImage } from "../../utils/pokemonUtils";
-import FilterDropDown from "../../components/filter-dropdown";
 
-export default function Pokedex() {
+export default function PokedexScreen() {
   const { pokemons, loading, error } = useFetchAllPokemons();
   const [search, setSearch] = useState("");
   const searchBarRef = useRef();

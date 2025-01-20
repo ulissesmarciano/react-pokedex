@@ -1,5 +1,5 @@
-import AboutInfoTabScreen from "../components/about-info-tab-screen";
-import AttributesInfoTabScreen from "../components/attributes-info-tab-screen";
+import AboutInfoTabScreen from "../components/AboutInfoTabScreen/AboutInfoTabScreen";
+import AttributesInfoTabScreen from "../components/AttributesInfoTabScreen/AttributesInfoTabScreen";
 import StatsInfoTabScreen from "../components/StatsInfoTabScreen/StatsInfoTabScreen";
 
 export const tabs = [

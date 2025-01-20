@@ -7,15 +7,15 @@ import usePokemonData from "../../hooks/usePokemonData";
 import { usePokemonLimit } from "../../contexts/PokemonLimitContext";
 import useFetchPokemonList from "../../hooks/useFetchPokemonList";
 
-import PokemonPageLoader from "../../components/pokemon-page-loader";
-import PokemonHeader from "../../components/pokemon-header";
-import PokemonTypesItem from "../../components/pokemon-types-item";
-import InfoTabList from "../../components/info-tab-list";
-import EvolutionItemList from "../../components/evolution-item-list";
+import PokemonPageLoader from "../../components/PokemonPageLoader/PokemonPageLoader";
+import PokemonHeader from "../../components/PokemonHeader/PokemonPageLoader";
+import PokemonTypesItem from "../../components/PokemonTypesItem/PokemonTypesItem";
+import InfoTabList from "../../components/InfoTabList/InfoTabList";
+import EvolutionItemList from "../../components/EvolutionItemList/EvolutionItemList";
 
 import PokebalImage from "../../assets/icons/pokeball-icon.svg";
 
-const Pokemon = () => {
+const PokemonScreen = () => {
   const { name } = useParams();
   const { limit } = usePokemonLimit();
   const pokemonList = useFetchPokemonList(limit);
@@ -171,4 +171,4 @@ const Pokemon = () => {
   );
 };
 
-export default Pokemon;
+export default PokemonScreen;
