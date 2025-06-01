@@ -1,14 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Container, StoryContainer, WeaknessesContainer } from "./styles";
 
 export default function AboutInfoTabScreen({
   weakness,
-  pokemonName,
-  pokemonType,
-  pokemonHP,
-  pokemonSpeed,
-  pokemonAbility,
-  pokemonMove,
+  story
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -16,7 +11,10 @@ export default function AboutInfoTabScreen({
     setIsExpanded(!isExpanded);
   };
 
-  const fullText = `Meet ${pokemonName}, an amazing ${pokemonType}-type Pokémon with a base HP of ${pokemonHP} and speed of ${pokemonSpeed}. Known for its ability ${pokemonAbility} and signature move ${pokemonMove}, it stands out as a true powerhouse in battles!`;
+  // const fullText = `Meet ${pokemonName}, an amazing ${pokemonType}-type Pokémon with a base HP of ${pokemonHP} and speed of ${pokemonSpeed}. Known for its ability ${pokemonAbility} and 
+  // signature move ${pokemonMove}, it stands out as a true powerhouse in battles!`;
+
+  const fullText = `${story}`
   const truncatedText = fullText.substring(0, 40) + "...";
 
   return (

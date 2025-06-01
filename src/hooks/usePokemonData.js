@@ -73,6 +73,9 @@ const usePokemonData = (name) => {
             .reduce((prev, curr) => prev + curr),
         },
         move: pokemonData.moves[0].move.name,
+        story: pokemonData?.species.flavor_text_entries?.find(
+          (entry) => entry.language.name === "en"
+        ).flavor_text,
       }));
     }
   }, [pokemonData]);
@@ -89,7 +92,6 @@ const usePokemonData = (name) => {
       }));
     }
   }, [evolutionData, name]);
-
   return pokemon;
 };
 

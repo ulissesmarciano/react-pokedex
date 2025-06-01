@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { Container } from "./styles";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
@@ -54,13 +53,6 @@ const PokemonScreen = () => {
     pokemon.id < 10 ? `0${pokemon.id - 1}` : `${pokemon.id - 1}`;
   const RightArrow =
     pokemon.id < 10 ? `0${pokemon.id + 1}` : `${pokemon.id + 1}`;
-
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.substring(1);
-  }
-
-  const lowercaseName = pokemon.name;
-  const captalizeName = capitalizeFirstLetter(lowercaseName);
 
   return (
     <>
@@ -128,12 +120,7 @@ const PokemonScreen = () => {
         <section className="right-side-section">
           <div className="info-tab-list-container">
             <InfoTabList
-              pokemonName={captalizeName}
-              pokemonType={pokemon.types[0]}
-              pokemonHP={pokemon.stats.hp}
-              pokemonSpeed={pokemon.stats.speed}
-              pokemonAbility={pokemon.abilities}
-              pokemonMove={pokemon.move}
+              story={pokemon.story ? pokemon.story : "No story"}
               weakness={pokemon.weaknesses.map((weakness, index) => (
                 <PokemonTypesItem
                   key={index}
