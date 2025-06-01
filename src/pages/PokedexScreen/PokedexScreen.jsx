@@ -11,12 +11,14 @@ import PokemonCardLoader from "../../components/CardLoader/CardLoader";
 import FilterDropDown from "../../components/FilterDropDown/EvolutionItemList";
 
 import { getPokemonImage } from "../../utils/pokemonUtils";
+import Button from "../../components/Button/Button";
 
 export default function PokedexScreen() {
   const { pokemons, loading, error } = useFetchAllPokemons();
   const [search, setSearch] = useState("");
-  const searchBarRef = useRef();
   const [filterType, setFilterType] = useState("");
+  const [quantdidadeLista, setQuantidadeLista] = useState(12);
+  const searchBarRef = useRef();
   const dropdownRef = useRef();
 
   const searchNumber = parseInt(search, 10);
@@ -46,6 +48,10 @@ export default function PokedexScreen() {
   const handleResetClick = () => {
     setFilterType("");
   };
+
+  const verMais = () => {
+    setQuantidadeLista((prev) => prev + 12)
+  }
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -94,7 +100,7 @@ export default function PokedexScreen() {
         ) : error ? (
           <p>{error}</p>
         ) : (
-          pokemonsFiltered?.map((pokemon, index) => (
+          pokemonsFiltered?.slice(0, quantdidadeLista).map((pokemon, index) => (
             <PokemonCard
               key={index}
               id={pokemon?.id}
@@ -114,6 +120,11 @@ export default function PokedexScreen() {
           ))
         )}
       </PokemonCardContainer>
+      <Button 
+        onClick={verMais}
+        name="Ver Mais"
+        variant="verMaisButton"
+      />
     </Container>
   );
 }

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.main`
   background-color: #f1f1f1;
+  text-align: center;
 `;
 
 export const TitleContainer = styled.section`
@@ -68,7 +69,7 @@ export const PokemonCardContainer = styled.ul`
   @media (min-width: 1024px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 1rem;
-    margin: 4rem;
+    margin: 4rem 4rem 1rem;
   }
 
   @media (min-width: 1440px) {
