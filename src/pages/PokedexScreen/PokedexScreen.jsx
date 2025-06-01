@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef, useEffect } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import useFetchAllPokemons from "../../hooks/useFetchAllPokemons";
 
 import { Container, PokemonCardContainer, TitleContainer } from "./styles";
@@ -81,7 +81,7 @@ export default function PokedexScreen() {
         <p>Search for your pokemon by name or id.</p>
         <div className="search-filter-container">
           <SearchBar
-            ref={searchBarRef}
+            $ref={searchBarRef}
             onChange={(event) => setSearch(event.target.value)}
             value={search}
           />
@@ -120,7 +120,7 @@ export default function PokedexScreen() {
           ))
         )}
       </PokemonCardContainer>
-      <Button 
+      <Button
         onClick={verMais}
         name="Ver Mais"
         variant="verMaisButton"
