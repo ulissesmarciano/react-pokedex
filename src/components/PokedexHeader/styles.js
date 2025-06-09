@@ -8,6 +8,7 @@ export const Container = styled.header`
 
   .menu-container {
     width: 100%;
+    display: flex;
   }
 
   .menu-container img {
