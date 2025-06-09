@@ -1,10 +1,8 @@
 import { Link, useParams } from "react-router-dom";
 import { Container } from "./styles";
-import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 
 import usePokemonData from "../../hooks/usePokemonData";
-import { usePokemonLimit } from "../../contexts/PokemonLimitContext";
-import useFetchPokemonList from "../../hooks/useFetchPokemonList";
+import { usePokemon } from "../../hooks/usePokemon";
 
 import PokemonPageLoader from "../../components/PokemonPageLoader/PokemonPageLoader";
 import PokemonHeader from "../../components/PokemonHeader/PokemonPageLoader";
@@ -12,16 +10,16 @@ import PokemonTypesItem from "../../components/PokemonTypesItem/PokemonTypesItem
 import InfoTabList from "../../components/InfoTabList/InfoTabList";
 import EvolutionItemList from "../../components/EvolutionItemList/EvolutionItemList";
 
+import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import PokebalImage from "../../assets/icons/pokeball-icon.svg";
 
 const PokemonScreen = () => {
   const { name } = useParams();
-  const { limit } = usePokemonLimit();
-  const pokemonList = useFetchPokemonList(limit);
+  const { pokemons } = usePokemon()
 
   const pokemon = usePokemonData(name);
 
-  if (!pokemon || pokemonList.length === 0) {
+  if (!pokemon || pokemons.length === 0) {
     return (
       <>
         <PokemonHeader />
@@ -31,22 +29,22 @@ const PokemonScreen = () => {
   }
 
   const getNextPokemonName = () => {
-    const currentIndex = pokemonList.findIndex(
+    const currentIndex = pokemons.findIndex(
       (pokemon) => pokemon.name === name
     );
     if (currentIndex === -1) return null;
-    const nextIndex = (currentIndex + 1) % pokemonList.length;
-    return pokemonList[nextIndex].name;
+    const nextIndex = (currentIndex + 1) % pokemons.length;
+    return pokemons[nextIndex].name;
   };
 
   const getPrevPokemonName = () => {
-    const currentIndex = pokemonList.findIndex(
+    const currentIndex = pokemons.findIndex(
       (pokemon) => pokemon.name === name
     );
     if (currentIndex === -1) return null;
     const prevIndex =
-      (currentIndex - 1 + pokemonList.length) % pokemonList.length;
-    return pokemonList[prevIndex].name;
+      (currentIndex - 1 + pokemons.length) % pokemons.length;
+    return pokemons[prevIndex].name;
   };
 
   const LeftArrow =
@@ -58,12 +56,12 @@ const PokemonScreen = () => {
     <>
       <PokemonHeader />
       <Container>
-        <aside className="number-page-container left">
+        <div className="number-page-container left">
           <Link to={`/pokemon/${getPrevPokemonName()}`}>
             <SlArrowLeft />
             {LeftArrow}
           </Link>
-        </aside>
+        </div>
         <section className="left-side-section">
           <div className="pokemon-name-section">
             <h4>{pokemon.name}</h4>
@@ -145,14 +143,14 @@ const PokemonScreen = () => {
             />
           </div>
         </section>
-        <aside className="number-page-container right">
+        <div className="number-page-container right">
           {getNextPokemonName() && (
             <Link to={`/pokemon/${getNextPokemonName()}`}>
               {RightArrow}
               <SlArrowRight />
             </Link>
           )}
-        </aside>
+        </div>
       </Container>
     </>
   );

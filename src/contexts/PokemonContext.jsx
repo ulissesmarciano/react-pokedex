@@ -1,9 +1,11 @@
 import { createContext, useState, useEffect } from "react";
 import api from "../services/api";
+import { usePokemonLimit } from "./PokemonLimitContext";
 
 export const PokemonContext = createContext();
 
-export const PokemonProvider = ({ children, limit = 300 }) => {
+export const PokemonProvider = ({ children }) => {
+    const { limit } = usePokemonLimit();
     const [pokemons, setPokemons] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
