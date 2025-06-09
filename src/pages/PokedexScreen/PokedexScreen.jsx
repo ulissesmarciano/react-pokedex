@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef, useEffect } from "react";
-import useFetchAllPokemons from "../../hooks/useFetchAllPokemons";
+import { usePokemon } from "../../hooks/usePokemon";
 
 import { Container, PokemonCardContainer, TitleContainer } from "./styles";
 
@@ -14,7 +14,7 @@ import { getPokemonImage } from "../../utils/pokemonUtils";
 import Button from "../../components/Button/Button";
 
 export default function PokedexScreen() {
-  const { pokemons, loading, error } = useFetchAllPokemons();
+  const { pokemons, loading, error } = usePokemon()
   const [search, setSearch] = useState("");
   const [filterType, setFilterType] = useState("");
   const [quantdidadeLista, setQuantidadeLista] = useState(12);

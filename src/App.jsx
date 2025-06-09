@@ -1,10 +1,13 @@
+import { PokemonProvider } from "./contexts/PokemonContext";
 import { PokemonLimitProvider } from "./contexts/PokemonLimitContext";
 import AppRoutes from "./routes/AppRoutes";
 
 function App() {
   return (
     <PokemonLimitProvider>
-      <AppRoutes />
+      <PokemonProvider>
+        <AppRoutes />
+      </PokemonProvider>
     </PokemonLimitProvider>
   );
 }
