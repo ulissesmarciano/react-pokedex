@@ -18,6 +18,8 @@ export default function PokedexScreen() {
   const [search, setSearch] = useState("");
   const [filterType, setFilterType] = useState("");
   const [quantdidadeLista, setQuantidadeLista] = useState(12);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   const searchBarRef = useRef();
   const dropdownRef = useRef();
 
@@ -61,9 +63,7 @@ export default function PokedexScreen() {
         searchBarRef.current &&
         !searchBarRef.current.contains(event.target)
       ) {
-        const dropdownComponent =
-          dropdownRef.current.querySelector(".filter-btn");
-        if (dropdownComponent) dropdownComponent.click();
+        setIsDropdownOpen(false);
       }
     };
 
@@ -72,6 +72,7 @@ export default function PokedexScreen() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
 
   return (
     <Container>
@@ -87,6 +88,8 @@ export default function PokedexScreen() {
           />
           <FilterDropDown
             ref={dropdownRef}
+            isOpen={isDropdownOpen}
+            setIsOpen={setIsDropdownOpen}
             onClickItem={handleItemClick}
             onClickResetItem={handleResetClick}
           />
