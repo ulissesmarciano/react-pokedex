@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { pokemonTypeStyles } from "../../constants/colors";
+import styled from 'styled-components';
+import { pokemonTypeStyles } from '../../constants/colors';
 
 export const Container = styled.li`
   margin-bottom: 0.2rem;

@@ -1,5 +1,5 @@
-import { Container } from "@/components/PokedexCard/styles";
-import { Link } from "react-router-dom";
+import { Container } from '@/components/PokedexCard/styles';
+import { Link } from 'react-router-dom';
 
 interface PokemonCardProps {
   to: string;

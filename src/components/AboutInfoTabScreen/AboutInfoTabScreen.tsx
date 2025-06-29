@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState } from 'react';
 import {
   Container,
   StoryContainer,
   WeaknessesContainer,
-} from "@/components/AboutInfoTabScreen/styles";
-import PokemonTypesItem from "@/components/PokemonTypesItem/PokemonTypesItem";
+} from '@/components/AboutInfoTabScreen/styles';
+import PokemonTypesItem from '@/components/PokemonTypesItem/PokemonTypesItem';
 
 interface AboutInfoTabScreenProps {
   weakness: string[];
@@ -22,7 +22,7 @@ export default function AboutInfoTabScreen({
   };
 
   const fullText = `${story}`;
-  const truncatedText = fullText.substring(0, 40) + "...";
+  const truncatedText = fullText.substring(0, 40) + '...';
 
   return (
     <Container>
@@ -32,9 +32,9 @@ export default function AboutInfoTabScreen({
           {isExpanded ? fullText : truncatedText}
           <span
             onClick={handleToggleExpand}
-            style={{ color: "blue", cursor: "pointer" }}
+            style={{ color: 'blue', cursor: 'pointer' }}
           >
-            {isExpanded ? " See Less" : " See More"}
+            {isExpanded ? ' See Less' : ' See More'}
           </span>
         </p>
       </StoryContainer>

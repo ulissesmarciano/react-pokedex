@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { pokemonTypeStyles } from "../../constants/colors";
+import styled from 'styled-components';
+import { pokemonTypeStyles } from '../../constants/colors';
 
 export const Container = styled.main`
   margin: 4rem 0.5rem 0;
@@ -152,7 +152,7 @@ export const Container = styled.main`
     margin: 0 auto;
     display: grid;
     grid:
-      "number-page-container-left left-side-section right-side-section number-page-container-right"
+      'number-page-container-left left-side-section right-side-section number-page-container-right'
       / 3.4rem 1fr 1fr 3.4rem;
     align-items: center;
 

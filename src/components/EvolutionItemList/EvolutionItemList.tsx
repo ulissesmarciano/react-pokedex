@@ -1,5 +1,5 @@
-import { PokemonEvolutionItem } from "@/components/EvolutionItemList/styles";
-import { Link } from "react-router-dom";
+import { PokemonEvolutionItem } from '@/components/EvolutionItemList/styles';
+import { Link } from 'react-router-dom';
 
 interface EvolutionItemListProps {
   src: string;

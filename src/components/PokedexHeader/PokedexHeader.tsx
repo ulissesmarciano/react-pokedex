@@ -1,7 +1,7 @@
-import { Container } from "@/components/PokedexHeader/styles";
+import { Container } from '@/components/PokedexHeader/styles';
 
-import PokeballIcon from "@/assets/icons/pokeball-icon.svg";
-import { Link } from "react-router-dom";
+import PokeballIcon from '@/assets/icons/pokeball-icon.svg';
+import { Link } from 'react-router-dom';
 
 export default function PokedexHeader() {
   return (

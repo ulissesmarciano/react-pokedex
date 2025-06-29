@@ -1,22 +1,22 @@
-import { useState, useMemo, useRef, useEffect } from "react";
-import { usePokemon } from "@/hooks/usePokemon";
+import { useState, useMemo, useRef, useEffect } from 'react';
+import { usePokemon } from '@/hooks/usePokemon';
 
-import { Container, PokemonCardContainer, TitleContainer } from "./styles";
+import { Container, PokemonCardContainer, TitleContainer } from './styles';
 
-import PokedexHeader from "@/components/PokedexHeader/PokedexHeader";
-import SearchBar from "@/components/SearchBar/SearchBar";
-import PokemonCard from "@/components/PokedexCard/PokedexHeader";
-import PokemonTypesItem from "@/components/PokemonTypesItem/PokemonTypesItem";
-import PokemonCardLoader from "@/components/CardLoader/CardLoader";
-import FilterDropDown from "@/components/FilterDropDown/FilterDropDown";
-import Button from "@/components/Button/Button";
+import PokedexHeader from '@/components/PokedexHeader/PokedexHeader';
+import SearchBar from '@/components/SearchBar/SearchBar';
+import PokemonCard from '@/components/PokedexCard/PokedexHeader';
+import PokemonTypesItem from '@/components/PokemonTypesItem/PokemonTypesItem';
+import PokemonCardLoader from '@/components/CardLoader/CardLoader';
+import FilterDropDown from '@/components/FilterDropDown/FilterDropDown';
+import Button from '@/components/Button/Button';
 
-import { getPokemonImage } from "@/utils/pokemonUtils";
+import { getPokemonImage } from '@/utils/pokemonUtils';
 
 export default function PokedexScreen() {
   const { pokemons, loading, error } = usePokemon();
-  const [search, setSearch] = useState("");
-  const [filterType, setFilterType] = useState("");
+  const [search, setSearch] = useState('');
+  const [filterType, setFilterType] = useState('');
   const [quantdidadeLista, setQuantidadeLista] = useState(12);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -40,7 +40,7 @@ export default function PokedexScreen() {
         }
         return true;
       }),
-    [pokemons, lowerSearch, searchNumber, filterType]
+    [pokemons, lowerSearch, searchNumber, filterType],
   );
 
   const handleItemClick = (item: string) => {
@@ -48,7 +48,7 @@ export default function PokedexScreen() {
   };
 
   const handleResetClick = () => {
-    setFilterType("");
+    setFilterType('');
   };
 
   const verMais = () => {
@@ -67,9 +67,9 @@ export default function PokedexScreen() {
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 

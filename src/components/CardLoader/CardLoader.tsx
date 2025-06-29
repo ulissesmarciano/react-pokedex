@@ -1,4 +1,4 @@
-import { Container } from "@/components/CardLoader/styles";
+import { Container } from '@/components/CardLoader/styles';
 
 export default function PokemonCardLoader() {
   return (

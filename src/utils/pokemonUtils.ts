@@ -1,13 +1,13 @@
-import typeWeaknesses from "@/constants/typeWeaknesses";
-import type { Pokemon, Ability, GenderPercentage } from "@/types/pokemon";
+import typeWeaknesses from '@/constants/typeWeaknesses';
+import type { Pokemon, Ability, GenderPercentage } from '@/types/pokemon';
 
 type PokemonType = keyof typeof typeWeaknesses;
 
 export const getPokemonImage = (pokemon: Pokemon): string => {
   if (pokemon.sprites?.other.dream_world?.front_default !== null) {
-    return pokemon.sprites?.other?.dream_world?.front_default || "";
+    return pokemon.sprites?.other?.dream_world?.front_default || '';
   } else {
-    return pokemon.sprites.other["official-artwork"].front_default;
+    return pokemon.sprites.other['official-artwork'].front_default;
   }
 };
 
@@ -24,11 +24,11 @@ export const calculateWeight = (weightInKg: number): string => {
 };
 
 export const formatAbilities = (abilities: Ability[]): string => {
-  return abilities.map((ability) => ability.ability.name).join(", ");
+  return abilities.map((ability) => ability.ability.name).join(', ');
 };
 
 export const calculateGenderPercentage = (
-  genderRate: number
+  genderRate: number,
 ): GenderPercentage => {
   const malePercentage = (genderRate * -100) / 8 + 100;
   const femalePercentage = (genderRate * 100) / 8;
@@ -44,7 +44,7 @@ export const calculateWeaknesses = (types: string[]): string[] => {
     if (type in typeWeaknesses) {
       const pokemonType = type as PokemonType;
       typeWeaknesses[pokemonType].forEach((weakness: string) =>
-        weaknesses.add(weakness)
+        weaknesses.add(weakness),
       );
     }
   });

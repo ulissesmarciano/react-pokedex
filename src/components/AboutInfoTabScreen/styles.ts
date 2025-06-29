@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { pokemonTypeStyles } from "../../constants/colors";
+import styled from 'styled-components';
+import { pokemonTypeStyles } from '../../constants/colors';
 
 export const Container = styled.section`
   margin: 1rem 1rem;

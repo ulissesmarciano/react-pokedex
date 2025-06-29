@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import api from "@/services/api";
+import { useState, useEffect } from 'react';
+import api from '@/services/api';
 
 interface EvolutionData {
   name: string;
@@ -17,7 +17,7 @@ interface EvolutionChainLink {
 
 const useFetchEvolutionData = (evolutionChainUrl: string) => {
   const [evolutionDataList, setEvolutionDataList] = useState<EvolutionData[]>(
-    []
+    [],
   );
 
   const fetchImage = async (name: string): Promise<string | null> => {
@@ -25,7 +25,7 @@ const useFetchEvolutionData = (evolutionChainUrl: string) => {
       const response = await api.get(`/pokemon/${name}`);
       return response.data.sprites.front_default;
     } catch (error) {
-      console.error("Error fetching evolution image:", error);
+      console.error('Error fetching evolution image:', error);
       return null;
     }
   };
@@ -34,10 +34,10 @@ const useFetchEvolutionData = (evolutionChainUrl: string) => {
     try {
       const response = await api.get(`/pokemon/${name}`);
       return response.data.types.map(
-        (type: { type: { name: string } }) => type.type.name
+        (type: { type: { name: string } }) => type.type.name,
       );
     } catch (error) {
-      console.error("Error fetching Pokémon types:", error);
+      console.error('Error fetching Pokémon types:', error);
       return null;
     }
   };
@@ -68,10 +68,10 @@ const useFetchEvolutionData = (evolutionChainUrl: string) => {
       api
         .get(evolutionChainUrl)
         .then((response) =>
-          fetchEvolutionData(response.data.chain as EvolutionChainLink)
+          fetchEvolutionData(response.data.chain as EvolutionChainLink),
         )
         .catch((error) =>
-          console.error("Error fetching evolution chain:", error)
+          console.error('Error fetching evolution chain:', error),
         );
     }
   }, [evolutionChainUrl]);

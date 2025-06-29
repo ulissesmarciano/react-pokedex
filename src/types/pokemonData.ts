@@ -7,7 +7,7 @@ export interface PokemonData {
       dream_world?: {
         front_default: string | null;
       };
-      "official-artwork": {
+      'official-artwork': {
         front_default: string;
       };
     };

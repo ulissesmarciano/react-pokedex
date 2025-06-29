@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import api from "@/services/api";
+import { useState, useEffect } from 'react';
+import api from '@/services/api';
 
 interface FetchPokemonParams {
   pokemonName: string;
@@ -10,7 +10,7 @@ const useFetchPokemonData = ({ pokemonName }: FetchPokemonParams) => {
 
   useEffect(() => {
     const fetchPokemonData = async () => {
-      if (!pokemonName || pokemonName.trim() === "") {
+      if (!pokemonName || pokemonName.trim() === '') {
         setPokemonData(null);
         return;
       }
@@ -23,7 +23,7 @@ const useFetchPokemonData = ({ pokemonName }: FetchPokemonParams) => {
         const speciesData = speciesResponse.data;
 
         const evolutionChainResponse = await api.get(
-          speciesData.evolution_chain.url
+          speciesData.evolution_chain.url,
         );
         const evolutionChainData = evolutionChainResponse.data;
 
@@ -36,8 +36,8 @@ const useFetchPokemonData = ({ pokemonName }: FetchPokemonParams) => {
               return {
                 name: typeData.name,
               };
-            }
-          )
+            },
+          ),
         );
 
         setPokemonData({
@@ -47,7 +47,7 @@ const useFetchPokemonData = ({ pokemonName }: FetchPokemonParams) => {
           types: typesData,
         });
       } catch (error) {
-        console.error("Error fetching Pokémon data:", error);
+        console.error('Error fetching Pokémon data:', error);
         setPokemonData(null);
       }
     };

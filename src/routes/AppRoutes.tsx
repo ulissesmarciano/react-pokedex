@@ -1,6 +1,6 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import PokedexScreen from "@/pages/PokedexScreen/PokedexScreen";
-import PokemonScreen from "@/pages/PokemonScreen/PokemonScreen";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import PokedexScreen from '@/pages/PokedexScreen/PokedexScreen';
+import PokemonScreen from '@/pages/PokemonScreen/PokemonScreen';
 
 const AppRoutes = () => {
   return (

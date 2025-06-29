@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { pokemonEvolutionStyles } from "../../constants/colors";
+import styled from 'styled-components';
+import { pokemonEvolutionStyles } from '../../constants/colors';
 
 export const PokemonEvolutionItem = styled.ul`
   .name-and-title-section {

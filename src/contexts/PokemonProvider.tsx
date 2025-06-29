@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
-import api from "@/services/api";
-import { usePokemonLimit } from "@/hooks/usePokemonLimit";
-import { PokemonContext } from "@/contexts/PokemonContext";
+import { useState, useEffect } from 'react';
+import api from '@/services/api';
+import { usePokemonLimit } from '@/hooks/usePokemonLimit';
+import { PokemonContext } from '@/contexts/PokemonContext';
 import type {
   PokemonProviderProps,
   PokemonResult,
-} from "@/types/pokemonProvider";
-import type { Pokemon } from "@/types/pokemon";
+} from '@/types/pokemonProvider';
+import type { Pokemon } from '@/types/pokemon';
 
 export const PokemonProvider = ({ children }: PokemonProviderProps) => {
   const { limit } = usePokemonLimit();
@@ -19,7 +19,7 @@ export const PokemonProvider = ({ children }: PokemonProviderProps) => {
       setLoading(true);
       try {
         const response = await api.get<{ results: PokemonResult[] }>(
-          `/pokemon?limit=${limit}`
+          `/pokemon?limit=${limit}`,
         );
         const { results } = response.data;
 
@@ -32,14 +32,14 @@ export const PokemonProvider = ({ children }: PokemonProviderProps) => {
               types,
               sprites,
             };
-          })
+          }),
         );
 
         setPokemons(payloadPokemons);
         setError(null);
       } catch (err) {
         console.error(err);
-        setError("Erro ao carregar os Pokémons");
+        setError('Erro ao carregar os Pokémons');
       } finally {
         setLoading(false);
       }
@@ -52,7 +52,7 @@ export const PokemonProvider = ({ children }: PokemonProviderProps) => {
       const transformedTypes = types.map(
         (type: { type: { name: string } }) => ({
           name: type.type.name,
-        })
+        }),
       );
 
       return {

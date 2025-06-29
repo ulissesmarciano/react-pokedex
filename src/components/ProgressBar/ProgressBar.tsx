@@ -1,7 +1,7 @@
 import {
   ProgressBarBackground,
   ProgressPowerBar,
-} from "@/components/ProgressBar/styles";
+} from '@/components/ProgressBar/styles';
 
 interface ProgressBarProps {
   progress: number;
@@ -9,7 +9,7 @@ interface ProgressBarProps {
 
 const ProgressBar = ({ progress }: ProgressBarProps) => {
   const width = `${progress}%`;
-  const color = progress < 50 ? "red" : "green";
+  const color = progress < 50 ? 'red' : 'green';
 
   return (
     <ProgressBarBackground>

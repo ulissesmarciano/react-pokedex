@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState } from 'react';
 import {
   InfoContainer,
   InfoPage,
   NavContainer,
   TabButton,
-} from "@/components/InfoTabList/styles";
-import { tabs } from "@/constants/tabs";
+} from '@/components/InfoTabList/styles';
+import { tabs } from '@/constants/tabs';
 
 interface InfoTabListProps {
   story: string;

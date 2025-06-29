@@ -1,5 +1,5 @@
-import { FloatButton } from "@/components/Button/styles";
-import type { VariantType } from "@/constants/buttonStyles";
+import { FloatButton } from '@/components/Button/styles';
+import type { VariantType } from '@/constants/buttonStyles';
 
 interface ButtonProps {
   onClick: () => void;

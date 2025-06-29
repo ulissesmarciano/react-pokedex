@@ -1,4 +1,4 @@
-import { Container } from "@/components/PokemonTypesItem/styles";
+import { Container } from '@/components/PokemonTypesItem/styles';
 
 interface PokemonTypesItemProps {
   typeBackground: string;

@@ -1,5 +1,5 @@
-import ProgressBar from "@/components/ProgressBar/ProgressBar";
-import { StatsTabScreenSection } from "@/components/StatsInfoTabScreen/styles";
+import ProgressBar from '@/components/ProgressBar/ProgressBar';
+import { StatsTabScreenSection } from '@/components/StatsInfoTabScreen/styles';
 
 interface StatsInfoTabScreenProps {
   total: number;

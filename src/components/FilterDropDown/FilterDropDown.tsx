@@ -1,7 +1,7 @@
-import { useState, forwardRef } from "react";
-import { Container } from "@/components/FilterDropDown/styles";
-import { FaChevronDown } from "react-icons/fa";
-import types from "@/constants/types";
+import { useState, forwardRef } from 'react';
+import { Container } from '@/components/FilterDropDown/styles';
+import { FaChevronDown } from 'react-icons/fa';
+import types from '@/constants/types';
 
 interface FilterDropDownProps {
   onClickItem: (type: string) => void;
@@ -21,13 +21,13 @@ const FilterDropDown = forwardRef<HTMLDivElement, FilterDropDownProps>(
     return (
       <Container ref={ref}>
         <button
-          className={`filter-btn ${isOpen ? "active" : ""}`}
+          className={`filter-btn ${isOpen ? 'active' : ''}`}
           onClick={handleToggle}
         >
           <span>Type</span>
-          <FaChevronDown className={isOpen ? "rotate" : ""} />
+          <FaChevronDown className={isOpen ? 'rotate' : ''} />
         </button>
-        <div className={`dropdown-list ${isOpen ? "active open-drawer" : ""}`}>
+        <div className={`dropdown-list ${isOpen ? 'active open-drawer' : ''}`}>
           <button className="reset-item" onClick={onClickResetItem}>
             Todos
           </button>
@@ -43,7 +43,7 @@ const FilterDropDown = forwardRef<HTMLDivElement, FilterDropDownProps>(
         </div>
       </Container>
     );
-  }
+  },
 );
 
 export default FilterDropDown;
