@@ -4,12 +4,14 @@ import tsparser from '@typescript-eslint/parser';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import prettierPlugin from 'eslint-plugin-prettier';
+import eslintConfigPrettier from 'eslint-config-prettier';
 
 export default [
   {
     ignores: ['node_modules', 'dist', 'coverage'],
   },
   js.configs.recommended,
+  eslintConfigPrettier,
   {
     files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
@@ -39,14 +41,9 @@ export default [
     },
     rules: {
       'no-unused-vars': 'off',
-      '@typescript-eslint/no-unused-vars': [
-        'warn',
-        { argsIgnorePattern: '^_' },
-      ],
+      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
-
-      // Prettier roda como regra do ESLint (vai mostrar erros de formatação)
       'prettier/prettier': 'error',
     },
     settings: {
@@ -54,9 +51,5 @@ export default [
         version: 'detect',
       },
     },
-    extends: [
-      // Extende configuração para desativar regras conflitantes do ESLint que o Prettier já cuida
-      'prettier',
-    ],
   },
 ];
