@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, useRef } from "react";
-import useFetchPokemonData from "./useFetchPokemonData";
-import useFetchEvolutionData from "./useFetchEvolutionData";
+import useFetchPokemonData from "@/hooks/useFetchPokemonData";
+import useFetchEvolutionData from "@/hooks/useFetchEvolutionData";
 import {
   getPokemonImage,
   calculateWeaknesses,
@@ -8,7 +8,7 @@ import {
   calculateWeight,
   calculateGenderPercentage,
   formatAbilities,
-} from "../utils/pokemonUtils";
+} from "@/utils/pokemonUtils";
 
 import type {
   PokemonData,

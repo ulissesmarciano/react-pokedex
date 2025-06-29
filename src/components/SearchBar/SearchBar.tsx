@@ -1,6 +1,6 @@
 import { Container, SearchLabel } from "@/components/SearchBar/styles";
 
-import SearchIcon from "../../assets/icons/search-icon.svg";
+import SearchIcon from "@/assets/icons/search-icon.svg";
 
 interface SearchBarProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;

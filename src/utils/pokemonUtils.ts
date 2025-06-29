@@ -1,4 +1,4 @@
-import typeWeaknesses from "../constants/typeWeaknesses";
+import typeWeaknesses from "@/constants/typeWeaknesses";
 import type { Pokemon, Ability, GenderPercentage } from "@/types/pokemon";
 
 type PokemonType = keyof typeof typeWeaknesses;

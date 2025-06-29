@@ -3,8 +3,8 @@ import {
   DataItemAttributesList,
 } from "@/components/AttributesInfoTabScreen/styles";
 
-import MaleSimbol from "../../assets/icons/male.png";
-import FemaleSimbol from "../../assets/icons/female.png";
+import MaleSimbol from "@/assets/icons/male.png";
+import FemaleSimbol from "@/assets/icons/female.png";
 
 interface AttributesInfoTabScreenProps {
   height: string;

@@ -1,7 +1,7 @@
 import { useState, forwardRef } from "react";
 import { Container } from "@/components/FilterDropDown/styles";
 import { FaChevronDown } from "react-icons/fa";
-import types from "../../constants/types";
+import types from "@/constants/types";
 
 interface FilterDropDownProps {
   onClickItem: (type: string) => void;

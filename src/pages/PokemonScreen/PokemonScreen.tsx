@@ -1,17 +1,17 @@
 import { Link, useParams } from "react-router-dom";
 import { Container } from "./styles";
 
-import usePokemonData from "../../hooks/usePokemonData";
-import { usePokemon } from "../../hooks/usePokemon";
+import usePokemonData from "@/hooks/usePokemonData";
+import { usePokemon } from "@/hooks/usePokemon";
 
-import PokemonPageLoader from "../../components/PokemonPageLoader/PokemonPageLoader";
-import PokemonHeader from "../../components/PokemonHeader/PokemonPageLoader";
-import PokemonTypesItem from "../../components/PokemonTypesItem/PokemonTypesItem";
-import InfoTabList from "../../components/InfoTabList/InfoTabList";
-import EvolutionItemList from "../../components/EvolutionItemList/EvolutionItemList";
+import PokemonPageLoader from "@/components/PokemonPageLoader/PokemonPageLoader";
+import PokemonHeader from "@/components/PokemonHeader/PokemonPageLoader";
+import PokemonTypesItem from "@/components/PokemonTypesItem/PokemonTypesItem";
+import InfoTabList from "@/components/InfoTabList/InfoTabList";
+import EvolutionItemList from "@/components/EvolutionItemList/EvolutionItemList";
 
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
-import PokebalImage from "../../assets/icons/pokeball-icon.svg";
+import PokebalImage from "@/assets/icons/pokeball-icon.svg";
 
 const PokemonScreen = () => {
   const { name } = useParams<{ name: string }>();

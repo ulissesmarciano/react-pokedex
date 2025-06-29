@@ -1,18 +1,15 @@
 import { useState, useEffect } from "react";
 import api from "@/services/api";
 
-// CORREÇÃO: Interface renomeada para evitar conflito
 interface FetchPokemonParams {
   pokemonName: string;
 }
 
-// CORREÇÃO: Parâmetro tipado corretamente
 const useFetchPokemonData = ({ pokemonName }: FetchPokemonParams) => {
   const [pokemonData, setPokemonData] = useState(null);
 
   useEffect(() => {
     const fetchPokemonData = async () => {
-      // CORREÇÃO: Verificar se pokemonName não está vazio
       if (!pokemonName || pokemonName.trim() === "") {
         setPokemonData(null);
         return;

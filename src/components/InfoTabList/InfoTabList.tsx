@@ -5,7 +5,7 @@ import {
   NavContainer,
   TabButton,
 } from "@/components/InfoTabList/styles";
-import { tabs } from "../../constants/tabs";
+import { tabs } from "@/constants/tabs";
 
 interface InfoTabListProps {
   story: string;
