@@ -30,9 +30,7 @@ export default function PokedexScreen() {
     () =>
       (pokemons || []).filter((pokemon) => {
         if (filterType) {
-          return pokemon.types.some((type) =>
-            console.log(type.name === filterType)
-          );
+          return pokemon.types.some((type) => type.name === filterType);
         }
         if (lowerSearch || searchNumber) {
           return (
