@@ -4,11 +4,11 @@ import { Container } from './styles';
 import usePokemonData from '@/hooks/usePokemonData';
 import { usePokemon } from '@/hooks/usePokemon';
 
-import PokemonPageLoader from '@/components/PokemonPageLoader/PokemonPageLoader';
-import PokemonHeader from '@/components/PokemonHeader/PokemonPageLoader';
-import PokemonTypesItem from '@/components/PokemonTypesItem/PokemonTypesItem';
-import InfoTabList from '@/components/InfoTabList/InfoTabList';
-import EvolutionItemList from '@/components/EvolutionItemList/EvolutionItemList';
+import PokemonPageLoader from '@/components/atoms/PokemonPageLoader/PokemonPageLoader';
+import PokemonHeader from '@/components/atoms/PokemonHeader/PokemonPageLoader';
+import PokemonTypesItem from '@/components/atoms/PokemonTypesItem/PokemonTypesItem';
+import InfoTabList from '@/components/organism/InfoTabList/InfoTabList';
+import EvolutionItemList from '@/components/atoms/EvolutionItemList/EvolutionItemList';
 
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
 import PokebalImage from '@/assets/icons/pokeball-icon.svg';
