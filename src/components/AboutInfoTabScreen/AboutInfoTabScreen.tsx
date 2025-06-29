@@ -4,6 +4,7 @@ import {
   StoryContainer,
   WeaknessesContainer,
 } from "@/components/AboutInfoTabScreen/styles";
+import PokemonTypesItem from "@/components/PokemonTypesItem/PokemonTypesItem";
 
 interface AboutInfoTabScreenProps {
   weakness: string[];
@@ -39,7 +40,15 @@ export default function AboutInfoTabScreen({
       </StoryContainer>
       <WeaknessesContainer>
         <h5>Weaknesses</h5>
-        <ul>{weakness}</ul>
+        <ul>
+          {weakness.map((type, index) => (
+            <PokemonTypesItem
+              key={index}
+              typeBackground={type}
+              typeName={type}
+            />
+          ))}
+        </ul>
       </WeaknessesContainer>
     </Container>
   );
