@@ -6,4 +6,6 @@ export interface PokemonLimitContextType {
   setLimit: Dispatch<SetStateAction<number>>;
 }
 
-export const PokemonLimitContext = createContext<PokemonLimitContextType | undefined>(undefined);
+export const PokemonLimitContext = createContext<
+  PokemonLimitContextType | undefined
+>(undefined);

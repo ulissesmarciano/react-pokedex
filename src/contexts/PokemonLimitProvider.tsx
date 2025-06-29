@@ -5,7 +5,9 @@ interface PokemonLimitProviderProps {
   children: ReactNode;
 }
 
-export const PokemonLimitProvider = ({ children }: PokemonLimitProviderProps) => {
+export const PokemonLimitProvider = ({
+  children,
+}: PokemonLimitProviderProps) => {
   const [limit, setLimit] = useState<number>(300);
 
   return (

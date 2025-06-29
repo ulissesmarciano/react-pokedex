@@ -1,17 +1,6 @@
 import { createContext } from "react";
+import type { PokemonsContextType } from "@/types/pokemon";
 
-interface Pokemon {
-    name: string;
-    id: number;
-    types: unknown[];
-    sprites: unknown;
-}
-
-interface PokemonsContextType {
-    pokemons: Pokemon[];
-    loading: boolean;
-    error: string | null;
-}
-
-export const PokemonContext = createContext<PokemonsContextType | undefined>(undefined);
-
+export const PokemonContext = createContext<PokemonsContextType | undefined>(
+  undefined
+);
