@@ -1,54 +1,60 @@
-# React + TypeScript + Vite
+# 🧠 React Pokédex
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Banner](https://img.shields.io/badge/React-Pokédex-61dafb?style=for-the-badge&logo=react&logoColor=white)
+![License](https://img.shields.io/github/license/ulissesmarciano/react-pokedex?style=for-the-badge)
+![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow?style=for-the-badge)
 
-Currently, two official plugins are available:
+> Uma enciclopédia interativa dos Pokémon feita com amor em React.js ⚡
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🎥 Demonstração
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+<!-- Substitua o caminho abaixo pelo caminho do seu GIF (ex: ./public/demo.gif ou ./assets/pokedex-demo.gif) -->
+<p align="center">
+  <img src="./src/assets/readme/image.gif" alt="Demonstração da Pokédex" width="600" />
+</p>
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📚 Sobre o Projeto
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
+A **React Pokédex** é uma aplicação web construída com React.js que consome dados da [PokéAPI](https://pokeapi.co/) para exibir informações completas sobre os monstrinhos mais famosos do mundo!
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-});
-```
+Você poderá:
+- 🔍 Pesquisar seus Pokémon favoritos
+- 📋 Visualizar detalhes como tipos, status e evolução
+- 🎨 Alternar entre temas claro e escuro
+- 🔄 Navegar entre diferentes gerações (em breve...)
+
+---
+
+## 🚀 Tecnologias Utilizadas
+
+- ⚛️ **React.js** – Biblioteca principal para construção da interface
+- 🧪 **Vitest** – Para testes unitários
+- 💅 **styled-components** – Estilização com suporte a temas
+- 🔁 **React Router DOM** – Navegação entre páginas
+- 📦 **Axios** – Requisições HTTP à PokéAPI
+- 💡 **TypeScript** – Tipagem estática e segurança em tempo de desenvolvimento
+
+---
+
+## 🧠 Estrutura do Projeto
+
+```bash
+react-pokedex/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── contexts/
+│   ├── hooks/
+│   ├── pages/
+│   ├── services/
+│   ├── styles/
+│   └── utils/
+├── tests/
+├── .eslintrc.cjs
+├── vitest.config.ts
+└── README.md
