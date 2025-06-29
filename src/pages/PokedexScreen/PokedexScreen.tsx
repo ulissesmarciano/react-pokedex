@@ -3,13 +3,13 @@ import { usePokemon } from '@/hooks/usePokemon';
 
 import { Container, PokemonCardContainer, TitleContainer } from './styles';
 
-import PokedexHeader from '@/components/PokedexHeader/PokedexHeader';
-import SearchBar from '@/components/SearchBar/SearchBar';
-import PokemonCard from '@/components/PokedexCard/PokedexHeader';
-import PokemonTypesItem from '@/components/PokemonTypesItem/PokemonTypesItem';
-import PokemonCardLoader from '@/components/CardLoader/CardLoader';
-import FilterDropDown from '@/components/FilterDropDown/FilterDropDown';
-import Button from '@/components/Button/Button';
+import PokedexHeader from '@/components/atoms/PokedexHeader/PokedexHeader';
+import SearchBar from '@/components/molecules/SearchBar/SearchBar';
+import PokemonCard from '@/components/organism/PokedexCard/PokedexHeader';
+import PokemonTypesItem from '@/components/atoms/PokemonTypesItem/PokemonTypesItem';
+import PokemonCardLoader from '@/components/atoms/CardLoader/CardLoader';
+import FilterDropDown from '@/components/organism/FilterDropDown/FilterDropDown';
+import Button from '@/components/atoms/Button/Button';
 
 import { getPokemonImage } from '@/utils/pokemonUtils';
 
