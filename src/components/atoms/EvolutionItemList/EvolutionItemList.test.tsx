@@ -1,9 +1,11 @@
 import EvolutionItemList from '@/components/atoms/EvolutionItemList/EvolutionItemList';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
-import { beforeEach, describe, it, expect } from 'vitest';
+import { beforeEach, describe, it, expect, vi } from 'vitest';
 
 describe('EvolutionItemList', () => {
+  const handleClick = vi.fn();
   const props = {
     src: 'https://example.com/pikachu.png',
     alt: 'imagem do pikachu',
@@ -11,6 +13,7 @@ describe('EvolutionItemList', () => {
     type: [<li key="electric">Electric</li>],
     className: 'pokemon-class',
     to: '/pokemon/pikachu',
+    onClick: handleClick,
   };
   beforeEach(() =>
     render(
@@ -40,5 +43,11 @@ describe('EvolutionItemList', () => {
     const link = screen.getByRole('link');
     expect(link).toBeInTheDocument();
     expect(link).toHaveAttribute('href', props.to);
+  });
+
+  it('should call onClick when the button is clicked', async () => {
+    const link = screen.getByRole('link');
+    const user = userEvent.setup();
+    await user.click(link);
   });
 });

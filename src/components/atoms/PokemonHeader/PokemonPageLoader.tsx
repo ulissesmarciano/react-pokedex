@@ -5,7 +5,7 @@ import { Container } from '@/components/atoms/PokemonHeader/styles';
 
 export default function PokemonHeader() {
   return (
-    <Container>
+    <Container data-testid="header">
       <Link to="/">
         <IoArrowBack />
         <p>Pokédex</p>
