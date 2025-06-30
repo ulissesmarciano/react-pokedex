@@ -8,6 +8,7 @@ interface EvolutionItemListProps {
   type: React.ReactNode[];
   className: string;
   to: string;
+  onClick?: () => void;
 }
 
 export default function EvolutionItemList({
@@ -17,10 +18,11 @@ export default function EvolutionItemList({
   type,
   className,
   to,
+  onClick,
 }: EvolutionItemListProps) {
   return (
     <PokemonEvolutionItem>
-      <Link to={to} onClick={() => {}}>
+      <Link to={to} onClick={onClick}>
         <div className="name-and-title-section">
           <div className={className}>
             <img src={src} alt={alt} />
