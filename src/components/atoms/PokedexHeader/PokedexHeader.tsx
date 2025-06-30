@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 
 export default function PokedexHeader() {
   return (
-    <Container>
+    <Container data-testid="header">
       <div className="menu-container">
         <Link to="/">
-          <img src={PokeballIcon} alt="Icone da Homepage" />
+          <img src={PokeballIcon} alt="icone da homepage" />
         </Link>
       </div>
     </Container>
