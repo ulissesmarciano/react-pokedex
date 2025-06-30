@@ -1,0 +1,48 @@
+# Força todos os arquivos de texto a usarem LF (Line Feed)
+* text=auto eol=lf
+
+# Arquivos de código sempre com LF
+*.js   text eol=lf
+*.jsx  text eol=lf
+*.ts   text eol=lf
+*.tsx  text eol=lf
+*.json text eol=lf
+*.css  text eol=lf
+*.scss text eol=lf
+*.html text eol=lf
+*.md   text eol=lf
+*.yml  text eol=lf
+*.yaml text eol=lf
+*.env  text eol=lf
+*.eslintrc text eol=lf
+*.prettierrc text eol=lf
+
+# Arquivos de configuração
+*.config.* text eol=lf
+*.rc       text eol=lf
+
+# Tratamento de scripts (ex: bash)
+*.sh text eol=lf
+
+# Impede o Git de tentar alterar arquivos binários (como imagens e fontes)
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.svg  binary
+*.ico  binary
+*.woff binary
+*.woff2 binary
+*.ttf  binary
+*.eot  binary
+*.mp4  binary
+*.mp3  binary
+
+# Evita mudanças desnecessárias em arquivos de lock
+package-lock.json text eol=lf
+pnpm-lock.yaml    text eol=lf
+yarn.lock         text eol=lf
+
+# Ignora snapshots e coverage de testes como texto
+*.snap text eol=lf
+*.lcov text eol=lf
