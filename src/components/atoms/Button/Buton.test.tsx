@@ -2,6 +2,7 @@ import { beforeEach, describe, vi, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import Button from '@/components/atoms/Button/Button';
 import userEvent from '@testing-library/user-event';
+import type { VariantType } from '@/constants/buttonStyles';
 
 describe('Button', () => {
   const mockClick = vi.fn();
@@ -25,4 +26,18 @@ describe('Button', () => {
 
     expect(mockClick).toHaveBeenCalled;
   });
+  it.each([['primary'], ['secondary'], ['danger']])(
+    'renders button with %s variant',
+    (variant) => {
+      render(
+        <Button
+          name="Click"
+          onClick={vi.fn()}
+          variant={variant as VariantType}
+        />,
+      );
+      const btn = screen.getByRole('button', { name: /click/i });
+      expect(btn).toBeInTheDocument();
+    },
+  );
 });

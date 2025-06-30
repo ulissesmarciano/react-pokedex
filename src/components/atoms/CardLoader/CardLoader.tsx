@@ -2,7 +2,7 @@ import { Container } from '@/components/atoms/CardLoader/styles';
 
 export default function PokemonCardLoader() {
   return (
-    <Container>
+    <Container data-testid="card-loader">
       <div className="image-container" />
       <div className="bottom-info-container">
         <ul>
