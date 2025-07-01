@@ -5,7 +5,7 @@ import {
 
 interface ProgressBarProps {
   progress: number;
-  width: string;
+  width?: string;
 }
 
 const ProgressBar = ({ progress }: ProgressBarProps) => {
