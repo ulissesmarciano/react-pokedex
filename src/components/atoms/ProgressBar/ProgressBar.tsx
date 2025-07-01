@@ -5,6 +5,7 @@ import {
 
 interface ProgressBarProps {
   progress: number;
+  width: string;
 }
 
 const ProgressBar = ({ progress }: ProgressBarProps) => {
@@ -13,7 +14,7 @@ const ProgressBar = ({ progress }: ProgressBarProps) => {
 
   return (
     <ProgressBarBackground>
-      <ProgressPowerBar width={width} color={color} />
+      <ProgressPowerBar data-testid="progressbar" width={width} color={color} />
     </ProgressBarBackground>
   );
 };
